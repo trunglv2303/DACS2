@@ -28,7 +28,7 @@
         <div class="dangnhap-1">Nếu bạn đã có tài khoản, hãy đăng nhập để tích lũy điểm thành viên và nhận được
             những ưu đãi tốt hơn!</div>
         <div class="dangnhap2">
-            <label for="hi">Username</label> <br>
+            <label for="hi">Email</label> <br>
             <input type="email" name="email" placeholder="Email" > <br>
             <label for="pass">Mật Khẩu</label> <br>
             <input type="password" name="pass" id="pass"> <br>
@@ -53,27 +53,43 @@
     </div>
     
 @endif
+<form action="{{ route('getinfo') }}" method="POST" id="registrationForm">
+    @csrf
+    <div class="dangki2">
+        <label for="email">Email</label> <br>
+        <input type="email" name="email" required><br>
+        <label for="ho">Họ và tên</label> <br>
+        <input type="text" name="name" required title="Vui lòng nhập tên người dùng"> <br>
+        <label for="sdt">Số Điện Thoại </label> <br>
+        <input type="tel" name="number_phone" > <br>
+        <label for="pass">Mật Khẩu (ít nhất 8 ký tự)</label> <br>
+        <input type="password" name="password" required minlength="8"> <br>
+        <input type="checkbox" name="" id="check1"> <label for="">Đăng ký nhận bản tin</label> <br>
+        <input type="checkbox" name="" id="check2" required> <label for="check2">Tôi đồng ý với các điều khoản của LVTSHOP</label>
+        <br>
+        <br>
+        <input type="submit" value="Đăng Kí Tài Khoản" id="submitButton">
+    </div>
+</form>
 
-      <form action="{{route('getinfo')}}" method="POST">
-        @csrf
-        <div class="dangki2">
-            <label for="email">Email</label> <br>
-            <input type="email" name="email"><br>
-            <label for="ho">Họ và tên</label> <br>
-            <input type="text" name="name"> <br>
-            <label for="sdt">Số Điện Thoại </label> <br>
-            <input type="tel" name="number_phone" > <br>
-            <label for="pas">Mật Khẩu</label> <br>
-            <input type="password" name="password" > <br>
-            <input type="checkbox" name="" id="check1"> <label for="">Đăng ký nhận bản tin</label> <br>
-            <input type="checkbox" name="" id="check1"> <label for="">Tôi đồng ý với các điều khoản của LVTSHOP</label>
-            <br>
-            <br>
-       <input type="submit" value="Đăng Kí Tài Khoản">
+<script>
+document.getElementById('registrationForm').addEventListener('submit', function(event) {
+    var email = document.querySelector('input[name="email"]');
+    var name = document.querySelector('input[name="name"]');
+    var password = document.querySelector('input[name="password"]');
+    var check2 = document.getElementById('check2');
+    var check1 = document.getElementById('check1');
 
+    if (!email.value || !name.value || !password.value || !check2.checked) {
+        event.preventDefault(); // Prevent form submission
+        alert('Vui lòng điền đầy đủ thông tin và đồng ý với điều khoản.');}
+    // } else if (password.value.length < 8) {
+    //     event.preventDefault(); // Prevent form submission
+    //     alert('Mật khẩu phải có ít nhất 8 ký tự.');
+    // }
+});
+</script>
 
-        </div>
-    </form>
     </div>
 
 </div>
