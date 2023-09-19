@@ -4,15 +4,29 @@ namespace App\Http\Controllers;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;  
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-    public function login(){
-
-
+    public function login(Request $request){
+        $this->validate($request,[
+            'email'=>'required|email:filter',
+            'password'=>'required'
+        ]);
+        if(Auth::attempt(['email'=>$request->input('email'),
+                          'password'=>$request->input('password')
+        ]))
+        {
+            return redirect(route("trangchu"));
+        }
+        Session::flash('error','Sai rồi xem lại cơ sở dữ liệu đi!!!!!!');
+        return redirect()->back();
+    }
+    public function trangchu(){
+        return view('Login_register.trangchu');
     }
     public function show($id)
     {

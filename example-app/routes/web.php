@@ -16,4 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/account')->group(function(){
     Route::get('/login', [UserController::class,'register'])->name('register');
     Route::post('/getinfo', [UserController::class,'getinfo'])->name('getinfo');
+    Route::post('/loginnow',[UserController::class,'login'])->name('loginnow');
+    Route::get('/trangchu', [UserController::class,'trangchu'])->name('trangchu');
 });
