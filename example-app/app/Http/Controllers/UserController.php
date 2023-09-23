@@ -8,10 +8,14 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
+    public function trangchu(){
+        return view('layout.content');
+    }
     public function show($id)
     {
 
@@ -71,12 +75,44 @@ class UserController extends Controller
     {
         return view('Home.Collection');
     }
-
-    public function logout()
+    public function thanhtoan()
     {
-
-        Auth::logout();
-        return redirect(route('register'));
-
+        return view('Moi.thanhtoan');
+    }
+    public function sanphammoi()
+    {
+        return view('Moi.sanphammoi');
+    }
+    public function sanphamdam()
+    {
+        return view('Moi.sanphamdam1');
+    }
+    public function sanpham()
+    {
+        return view('Moi.sanpham');
+    }
+    public function sale()
+    {
+        return view('Moi.sale');
+    }
+    public function giohang()
+    {
+        return view('Moi.giohang');
+    }
+    public function bosuutap()
+    {
+        return view('Moi.bosuutap');
+    }
+    public function accout()
+    {
+        return view('Moi.accout');
+    }
+    public function logout(Request $request): RedirectResponse
+{
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect(route("register"));
 }
+
 }

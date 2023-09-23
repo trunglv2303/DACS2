@@ -1,25 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{asset('user-asset/fontawesome-free-6.3.0-web/css/all.min.css')}}">
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
-
-    @yield('other')
-   
-    <title>Fashion Shop</title>
-</head>
+@extends('layout.content')
+@section('other')
+<link rel="stylesheet" href="{{asset('user-asset/CSS/giohang.css')}}">
+@endsection
+@section('content')
 
 <body>
     <div class="thanhtren">
         <div class="bentrai">
-             <a href="" class="icon">
+             <a href="./index.html" class="icon">
                 <div class="fa fa-home"></div> Hệ Thống Cửa Hàng
             </a>
         </div>     
@@ -46,7 +34,7 @@
 
                 <li>
                     <div class="itemmb">
-                        <a href="" class="ten"><b>SẢN PHẨM</b>
+                        <a href="./sanpham.html" class="ten"><b>SẢN PHẨM</b>
                             <div class="fa fa-chevron-down"></div>
                         </a>
                         <div class="layermb">
@@ -72,7 +60,7 @@
                 </li>
                 <li>
                     <div class="itemmb">
-                        <a href="" class="ten"><b>BỘ SƯU TẦM</b>
+                        <a href="" class="ten"><b>BỘ SƯU TẬP</b>
                             <div class="fa fa-chevron-down"></div>
                         </a>
                         <div class="layermb">
@@ -109,7 +97,7 @@
                     <div class="itemmb">
                         <a href="./sanpham.html" class="ten"><b> LVT-SHOP</b>
                         </a>
-
+                        
                     </div>
                 </li>
 
@@ -134,17 +122,16 @@
 
 
 
- 
 
     <div class="thanhcongcu">
         <div class="logo">
-            <a href="./index.html" class="logo1"><img src="{{asset('user-asset/img/lvtshop1.png')}}" alt=""></a>
+            <a href="./index.html" class="logo1"><img src="../img/lvtshop1.png" alt=""></a>
         </div>
         <div class="menu">
             <ul>
                 <li>
                     <div class="item">
-                        <a href="" class="ten"><b>SẢN PHẨM</b>
+                        <a href="./sanpham.html" class="ten"><b>SẢN PHẨM</b>
                             <div class="fa fa-chevron-down"></div>
                         </a>
                         <div class="layer1">
@@ -230,14 +217,14 @@
                     <div class="fa fa-user-circle-o"> </div>
                 </a>
                 <a href="">
-                    <div class="khachhang"> {{(auth()->check()) ? auth()->user()->username : "Chưa đăng nhập"}}</div>
+                    <div class="khachhang"> Khách Hàng</div>
                 </a>
                 <div class="boxlgin">
                     <div class="dangnhap">
-                        <a href="">Profile</a>
+                        <a href="./dangnhap.html"> Đăng Nhập</a>
                     </div>
                     <div class="dangki">
-                        <a href="}"> Logout</a>
+                        <a href="./dangnhap.html"> Đăng kí</a>
                     </div>
                 </div>
             </div>
@@ -246,7 +233,7 @@
                 <a href="./giohang.html">
                     <div class="fa-solid fa-cart-shopping"></div>
                 </a>
-                <a href="./giohang.html">
+                <a href="">
                     <div class="shopping"> Giỏ Hàng </div>
                 </a>
 
@@ -254,56 +241,85 @@
             <label for="nav_inputid" class="navbar"> <i class="fa-solid fa-bars"></i></label>
         </div>
     </div>
+    <div class="linksmall">
 
-    @yield('content')
+        <a href="./index.html"> TRANG CHỦ </a>
+        <span>/</span>
+        <a href="">GIỎ HÀNG CỦA BẠN - LVT SHOP</a>
 
-    <footer class="ft">
-        <div class="ft-left">
-            <h3>LVTSHOP - THỜI TRANG CÔNG SỞ</h3>
-            <p class="copyright">
-                Công ty TNHH Dịch vụ và Thương mại Văn Trung. <br>
-                Số ĐKKD 0107861391, Sở KHĐT Tp. Đà Nẵng cấp ngày 04/10/2017 <br>
-                Địa chỉ: Phòng 1002
-                ,số 470 đường Trần Đại Nghĩa, Hòa Quý,<br> Q. Ngũ Hành Sơn,Đà Nẵng <br>
-                Chăm sóc khách hàng: 0374023927 <br>
-                Mua hàng online: 0374023927 <br>
-                Email: trunglv.22itb@vku.udn.vn
-            </p>
-        </div>
-        <div class="ft-center">
-            <a href=""> Giới thiệu</a><br>
-            <a href=""> Triết lý kinh doanh tại NEM Fashion</a> <br>
-            <a href=""> NEM's Blog</a><br>
-            <a href="">Hệ thống showroom</a> <br>
-            <a href=""> Liên hệ</a>
+    </div>
+    <div class="item-menu"><b>GIỎ HÀNG</b></div>
+    <div class="menu-item">
+        <div class="sp"> Sản Phẩm</div>
+        <div class="gia">Giá</div>
+        <div class="soluong"> Số Lượng</div>
+        <div class="tongtien">Tồng Tiền</div>
+    </div>
+    <div class="infocat">
+        <img src="../img/damhoa.webp" alt="">
+        <div class="infosp"><a href="">ĐẦM HOA ĐÍNH NƠ</a>
+            <br><span>Phiên bản: Size 2 / Vàng <br> Thương hiệu: LVTSHOP</span>
 
         </div>
-        <div class="ft-right">
+        <div class="gia1">559,000₫</div>
+        <input type="number" class="quantity-input" min="1" max="10" value="1">
+        <div class="tien">1,118,000₫</div>
 
-            <a href="">Chính sách giao nhận - Vận chuyển</a> <br>
-            <a href="">Hướng dẫn thanh toán</a><br>
-            <a href=""> Tra cứu đơn hàng</a><br>
-            <a href="">Hướng dẫn chọn Size</a><br>
-            <a href="">Quy định đổi hàng</a><br>
-            <a href=""> Quy định bảo hành và sửa chữa</a><br>
-            <a href=""> Khách hàng thân thiết</a><br>
+    </div>
+    <div class="home-1">
+        <div class="chuthich">
+            Chú thích <br>
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+        </div>
+        <div class="chithich-1">
+            <div class="tongtien">
+                Tổng tiền <h1>1,118,000₫</h1>
+
+            </div>
+            <br>
+            <div class="check1">
+                <div class="capnhat"> Cập Nhật </div>
+                <div class="thanhtoan"> <a href="../HTML/thanhtoan.html" style=" text-decoration: none;color: rgb(255, 255, 255);">Thanh Toán</a> </div>
+            </div>
 
         </div>
-        <div class="ft_bank">
-            Phương thức thanh toán <br>
-            <a href=""><img class="imgbank" src="../img/bank.webp" alt=""></a> <br>
 
-            <img class="bct" src="../img/bct.webp" alt="">
+</div>
+<div class="dangkibangtien">
+    <div class="MAP">
+
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3835.7333963918236!2d108.24978007500275!3d15.97529308469066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3142108997dc971f%3A0x1295cb3d313469c9!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2jhu4cgVGjDtG5nIHRpbiB2w6AgVHJ1eeG7gW4gdGjDtG5nIFZp4buHdCAtIEjDoG4!5e0!3m2!1svi!2s!4v1686645400615!5m2!1svi!2s"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="chu">
+        <div class="dangkibangtin"> Đăng Kí Bảng Tin </div>
+        <div class="dangkibangtinmail">
+            Đăng kí bảng tin để nhận mẫu thiết kế mới nhất
         </div>
 
-    </footer>
+        <input type="text" placeholder="Vui lòng nhập email.... " />
+        <input
+            style="height: 40px;width: 50px ; background-color: rgb(0, 0, 0);color: aliceblue; margin-left:-2px ;"
+            type="submit" value="Gửi"> <br>
+        <div class="icon">
+            <a href="" class="facebook">
+                <div class="fa-brands fa-facebook"></div>
+            </a>
+            <a href="" class="instagram">
+                <div class="fa-brands fa-instagram"></div>
+            </a>
+            <a href="" class="youtube">
+                <div class="fa-brands fa-youtube"></div>
+            </a>
+        </div>
+
+
+
+    </div>
+</div>
+</div>
 </body>
-
-<script src="../JS/javascrip.js" defer></script>
-<script src="../JS/jsao.js" defer></script>
-<script src="../JS/jsblog.js" defer></script>
-
-
-</html>
 
 </html>

@@ -291,18 +291,18 @@ body{
 }
 
 .boxlgin {
-    border: 1px solid black;
+    border: 1px solid rgb(225, 223, 223);
     right: 40px;
     top: -10px;
     z-index: 3;
     visibility: hidden;
     position: relative;
     background-color: rgb(255, 255, 255);
-    width: 170px;
-    margin-top: 3;
+    width: 180px;
+    margin-top:3;
     transition: 0, 4;
     border-radius: 2px;
-    line-height: 1.4;
+    line-height:3;
     opacity: 0;
 
 }
@@ -315,11 +315,14 @@ body{
     padding-left: 40px;
     padding-bottom: 5px;
     font-size: 18px;
-
 }
-
+.dangnhap a:hover{
+    color: #2d4246cf;
+}
+.dangki a:hover{
+    color: #2d4246cf;
+}
 .dangki a {
-
     color: #000000;
     font-size: 18px;
     padding-left: 40px;

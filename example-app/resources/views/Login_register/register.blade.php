@@ -16,7 +16,7 @@
 
     </div>
     <div class="home">
-        <form action="{{ route('login') }}" method="POST">
+        <form action="{{ route('loginnow') }}" method="POST">
             @csrf
             <div class="login">
 
@@ -42,7 +42,7 @@
             <div class="dangki0"><b>ĐĂNG KÍ</b></div>
             <div class="dangki-1">Hãy đăng ký ngay để tích lũy điểm thành viên và nhận được những ưu đãi tốt hơn!</div>
             @if (Session::has('error'))
-                <div style="background: red ;clo" class="alert alert-danger">
+                <div style="background: red " class="alert alert-danger">
                     {{ Session::get('error') }}
 
 
