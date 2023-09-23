@@ -4,15 +4,12 @@
 <head>
 
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../fontawesome-free-6.3.0-web/css/all.min.css">
+    <link rel="stylesheet" href="{{asset('user-asset/fontawesome-free-6.3.0-web/css/all.min.css')}}">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{asset('user-asset/CSS/slider.css')}}">
-    <link rel="stylesheet" href="{{asset('user-asset/CSS/slider1.css')}}">
-    <link rel="stylesheet" href="{{asset('user-asset/CSS/sliderblog.css')}}">
-    <link rel="stylesheet" href="{{asset('user-asset/CSS/Home.css')}}">
+ 
 
     @yield('other')
    
@@ -233,14 +230,23 @@
                     <div class="fa fa-user-circle-o"> </div>
                 </a>
                 <a href="">
-                    <div class="khachhang"> {{(auth()->check()) ? auth()->user()->username : "Chưa đăng nhập"}}</div>
+                    <div class="khachhang"> {{(auth()->check()) ? auth()->user()->name : "Khách Hàng"}}</div>
                 </a>
                 <div class="boxlgin">
                     <div class="dangnhap">
-                        <a href="">Profile</a>
-                    </div>
+                        @if (auth()->check())
+                            <a href="">Profile</a>
+                        @else 
+                            <a href="{{route('register')}}">Đăng Nhập</a>
+                        @endif
+                        </div>
                     <div class="dangki">
-                        <a href="}"> Logout</a>
+                        @if (auth()->check())
+                        <a href="{{route('logout')}}"> Logout</a>
+                    @else 
+                        <a href="{{route('register')}}">Đăng kí</a>
+                    @endif
+                        
                     </div>
                 </div>
             </div>
