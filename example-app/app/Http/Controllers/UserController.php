@@ -36,6 +36,8 @@ class UserController extends Controller
 >>>>>>> c1438910c7fd4c951c9cdfe1effe112b02146522
     public function show($id)
     {
+
+        
         return User::findOrFail($id);
     }
 
