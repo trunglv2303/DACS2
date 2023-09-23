@@ -15,35 +15,6 @@
         <a href=""> ĐĂNG NHẬP- ĐĂNG KÍ</a>
 
     </div>
-
-
-<<<<<<< HEAD
-=======
-    
-<div class="home">
-    <form action="{{ route('loginnow') }}" method="POST">
-@csrf
-
-    <div class="login">
-        
-        <div class="dangnhap0"> <b>ĐĂNG NHẬP</b></div>
-        <div class="dangnhap-1">Nếu bạn đã có tài khoản, hãy đăng nhập để tích lũy điểm thành viên và nhận được
-            những ưu đãi tốt hơn!</div>
-            @if (Session::has('error'))
-    <div style="background: red ;clo" class="alert alert-danger">
-        {{ Session::get('error') }}
-     
-
-    </div>
-    
-@endif
-        <div class="dangnhap2">
-            <label for="hi">Email</label> <br>
-            <input type="email" name="email" placeholder="Email" > <br>
-            <label for="pass">Mật Khẩu</label> <br>
-            <input type="password" name="password" id="pass"> <br>
->>>>>>> c1438910c7fd4c951c9cdfe1effe112b02146522
-
     <div class="home">
         <form action="{{ route('login') }}" method="POST">
             @csrf
