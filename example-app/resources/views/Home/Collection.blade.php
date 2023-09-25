@@ -2,7 +2,7 @@
 @section('other')
 <link rel="stylesheet" href="{{asset('user-asset/CSS/bosuutap.css')}}">
 @endsection
-@section('content ')
+@section('content')
     <div class="linksmall">
 
         <a href="./index.html"> TRANG CHỦ </a>
