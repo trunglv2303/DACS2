@@ -19,7 +19,7 @@
 <body>
     <div class="thanhtren">
         <div class="bentrai">
-             <a href="" class="icon">
+             <a href="{{route('viewhome')}}" class="icon">
                 <div class="fa fa-home"></div> Hệ Thống Cửa Hàng
             </a>
         </div>     
@@ -46,7 +46,7 @@
 
                 <li>
                     <div class="itemmb">
-                        <a href="" class="ten"><b>SẢN PHẨM</b>
+                        <a href="{{route('viewproduct')}}" class="ten"><b>SẢN PHẨM</b>
                             <div class="fa fa-chevron-down"></div>
                         </a>
                         <div class="layermb">
@@ -67,7 +67,7 @@
                 </li>
                 <li>
                     <div class="itemmb">
-                        <a href="./sanphammoi.html" class="ten"><b>SẢN PHẨM MỚI</b> </a>
+                        <a href="{{route('viewproductnew')}}" class="ten"><b>SẢN PHẨM MỚI</b> </a>
                     </div>
                 </li>
                 <li>
@@ -89,7 +89,7 @@
                 </li>
                 <li>
                     <div class="itemmb">
-                        <a href="./sale.html" class="ten"><b> SALE</b>
+                        <a href="{{route('viewproductsale')}}" class="ten"><b> SALE</b>
                             <div class="fa fa-chevron-down"></div>
                         </a>
                         <div class="layermb">
@@ -107,7 +107,7 @@
                 </li>
                 <li>
                     <div class="itemmb">
-                        <a href="./sanpham.html" class="ten"><b> LVT-SHOP</b>
+                        <a href="{{route('viewproductonline')}}" class="ten"><b> LVT-SHOP</b>
                         </a>
 
                     </div>
@@ -115,17 +115,17 @@
 
                 <li>
                     <div class="itemmb">
-                        <a href="./giohang.html"><b>GIỎ HÀNG</b></a>
+                        <a href="{{route('viewcart')}}"><b>GIỎ HÀNG</b></a>
                     </div>
                 </li>
                 <li>
                     <div class="itemmb">
-                        <a href="./dangnhap.html"><b>ĐĂNG NHẬP</b></a>
+                        <a href="{{route('register')}}"><b>ĐĂNG NHẬP</b></a>
                     </div>
                 </li>
                 <li>
                     <div class="itemmb">
-                        <a href="./dangnhap.html"><b>ĐĂNG KÍ</b></a>
+                        <a href="{{route('register')}}"><b>ĐĂNG KÍ</b></a>
                     </div>
                 </li>
             </ul>
@@ -138,13 +138,13 @@
 
     <div class="thanhcongcu">
         <div class="logo">
-            <a href="./index.html" class="logo1"><img src="{{asset('user-asset/img/lvtshop1.png')}}" alt=""></a>
+            <a href="{{route('viewhome')}}" class="logo1"><img src="{{asset('user-asset/img/lvtshop1.png')}}" alt=""></a>
         </div>
         <div class="menu">
             <ul>
                 <li>
                     <div class="item">
-                        <a href="" class="ten"><b>SẢN PHẨM</b>
+                        <a href="{{route('viewproduct')}}" class="ten"><b>SẢN PHẨM</b>
                             <div class="fa fa-chevron-down"></div>
                         </a>
                         <div class="layer1">
@@ -165,12 +165,12 @@
                 </li>
                 <li>
                     <div class="item">
-                        <a href="./sanphammoi.html" class="ten"><b>SẢN PHẨM MỚI</b> </a>
+                        <a href="{{route('viewproductnew')}}" class="ten"><b>SẢN PHẨM MỚI</b> </a>
                     </div>
                 </li>
                 <li>
                     <div class="item">
-                        <a href="./bosuutap.html" class="ten"><b>BỘ SƯU TẬP</b>
+                        <a href="{{route('viewcollection')}}" class="ten"><b>BỘ SƯU TẬP</b>
                             <div class="fa fa-chevron-down"></div>
                         </a>
                         <div class="layer1">
@@ -187,13 +187,13 @@
 
                 <li>
                     <div class="item">
-                        <a href="./sanpham.html" class="ten"><b>LVT ONLINE</b>
+                        <a href="{{route('viewproductonline')}}" class="ten"><b>LVT ONLINE</b>
                         </a>
                     </div>
                 </li>
                 <li>
                     <div class="item">
-                        <a href="./sale.html" class="ten"><b> SALE</b>
+                        <a href="{{route('viewproductsale')}}" class="ten"><b> SALE</b>
                             <div class="fa fa-chevron-down"></div>
                         </a>
                         <div class="layer1">
@@ -230,17 +230,28 @@
                     <div class="fa fa-user-circle-o"> </div>
                 </a>
                 <a href="">
-                    <div class="khachhang"> {{(auth()->check()) ? auth()->user()->name : "Chưa đăng nhập"}}</div>
+                    <div class="khachhang"> {{(auth()->check()) ? auth()->user()->name : "Khách Hàng"}}</div>
                 </a>
                 <div class="boxlgin">
                     <div class="dangnhap">
-                        <a href="{{route('viewprofile')}}">Profile</a>
-                    </div>
+                        @if (auth()->check())
+                            <a href="">Profile</a>
+                        @else 
+                            <a href="{{route('register')}}">Đăng Nhập</a>
+                        @endif
+                        </div>
                     <div class="dangki">
-                        <a href=""> Logout</a>
+                        @if (auth()->check())
+                        <a href="{{route('logout')}}"> Logout</a>
+                    @else 
+                        <a href="{{route('register')}}">Đăng kí</a>
+                    @endif
+                    
+                    
+                    
                     </div>
                 </div>
-            </div>
+            </div>  
             <div class="rectangle"></div>
             <div class="giohang">
                 <a href="./giohang.html">
@@ -291,11 +302,11 @@
         </div>
         <div class="ft_bank">
             Phương thức thanh toán <br>
-            <a href=""><img class="imgbank" src="../img/bank.webp" alt=""></a> <br>
+            <a href=""><img class="imgbank" src=" {{asset('user-asset/img/bank.webp')}}" alt=""></a> <br>
 
-            <img class="bct" src="../img/bct.webp" alt="">
+            <img class="bct" src=" {{asset('user-asset/img/bct.webp')}}" alt="">
         </div>
-
+       
     </footer>
 </body>
 

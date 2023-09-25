@@ -96,7 +96,7 @@ class UserController extends Controller
     }
     public function viewcollection()
     {
-        return view('Home.Collection');
+        return view('Home.collection');
     }
     public function viewprofile()
     {

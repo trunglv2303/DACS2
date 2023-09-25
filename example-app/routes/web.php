@@ -27,7 +27,7 @@ Route::prefix('/')->group(function () {
         Route::get('/product', [UserController::class, 'viewproduct'])->name('viewproduct');
         Route::get('/producnew', [UserController::class, 'viewproductnew'])->name('viewproductnew');
         Route::get('/product_desciption', [UserController::class, 'Product_Description'])->name('viewproduct_desciption');
-        Route::get('/online', [UserController::class, 'viewproduct'])->name('viewproduct');
+        Route::get('/online', [UserController::class, 'viewproduct'])->name('viewproductonline');
         Route::get('/bosutap', [UserController::class, 'viewcollection'])->name('viewcollection');
         Route::get('/productsale', [UserController::class, 'viewproductsale'])->name('viewproductsale');
 
