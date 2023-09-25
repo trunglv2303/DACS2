@@ -22,7 +22,7 @@
 <script>
     var mainimg = document.querySelector(".sliderhome");
     var images = [
-        //tao dùng vòng lặp forEach t cho nó chạy từ biến sliders và tạo 1 biến SilderService
+        //tao dùng vòng lặp forEach t cho nó chạy từ biến sliders và tạo 1 biến silder SilderService
         // r t lấy ra cái url :))
             @foreach($sliders as $slider)
                 "{{ $slider->url }}",
