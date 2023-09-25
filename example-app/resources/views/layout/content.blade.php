@@ -234,7 +234,7 @@
                 </a>
                 <div class="boxlgin">
                     <div class="dangnhap">
-                        <a href="{{route('accout')}}">Profile</a>
+                        <a href="{{route('viewprofile')}}">Profile</a>
                     </div>
                     <div class="dangki">
                         <a href=""> Logout</a>

@@ -18,6 +18,7 @@ Route::prefix('/account')->group(function () {
     Route::get('/login', [UserController::class, 'register'])->name('register');
     Route::post('/getinfo', [UserController::class, 'getinfo'])->name('getinfo');
     Route::post('/loginnow', [UserController::class, 'login'])->name('loginnow');
+    Route::post('/profile', [UserController::class, 'viewprofile'])->name('viewprofile');
 });
 
 Route::prefix('/')->group(function () {
