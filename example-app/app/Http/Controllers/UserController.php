@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Session;
+use App\Models\Slider;
+use App\Http\Service\SliderService;
 
 class UserController extends Controller
 {
   
     public function show($id)
     {
-
-        
         return User::findOrFail($id);
     }
 
@@ -65,9 +65,20 @@ class UserController extends Controller
             return redirect(route("viewhome"));
         }
     }
+    //Thuộc tính dùng để lưu trữ một đối tượng của lớp SliderService
+    protected $slider;
+
+    //SliderService được truyền vào constructor
+    public function __construct(SliderService $sliders){
+        //$slider được truyền vào constructor thông qua tham số $sliders được gán cho thuộc tính slider của lớp $this
+        $this->slider = $sliders;
+    }
     public function viewhome()
     {
-        return view('Home.home');
+        return view('Home.home',[
+            //sliders đây là kết quả trả về của show bên SliderService đó trungĐb
+            'sliders'=> $this->slider->show()
+        ]);
     }
     public function viewproduct()
     {

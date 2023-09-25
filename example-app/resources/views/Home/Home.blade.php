@@ -12,7 +12,7 @@
 @section('content')
 <div class="main">
     <div class="slider">
-        <img class="sliderhome" src="../img/slider.webp" alt="imgss">
+        <img class="sliderhome" src="/user-asset/img/slider.webp" alt="imgss">
         <div class="btn">
             <button onclick="back()"><i class='bx bx-chevron-left'></i><button>
                     <button onclick="next()"> <i class='bx bx-chevron-right'></i></button>
@@ -20,27 +20,30 @@
     </div>
 </div>
 <script>
-    var mainimg = document.querySelector(".sliderhome")
-
-    var images = ["../img/slider1.webp", "../img/slider2.webp", "../img/slider3.webp"]
+    var mainimg = document.querySelector(".sliderhome");
+    var images = [
+        //tao dùng vòng lặp forEach t cho nó chạy từ trong csdl sliders đến cái điêuf kiện show trong SilderService
+        // r t lấy ra cái url :))
+            @foreach($sliders as $slider)
+                "{{ $slider->url }}",
+            @endforeach
+        ];
     var num = 0;
+
     function next() {
         num++;
         if (num >= images.length) {
             num = 0;
-            mainimg.src = images[num]
-        } else {
-            mainimg.src = images[num]
         }
-    };
+        mainimg.src = images[num];
+    }
+
     function back() {
         num--;
         if (num < 0) {
             num = images.length - 1;
-            mainimg.src = images[num]
-        } else {
-            mainimg.src = images[num]
         }
+        mainimg.src = images[num];
     }
 </script>
 <div class="bosuutap">
