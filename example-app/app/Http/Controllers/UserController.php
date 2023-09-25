@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-    public function trangchu(){
-        return view('layout.content');
-    }
+  
     public function show($id)
     {
 
@@ -71,9 +69,9 @@ class UserController extends Controller
     {
         return view('Home.home');
     }
-    public function viewcollection()
+    public function viewproduct()
     {
-        return view('Home.Collection');
+        return view('Home.product ');
     }
     public function thanhtoan()
     {
@@ -81,7 +79,7 @@ class UserController extends Controller
     }
     public function sanphammoi()
     {
-        return view('Moi.sanphammoi');
+        return view('Moi.Productnew');
     }
     public function sanphamdam()
     {
@@ -103,9 +101,9 @@ class UserController extends Controller
     {
         return view('Moi.bosuutap');
     }
-    public function accout()
+    public function profile()
     {
-        return view('Moi.accout');
+        return view('Moi.profile');
     }
     public function logout(Request $request): RedirectResponse
 {
