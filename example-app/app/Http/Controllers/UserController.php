@@ -71,39 +71,36 @@ class UserController extends Controller
     }
     public function viewproduct()
     {
-        return view('Home.product ');
+        return view('Home.product');
     }
-    public function thanhtoan()
+    public function viewpay()
     {
-        return view('Moi.thanhtoan');
+        return view('Home.pay');
     }
-    public function sanphammoi()
+    public function viewproductnew()
     {
-        return view('Moi.Productnew');
+        return view('Home.Productnew');
     }
-    public function sanphamdam()
+    public function viewproduct_desciption()
     {
-        return view('Moi.sanphamdam1');
+        return view('Home.Product_Description');
     }
-    public function sanpham()
+ 
+    public function viewproductsale()
     {
-        return view('Moi.sanpham');
+        return view('Home.Productsale');
     }
-    public function sale()
+    public function viewcart()
     {
-        return view('Moi.sale');
+        return view('Home.Cart');
     }
-    public function giohang()
+    public function viewcollection()
     {
-        return view('Moi.giohang');
+        return view('Home.Collection');
     }
-    public function bosuutap()
+    public function viewprofile()
     {
-        return view('Moi.bosuutap');
-    }
-    public function profile()
-    {
-        return view('Moi.profile');
+        return view('Home.profile');
     }
     public function logout(Request $request): RedirectResponse
 {

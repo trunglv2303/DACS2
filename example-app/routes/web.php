@@ -23,17 +23,16 @@ Route::prefix('/account')->group(function () {
 Route::prefix('/')->group(function () {
     Route::get('/', [UserController::class, 'viewhome'])->name('viewhome');
     Route::prefix('/collections')->group(function () {
-        Route::get('/product', [UserController::class, 'viewcollection'])->name('viewcollection');
-        Route::get('/produc', [UserController::class, 'viewcollection'])->name('viewcollection');
+        Route::get('/product', [UserController::class, 'viewproduct'])->name('viewproduct');
+        Route::get('/producnew', [UserController::class, 'viewproductnew'])->name('viewproductnew');
+        Route::get('/product_desciption', [UserController::class, 'Product_Description'])->name('viewproduct_desciption');
+        Route::get('/online', [UserController::class, 'viewproduct'])->name('viewproduct');
+        Route::get('/bosutap', [UserController::class, 'viewcollection'])->name('viewcollection');
+        Route::get('/productsale', [UserController::class, 'viewproductsale'])->name('viewproductsale');
 
     });
+    Route::get('/pay', [UserController::class, 'viewpay'])->name('viewpay');
+    Route::get('/cart', [UserController::class, 'viewcart'])->name('viewcart');
+
 });
-Route::get('/view-Collection', [UserController::class, 'viewcollection'])->name('viewcollection');
-Route::get('/thanhtoan', [UserController::class, 'thanhtoan'])->name('thanhtoan');
-Route::get('/sanphammoi', [UserController::class, 'sanphammoi'])->name('sanphammoi');
-Route::get('/sanphamdam', [UserController::class, 'sanphamdam'])->name('sanphamdam');
-Route::get('/sanpham', [UserController::class, 'sanpham'])->name('sanpham');
-Route::get('/sale', [UserController::class, 'sale'])->name('sale');
-Route::get('/giohang', [UserController::class, 'giohang'])->name('giohang');
-Route::get('/bosuutap', [UserController::class, 'bosuutap'])->name('bosuutap');
-Route::get('/accout', [UserController::class, 'profile'])->name('accout');
+
