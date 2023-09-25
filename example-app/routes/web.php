@@ -35,5 +35,5 @@ Route::prefix('/')->group(function () {
     Route::get('/pay', [UserController::class, 'viewpay'])->name('viewpay');
     Route::get('/cart', [UserController::class, 'viewcart'])->name('viewcart');
 
-});
+}); 
 
