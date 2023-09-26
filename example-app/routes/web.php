@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +38,8 @@ Route::prefix('/')->group(function () {
     Route::get('/cart', [UserController::class, 'viewcart'])->name('viewcart');
 
 }); 
-
+Route::get('/admin',[AdminController::class,'index'])->name('index');
+Route::prefix('/product')->group(function(){
+    Route::get('/add',[ProductController::class,'create']);
+    Route::get('/list',[ProductController::class,'list']);
+});
