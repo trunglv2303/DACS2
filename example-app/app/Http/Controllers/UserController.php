@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Service\ProductService;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -67,17 +68,20 @@ class UserController extends Controller
     }
     //Thuộc tính dùng để lưu trữ một đối tượng của lớp SliderService
     protected $slider;
+    protected $product;
 
     //SliderService được truyền vào constructor
-    public function __construct(SliderService $sliders){
+    public function __construct(SliderService $sliders, ProductService $products){
         //$slider được truyền vào constructor thông qua tham số $sliders được gán cho thuộc tính slider của lớp $this
         $this->slider = $sliders;
+        $this->product= $products;
     }
     public function viewhome()
     {
         return view('Home.home',[
             //sliders đây là kết quả trả về của show bên SliderService đó trungĐb
-            'sliders'=> $this->slider->show()
+            'sliders'=> $this->slider->show(),
+            'products'=> $this->product->show()
         ]);
     }
     public function viewproduct()

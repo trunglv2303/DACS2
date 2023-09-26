@@ -70,43 +70,14 @@
 </div>
 <div class="sanpham">SẢN PHẨM MỚI</div>
 <div class="kod">
-    <div style="background-image: url(../img/18_6b8399c75fce42a787837ed787e5a268_1024x1024.webp);" class="ptc">
-        <div class="bin"><a href="">Đầm Công Sở <br>
-                <p>120.000VND</p>
-            </a>
-        </div>
-
-    </div>
-    <div style="background-image: url(../img/22_7a671d5202554f6b96be90d6e1e5b9d9_1024x1024.webp); " class="ptc1">
-        <div class="bin1"><a href="">Set Áo Luxury <br>
-                <p>900.000VND</p>
+    @foreach($products as $product)
+    <div style="background-image: url({{ $product->url }});" class="ptc">
+        <div class="bin"><a href="">{{ $product->name }} <br>
+                <p>{{ $product->price }}VND</p>
             </a>
         </div>
     </div>
-    <div style="background-image: url(../img/22_9298781326064ff0b5bbe1bd69f99dee_1024x1024.webp);" class="ptc2">
-        <div class="bin2"><a href="">Đầm Hoa Summer<br>
-                <p>120.000VND</p>
-            </a>
-        </div>
-    </div>
-    <div style="background-image: url(../img/23_311149444b0a49fc8abe4eca8140cab5_1024x1024.webp);" class="ptc3">
-        <div class="bin3"><a href="">Đầm Hồng <br>
-                <p>120.000VND</p>
-            </a>
-        </div>
-    </div>
-    <div style="background-image: url(\"{{asset('user-asse/img/24_51afa903ae5e41c584d456c9ab53316a_1024x1024.webp')}}\");" class="ptc4">
-        <div class="bin4"><a href="">D19572<br>
-                <p>120.000VND</p>
-            </a>
-        </div>
-    </div>
-    <div style="background-image: url(../img/damduoica.webp);" class="ptc5">
-        <div class="bin5"><a href="">Đầm Đuôi Cá <br>
-                <p>120.000VND</p>
-            </a>
-        </div>
-    </div>
+    @endforeach
 </div>
 
 <div class="sanpham">SẢN PHẨM BÁN CHẠY</div>
