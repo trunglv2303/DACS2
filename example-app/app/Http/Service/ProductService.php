@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 class ProductService
 {
-public function show()
-    {
-        return Product::where('active',1)->get();
-    }
+// public function show()
+//     {
+//         return Product::where('active',1)->get();
+//     }
 }

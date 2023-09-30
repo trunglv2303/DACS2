@@ -8,11 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class product extends Model
 {
     use HasFactory;
-    protected $fillable=
-    [
-        'name',
-        'price',
-        'url',
-        'active'
-    ];
+    protected $table = 'type_product';
+    protected $fillable = ['id','username']; // Các cột bạn muốn thêm vào SELECT
 }

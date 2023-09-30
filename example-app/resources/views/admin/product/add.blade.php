@@ -1,8 +1,12 @@
 @extends('admin.main')
 @section('content')
-<form action="" method="POST">
+<form action="{{route('setproduct')}}" method="POST">
     <div class="card-body">
     <h1>Thêm sản phẩm</h1>
+        <div class="form-group">
+            <label for="menu">Mã Sản Phẩm</label>
+            <input type="text" name="sp_product" class="form-control" placeholder="Nhập mã sản phẩm">
+        </div>
         <div class="form-group">
             <label for="menu">Tên Sản Phẩm</label>
             <input type="text" name="name" class="form-control" placeholder="Nhập tên sản phẩm">
@@ -10,7 +14,11 @@
         <div class="form-group">
             <label for="menu">Danh Mục</label>
             <select class="form-control" name="parent_id">
-                <option value="0">Danh mục cha</option>
+                
+                    @foreach ($products as $product)
+                        <option value="{{ $product->id }}">{{ $product->username }}</option>
+                    @endforeach
+      
             </select>
         </div>
 
@@ -18,13 +26,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="menu">Giá Gốc</label>
-                    <input type="number" name="price" class="form-control">
+                    <input type="number" name="Cost" class="form-control">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="menu">Giá giảm</label>
-                    <input type="number" name="price-sale" class="form-control">
+                    <label for="menu">Giá Bán</label>
+                    <input type="number" name="Price" class="form-control">
                 </div>
             </div>
         </div>
