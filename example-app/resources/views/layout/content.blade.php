@@ -242,7 +242,7 @@
                         </div>
                     <div class="dangki">
                         @if (auth()->check())
-                        <a href="{{route('logout')}}"> Logout</a>
+                        <a href="{{route('register')}}"> Logout</a>
                     @else 
                         <a href="{{route('register')}}">Đăng kí</a>
                     @endif
