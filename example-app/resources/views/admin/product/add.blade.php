@@ -1,22 +1,22 @@
 @extends('admin.main')
 @section('content')
-<form action="{{route('setproduct')}}" method="POST">
+<form action="{{route('setproduct')}}" method="POST"enctype="multipart/form-data">
     <div class="card-body">
-    <h1>Thêm sản phẩm</h1>
+    <h1 style="text-align: center">Thêm sản phẩm</h1>
         <div class="form-group">
             <label for="menu">Mã Sản Phẩm</label>
-            <input type="text" name="sp_product" class="form-control" style="color: aliceblue;" placeholder="Nhập mã sản phẩm">
+            <input type="text" name="code_product" class="form-control" style="color: aliceblue;" placeholder="Nhập mã sản phẩm">
         </div>
         <div class="form-group">
             <label for="menu">Tên Sản Phẩm</label>
-            <input type="text" name="name" style="color: aliceblue;" class="form-control" placeholder="Nhập tên sản phẩm">
+            <input type="text" name="name_product" style="color: aliceblue;" class="form-control" placeholder="Nhập tên sản phẩm">
         </div>
         <div class="form-group">
-            <label for="menu">Danh Mục</label>
-            <select class="form-control" style="color: aliceblue;" name="parent_id">
+            <label for="menu">Danh Mục Sản Phẩm</label>
+            <select class="form-control" style="color: aliceblue;" name="type_product">
                 
-                    @foreach ($products as $product)
-                        <option value="{{ $product->id }}">{{ $product->username }}</option>
+                    @foreach ($type_products as $type_product)
+                        <option value="{{ $type_product->id }}">{{ $type_product->username }}</option>
                     @endforeach
       
             </select>
@@ -26,46 +26,42 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="menu">Giá Gốc</label>
-                    <input type="number" name="Cost" style="color: aliceblue;" class="form-control">
+                    <input type="number" name="cost" style="color: aliceblue;" class="form-control">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="menu">Giá Bán</label>
-                    <input type="number" name="Price" style="color: aliceblue;" class="form-control">
+                    <input type="number" name="price" style="color: aliceblue;" class="form-control">
                 </div>
             </div>
         </div>
         <div class="form-group">
             <label>Mô tả</label>
-            <textarea name="note" style="color: aliceblue;" class="form-control"></textarea>
+            <textarea name="info_product" style="color: aliceblue;" class="form-control"></textarea>
         </div>
 
-        <div class="form-group">
-            <label>Mô tả chi tiết</label>
-            <textarea name="content" style="color: aliceblue;" id="content" class="form-control"></textarea>
-        </div>
+      
 
         <div class="form-group">
             <label for="menu">Ảnh sản phẩm</label>
-            <input type="file" class="form-control" id="uploads">
+            <input type="file" class="form-control" name="file_upload">
         </div>
 
         <div class="form-group">
-            <label>Kích hoạt</label>
-            <div class="custom-control custom-radio">
-                <input class="custom-control-input" value="1" type="radio" id="active" name="active">
-                <label for="active" class="custom-control-label">Có</label>
-            </div>
-            <div class="custom-control custom-radio">
-                <input class="custom-control-input" value="0" type="radio" id="no_active" name="active">
-                <label for="no_active" class="custom-control-label">Không</label>
-            </div>
+            <label>Tình trạng sản phẩm</label>
+            <select class="form-control" style="color: aliceblue;" name="status_product">
+                
+                    @foreach ($status_products as $status_product)
+                        <option value="{{ $status_product->id }}">{{ $status_product->name_status_product }}</option>
+                    @endforeach
+      
+            </select>
         </div>
     </div>
 
     <div class="card-footer">
-        <button type="submit" class="btn btn-primary">Tạo danh mục</button>
+        <button type="submit" class="btn btn-primary" >Tạo sản phẩm</button>
     </div>
     @csrf
 </form>

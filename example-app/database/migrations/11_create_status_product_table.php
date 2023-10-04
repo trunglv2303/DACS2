@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('status_product', function (Blueprint $table) {
+        Schema::create('status_products', function (Blueprint $table) {
             $table->id();
-            $table->string('name_status_product');
+            $table->string('name_status_product')->unique();
             $table->timestamps();
         });
     }

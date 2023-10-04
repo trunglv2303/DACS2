@@ -43,9 +43,10 @@ Route::get('/admin',[AdminController::class,'index'])->name('index');
 Route::prefix('/product')->group(function(){
     Route::get('/add',[ProductController::class,'create']);
     Route::get('/list',[ProductController::class,'list']);
+    Route::post('/set', [ProductController::class, 'setproduct'])->name('setproduct');
+
 });
 Route::prefix('/menu')->group(function(){
     Route::get('/add',[MenuController::class,'create']);
     Route::get('/list',[MenuController::class,'list']);
 });
-Route::post('/set', [AdminController::class, 'setproduct'])->name('setproduct');
