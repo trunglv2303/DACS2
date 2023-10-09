@@ -1,21 +1,33 @@
 @extends('admin.main')
 @section('content')
-<div class="container">
-    <h1>Danh sách sản phẩm</h1>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Tên</th>
-                <th>Danh Mục</th>
-                <th>Giá Tiền</th>
-                <th>Giá Giảm</th>
-                <th>Kích Hoạt</th>
-                <th>Ngày Cập Nhật</th>
-                <th>Thao Tác</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="container">
+        <h1>Danh sách sản phẩm</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Mã Sản Phẩm</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Giá Gốc</th>
+                    <th>Giá Bán</th>
+                    <th>Mô Tả Sản Phẩm</th>
+                    <th>Danh Mục Sản Phẩm</th>
+                    <th>Trạng Thái Sản Phẩm</th>
+                </tr>
+            </thead>
+            @foreach ($products as $product)
+                
+                <tr>
+                    <th>{{ $product->sp_ma }}</th>
+                    <th>{{ $product->sp_ten }}</th>
+                    <th>{{ $product->sp_giaGoc }}</th>
+                    <th>{{ $product->sp_giaBan }}</th>
+                    <th > <img style="width:100px;height:100px;border-radius:0%"  src="/user-asset/img/{{ $product->sp_hinh}}" alt=""> </th>
+                    <th>{{ $product->sp_thongTin }}</th>
+                    <th>{{ $product->sp_ma }}</th>
+                </tr>
+                
+            @endforeach
+            {{-- <tbody>
             <tr>
                 <td>
                     <a class="btn btn-primary btn-sm">
@@ -26,7 +38,7 @@
                     </a>
                 </td>
             </tr>
-        </tbody>
-    </table>
-</div>
+        </tbody> --}}
+        </table>
+    </div>
 @endsection

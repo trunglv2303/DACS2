@@ -51,12 +51,12 @@
                 </div>
             </div>
 
-            <div class="form-group" style="color: black">
+            <div class="form-group" style="color: black" name="info_product" >
                 <label style="color: white">Mô tả</label> <br>
-
-                <div id="editor" name="info_product">
+                <input type="text" name="info_product" id="">
+                {{-- <textarea id="editor" name="info_product">
                     <p>This is some sample content.</p>
-                </div>
+                </textarea> --}}
             </div>
             <script>
                 ClassicEditor
