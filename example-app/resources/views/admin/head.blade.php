@@ -17,3 +17,4 @@
     <link rel="stylesheet" href="/template/assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/template/assets/images/favicon.png"/>
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
