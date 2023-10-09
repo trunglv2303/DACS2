@@ -81,7 +81,7 @@ class UserController extends Controller
         return view('Home.home',[
             //sliders đây là kết quả trả về của show bên SliderService đó trungĐb
             'sliders'=> $this->slider->show(),
-            'products'=> $this->product->show()
+            // 'products'=> $this->product->show()
         ]);
     }
     public function viewproduct()

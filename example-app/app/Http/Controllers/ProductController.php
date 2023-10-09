@@ -73,4 +73,31 @@ if($sp_ma){
 
         
     }
+    public function store($id)
+    {
+        $type_products = Type_product::select('id', 'username')->get();
+        $status_products = status_product::select('id', 'name_status_product')->get();
+        $product = Product::where('sp_ma',$id)->get();
+        return view('admin.product.edit',[
+            'type_products'=>$type_products,
+            'status_products'=>$status_products,
+            'products'=>$product
+        ]);
+    }
+    public function edit(Request $request,$id)
+    {
+        $file = $request->file_upload;
+        $extion = $file->extension();
+        $file_name = time() . '-' . 'product.' . $extion;
+        $file->move(public_path('user-asset/img'), $file_name);
+        DB::table('products')->where('sp_ma', $id)->update([
+            'sp_ten' => $request->input('name_product'),
+            'sp_giaGoc' => $request->input('cost'),
+            'sp_giaBan' => $request->input('price'),
+            'sp_hinh' => $file_name,
+            'sp_thongTin' => $request->input('info_product'),
+            'sp_trangThai' => $request->input('status_product'),
+        ]);
+        return redirect()->back();
+    }
 }

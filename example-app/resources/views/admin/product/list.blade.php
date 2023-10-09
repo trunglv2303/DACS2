@@ -12,6 +12,7 @@
                     <th>Mô Tả Sản Phẩm</th>
                     <th>Danh Mục Sản Phẩm</th>
                     <th>Trạng Thái Sản Phẩm</th>
+                    <th>Thao Tác</th>
                 </tr>
             </thead>
             @foreach ($products as $product)
@@ -24,6 +25,10 @@
                     <th > <img style="width:100px;height:100px;border-radius:0%"  src="/user-asset/img/{{ $product->sp_hinh}}" alt=""> </th>
                     <th>{{ $product->sp_thongTin }}</th>
                     <th>{{ $product->sp_ma }}</th>
+                    <th><a class="btn btn-primary btn-sm" href="/product/edit/{{$product->sp_ma}}">
+                            <i class="fas fa-edit"></i> Sửa
+                        </a>
+                    </th>
                 </tr>
                 
             @endforeach

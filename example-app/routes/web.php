@@ -44,7 +44,8 @@ Route::prefix('/product')->group(function(){
     Route::get('/add',[ProductController::class,'create']);
     Route::get('/list',[ProductController::class,'list'])->name('list');
     Route::post('/set', [ProductController::class, 'setproduct'])->name('setproduct');
-
+    Route::get('/edit/{id}',[ProductController::class,'store']);
+    Route::post('/edit/{id}',[ProductController::class,'edit']);
 });
 Route::prefix('/menu')->group(function(){
     Route::get('/add',[MenuController::class,'create']);

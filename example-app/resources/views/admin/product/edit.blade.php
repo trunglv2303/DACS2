@@ -1,63 +1,97 @@
 @extends('admin.main')
-<form action="" method="POST">
-    <div class="card-body">
-    <h1>>Sửa sản phẩm</h1>
-        <div class="form-group">
-            <label for="menu">Tên Sản Phẩm</label>
-            <input type="text" name="name" class="form-control" placeholder="Nhập tên sản phẩm">
-        </div>
-        <div class="form-group">
-            <label for="menu">Danh Mục</label>
-            <select class="form-control" name="parent_id">
-                <option value="0">Danh mục cha</option>
-            </select>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="menu">Giá Gốc</label>
-                    <input type="number" name="price" class="form-control">
+@section('content')
+    <form action="" method="POST" enctype="multipart/form-data">
+        <div class="card-body">
+            <h1 style="text-align: center">Thêm sản phẩm</h1>
+            @if (Session::has('success'))
+                <div class="alert alert-success">
+                    {{ Session::get('success') }}
+                </div>
+            @endif
+
+            @if (Session::has('error'))
+                <div class="alert alert-danger">
+                    {{ Session::get('error') }}
+                </div>
+            @endif
+            @foreach($products as $product)
+            <div class="form-group">
+                <label for="menu">Mã Sản Phẩm</label>
+                <input type="text" name="code_product" value="{{ $product->sp_ma }}" class="form-control" style="color: aliceblue;"
+                    placeholder="Nhập mã sản phẩm" required>
+            </div>
+            <div class="form-group">
+                <label for="menu">Tên Sản Phẩm</label>
+                <input type="text" name="name_product" value="{{ $product->sp_ten }}"  style="color: aliceblue;" class="form-control"
+                    placeholder="Nhập tên sản phẩm" required>
+            </div>
+            <div class="form-group">
+                <label for="menu">Danh Mục Sản Phẩm</label>
+                <select class="form-control" style="color: aliceblue;" name="type_product" required>
+
+                    @foreach ($type_products as $type_product)
+                        <option value="{{ $type_product->id }}">{{ $type_product->username }}</option>
+                    @endforeach
+
+                </select>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="menu">Giá Gốc</label>
+                        <input type="number" name="cost" value="{{ $product->sp_giaGoc }}"  style="color: aliceblue;" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="menu">Giá Bán</label>
+                        <input type="number" name="price" value="{{ $product->sp_giaBan }}"  style="color: aliceblue;" class="form-control" required>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="menu">Giá giảm</label>
-                    <input type="number" name="price-sale" class="form-control">
-                </div>
+
+            <div class="form-group" style="color: black" name="info_product" >
+                <label style="color: white">Mô tả</label> <br>
+                <input type="text" value="{{ $product->sp_thongTin }}"  name="info_product" id="">
             </div>
-        </div>
-        <div class="form-group">
-            <label>Mô tả</label>
-            <textarea name="note" class="form-control"></textarea>
-        </div>
+            <script>
+                ClassicEditor
+                    .create(document.querySelector('#editor'))
+                    .catch(error => {
+                        console.error(error);
+                    });
+            </script>
 
-        <div class="form-group">
-            <label>Mô tả chi tiết</label>
-            <textarea name="content" id="content" class="form-control"></textarea>
-        </div>
 
-        <div class="form-group">
+
+<div class="form-group">
             <label for="menu">Ảnh sản phẩm</label>
-            <input type="file" class="form-control" id="uploads">
+            <input type="file" class="form-control" name="file_upload" id="uploads">
+            <div id="image-show">
+                <a href="{{ $product->sp_hinh }}" target="_blank">
+                    <img src="/user-asset/img/{{ $product->sp_hinh }}" width="100px">
+                </a>
+            </div>
+            <input type="hidden" name="file_upload" value="{{ $product->sp_hinh }}">
         </div>
 
-        <div class="form-group">
-            <label>Kích hoạt</label>
-            <div class="custom-control custom-radio">
-                <input class="custom-control-input" value="1" type="radio" id="active" name="active">
-                <label for="active" class="custom-control-label">Có</label>
-            </div>
-            <div class="custom-control custom-radio">
-                <input class="custom-control-input" value="0" type="radio" id="no_active" name="active">
-                <label for="no_active" class="custom-control-label">Không</label>
-            </div>
-        </div>
-    </div>
-    <!-- /.card-body -->
+            <div class="form-group">
+                <label>Tình trạng sản phẩm</label>
+                <select class="form-control" style="color: aliceblue;" name="status_product">
 
-    <div class="card-footer">
-        <button type="submit" class="btn btn-primary">Cập nhật danh mục</button>
-    </div>
-    @csrf
-</form>
+                    @foreach ($status_products as $status_product)
+                        <option value="{{ $status_product->id }}">{{ $status_product->name_status_product }}</option>
+                    @endforeach
+
+                </select>
+            </div>
+            @endforeach
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Cập nhật sản phẩm</button>
+        </div>
+        @csrf
+    </form>
 @endsection
