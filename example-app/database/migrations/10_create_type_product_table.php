@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('type_products', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();;
+            $table->string('name_type')->unique();;
             $table->timestamps();
         });
     }
