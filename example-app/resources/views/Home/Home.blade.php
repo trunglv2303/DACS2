@@ -70,14 +70,12 @@
 </div>
 <div class="sanpham">SẢN PHẨM MỚI</div>
 <div class="kod">
-    @foreach($products as $product)
-    <div style="background-image: url({{ $product->url }});" class="ptc">
-        <div class="bin"><a href="">{{ $product->name }} <br>
-                <p>{{ $product->price }}VND</p>
+    <div style="background-image: url();" class="ptc">
+        <div class="bin"><a href=""><br>
+                <p>VND</p>
             </a>
         </div>
     </div>
-    @endforeach
 </div>
 
 <div class="sanpham">SẢN PHẨM BÁN CHẠY</div>

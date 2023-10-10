@@ -100,4 +100,9 @@ if($sp_ma){
         ]);
         return redirect()->back();
     }
+    public function delete($id)
+    {
+        $delete= DB::table('products')->where('sp_ma',$id)->delete();
+        return redirect()->back();
+    }
 }

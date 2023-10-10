@@ -28,6 +28,9 @@
                     <th><a class="btn btn-primary btn-sm" href="/product/edit/{{$product->sp_ma}}">
                             <i class="fas fa-edit"></i> Sửa
                         </a>
+                        <a class="btn btn-danger btn-sm" href="/product/delete/{{ $product->sp_ma }}">
+                            <i class="fas fa-trash"></i> Xóa
+                        </a>
                     </th>
                 </tr>
                 

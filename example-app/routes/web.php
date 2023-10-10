@@ -46,6 +46,7 @@ Route::prefix('/product')->group(function(){
     Route::post('/set', [ProductController::class, 'setproduct'])->name('setproduct');
     Route::get('/edit/{id}',[ProductController::class,'store']);
     Route::post('/edit/{id}',[ProductController::class,'edit']);
+    Route::get('/delete/{id}',[ProductController::class,'delete'])->name('delete');
 });
 Route::prefix('/menu')->group(function(){
     Route::get('/add',[MenuController::class,'create']);
