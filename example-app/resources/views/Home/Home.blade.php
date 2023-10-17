@@ -5,47 +5,31 @@
 <link rel="stylesheet" href="{{asset('user-asset/CSS/slider1.css')}}">
 <link rel="stylesheet" href="{{asset('user-asset/CSS/sliderblog.css')}}">
 <link rel="stylesheet" href="{{asset('user-asset/CSS/Home.css')}}"> 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 @endsection
 
 
 
 @section('content')
 <div class="main">
-    <div class="slider">
-        <img class="sliderhome" src="/user-asset/img/slider.webp" alt="imgss">
-        <div class="btn">
-            <button onclick="back()"><i class='bx bx-chevron-left'></i><button>
-                    <button onclick="next()"> <i class='bx bx-chevron-right'></i></button>
-        </div>
+<div id="carouselExampleFade" class="carousel slide carousel-fade main" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    @foreach($sliders as $slide)
+    <div class="carousel-item active">
+      <img  src="/user-asset/img/{{$slide->t_Image}}" class="d-block w-100" alt="...">
     </div>
+    @endforeach
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
-<script>
-    var mainimg = document.querySelector(".sliderhome");
-    var images = [
-        //tao dùng vòng lặp forEach t cho nó chạy từ biến sliders và tạo 1 biến silder SilderService
-        // r t lấy ra cái url :))
-            @foreach($sliders as $slider)
-                "{{ $slider->url }}",
-            @endforeach
-        ];
-    var num = 0;
-
-    function next() {
-        num++;
-        if (num >= images.length) {
-            num = 0;
-        }
-        mainimg.src = images[num];
-    }
-
-    function back() {
-        num--;
-        if (num < 0) {
-            num = images.length - 1;
-        }
-        mainimg.src = images[num];
-    }
-</script>
+</div>
 <div class="bosuutap">
     <div class="bstleft">
         <a href="" class="">
@@ -437,4 +421,5 @@
     </div>
 </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 @endsection

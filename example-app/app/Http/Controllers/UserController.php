@@ -71,17 +71,16 @@ class UserController extends Controller
     protected $product;
 
     //SliderService được truyền vào constructor
-    public function __construct(SliderService $sliders, ProductService $products){
+    public function __construct(SlideController $sliders, ProductService $products){
         //$slider được truyền vào constructor thông qua tham số $sliders được gán cho thuộc tính slider của lớp $this
         $this->slider = $sliders;
         $this->product= $products;
     }
     public function viewhome()
     {
+        $slide=DB::table('sliders')->get();
         return view('Home.home',[
-            //sliders đây là kết quả trả về của show bên SliderService đó trungĐb
-            'sliders'=> $this->slider->show(),
-            // 'products'=> $this->product->show()
+            'sliders'=> $slide,
         ]);
     }
     public function viewproduct()

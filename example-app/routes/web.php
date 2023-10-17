@@ -5,6 +5,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SlideController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,4 +52,12 @@ Route::prefix('/product')->group(function(){
 Route::prefix('/menu')->group(function(){
     Route::get('/add',[MenuController::class,'create']);
     Route::get('/list',[MenuController::class,'list']);
+}); 
+Route::prefix('/slide')->group(function(){
+    Route::get('/add',[SlideController::class,'create']);
+    Route::get('/list',[SlideController::class,'list']);
+    Route::post('/set', [SlideController::class, 'setproduct'])->name('setproduct');
+    Route::get('/edit/{id}',[SlideController::class,'store']);
+    Route::post('/edit/{id}',[SlideController::class,'edit']);
+    Route::get('/delete/{id}',[SlideController::class,'delete'])->name('delete');
 });

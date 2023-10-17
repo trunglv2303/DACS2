@@ -472,13 +472,16 @@ body{
 }
 
 .main {
-    margin-top: 120px;
+    margin-top: 60px;
     width: 100%;
     position: relative;
     display: flex;
     justify-self: center;
     align-items: center;
     background-color: #a89714;
+}
+.main img{
+    height: 600px;
 }
 
 .slider {
