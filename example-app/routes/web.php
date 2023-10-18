@@ -56,8 +56,9 @@ Route::prefix('/menu')->group(function(){
 Route::prefix('/slide')->group(function(){
     Route::get('/add',[SlideController::class,'create']);
     Route::get('/list',[SlideController::class,'list']);
-    Route::post('/set', [SlideController::class, 'setproduct'])->name('setproduct');
+    Route::post('/set', [SlideController::class, 'setproduct'])->name('setproduct2');
     Route::get('/edit/{id}',[SlideController::class,'store']);
     Route::post('/edit/{id}',[SlideController::class,'edit']);
     Route::get('/delete/{id}',[SlideController::class,'delete'])->name('delete');
 });
+Route::get('/product/{id}',[ProductController::class,'click']);

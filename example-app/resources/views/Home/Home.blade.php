@@ -16,24 +16,27 @@
 @section('content')
 
 <div class="main">
-<div id="carouselExampleFade" class="carousel slide carousel-fade main" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    @foreach($sliders as $slide)
-    <div class="carousel-item active">
-      <img  src="/user-asset/img/{{$slide->t_Image}}" class="d-block w-100" alt="...">
+    <div id="carouselExampleFade" class="carousel slide carousel-fade main" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            @foreach($sliders as $key => $slide)
+            <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                <img src="/user-asset/img/{{ $slide->t_Image }}" class="d-block w-100" alt="...">
+            </div>
+            @endforeach
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-    @endforeach
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
 </div>
-</div>
+
+
+
 <div class="bosuutap">
     <div class="bstleft">
         <a href="" class="">
@@ -58,9 +61,9 @@
 </div>
 <div class="sanpham">SẢN PHẨM MỚI</div>
 <div class="kod">
-    @foreach ($products as $product)
-    <div style="background-image: url({{$product->sp_hinh}});" class="ptc">
-        <div class="bin"><a href=""><br>
+    @foreach($products as $product)
+    <div style="background-image: url(/user-asset/img/{{$product->sp_hinh}});" class="ptc">
+        <div class="bin"><a href="/product/{{$product->sp_ma}}"><br>
                 <p>VND</p>
             </a>
         </div>

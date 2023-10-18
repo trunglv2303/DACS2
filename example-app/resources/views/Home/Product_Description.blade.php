@@ -16,6 +16,7 @@
     </div>
     <div class="center">
         <div class="imgcenter">
+            @foreach($products as $product)
             <div class="imgcenter_left">
                 <i class="fa-sharp fa-solid fa-chevron-up"></i>
                 <img src="../img/dam1_b.webp" alt="">
@@ -24,20 +25,21 @@
                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
             </div>
             <div class="imgcenter_right">
-                <img src="../img/dam1.webp" alt="">
+                <img src="/user-asset/img/{{$product->sp_hinh}}" alt="">
             </div>
-
+            @endforeach
         </div>
         <div class="infocenter">
+        @foreach($products as $product)
             <div class="divinfo">
-                <h1>ĐẦM HOA NHÍ VAI NHÚN D20382 </h1>
+                <h1>{{$product->sp_ten}} </h1>
             </div>
             <div class="divinfo-1">Thương hiệu: NEM <br>
-                Mã SP: 203821442322400401</div>
+                Mã SP: {{$product->sp_ma}}</div>
 
 
             <div class="divinfo-3">
-                <b> 1,899,000₫</b>
+                <b> {{$product->sp_giaGoc}}₫</b>
             </div>
 
             <div class="divinfo-4">
@@ -75,13 +77,9 @@
 
             </div>
             <div class="mota">
-                <b>Chất liệu: </b> vải tổng hợp cao cấp <br>
-                <b> Kiểu dáng: </b> đầm thiết kế xếp tầng dáng chữ A dài qua gối,<br>
-                tone màu xanh kết hợp họa tiết hoa nhí trắng <br>
-                <b> Sản phẩm thuộc dòng sản phẩm:</b> NEM NEW <br>
-                <b>Thông tin người mẫu:</b> mặc sản phẩm size 2
+                <b>{{$product->sp_thongTin}}</b>
             </div>
-
+            @endforeach
         </div>
     </div>
     <hr style="margin-top: 10px;">
@@ -89,9 +87,10 @@
         <b>SẢN PHẨM TƯƠNG TỰ</b>
     </div>
     <div class="sanphamtuongtu">
+        @foreach($productss as $productt)
         <div class="imgslider">
             <div class="item1">
-                <a href=""><img class="imge" src="../img/18_6b8399c75fce42a787837ed787e5a268_1024x1024.webp"
+                <a href=""><img class="imge" src="/user-asset/img/{{$productt->sp_hinh}}"
                         alt="img"></a>
                 <div class="mangche">
                     <a href="">
@@ -100,11 +99,12 @@
                 </div>
             </div>
             <div class="info">
-                <a href=""> <span> <b>ĐẦM KẺ CỐ VEST </b></span></a>
+                <a href="/product/{{$productt->sp_ma}}"> <span> <b>{{$productt->sp_ten}} </b></span></a>
                 <br>
-                <h4>1,999,000₫</h4>
+                <h4>{{$productt->sp_giaGoc}}₫</h4>
             </div>
         </div>
+        @endforeach
     </div>
 
     <div class="dangkibangtien">

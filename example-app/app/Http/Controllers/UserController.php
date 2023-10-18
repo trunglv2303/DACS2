@@ -79,8 +79,10 @@ class UserController extends Controller
     public function viewhome()
     {
         $slide=DB::table('sliders')->get();
+        $product=DB::table('products')->get();
         return view('Home.home',[
             'sliders'=> $slide,
+            'products'=>$product
         ]);
     }
     public function viewproduct()

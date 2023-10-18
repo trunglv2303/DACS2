@@ -108,5 +108,14 @@ class ProductController extends Controller
         
 
     }
+    public function click($id)
+    {
+        $sql= DB::table('products')->where('sp_ma',$id)->get();
+        $sql2= DB::table('products')->get();
+        return view('Home.Product_Description',[
+            'products'=>$sql,
+            'productss'=>$sql2
+        ]);
+    }
     
 }

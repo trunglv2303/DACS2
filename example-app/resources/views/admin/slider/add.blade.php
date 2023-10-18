@@ -1,6 +1,6 @@
 @extends('admin.main')
 @section('content')
-    <form action="{{ route('setproduct') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('setproduct2') }}" method="POST" enctype="multipart/form-data">
         <div class="card-body">
             <h1 style="text-align: center">Thêm slide</h1>
             @if (Session::has('success'))

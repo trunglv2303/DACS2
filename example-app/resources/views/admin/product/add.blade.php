@@ -78,7 +78,7 @@
                 <select class="form-control" style="color: aliceblue;" name="status_product">
 
                     @foreach ($status_products as $status_product)
-                        <option value="{{ $status_product->id }}">{{ $status_product->name_status_product }}</option>
+                        <option value="{{ $status_product->id }}">{{ $status_product->name_status }}</option>
                     @endforeach
 
                 </select>
