@@ -30,7 +30,7 @@
                 <select class="form-control" style="color: aliceblue;" name="type_product" required>
 
                     @foreach ($type_products as $type_product)
-                        <option value="{{ $type_product->id }}">{{ $type_product->username }}</option>
+                        <option value="{{ $type_product->id }}">{{ $type_product->name_type }}</option>
                     @endforeach
 
                 </select>

@@ -19,9 +19,8 @@ class ProductController extends Controller
 {
     public function create()
     {
-        $status_products = Statusproduct::select('id', 'name_status_product')->get();
-
-        $type_products = Typeproduct::select('id', 'username')->get(); // Lấy id và tên sản phẩm
+        $status_products = Statusproduct::select('id','name_status')->get();
+        $type_products = Typeproduct::select('id', 'name_type')->get(); // Lấy id và tên sản phẩm
         return view('admin.product.add', ['type_products' => $type_products], ['status_products' => $status_products]);
     }
     public function list()
@@ -101,4 +100,13 @@ class ProductController extends Controller
         $delete= DB::table('products')->where('sp_ma',$id)->delete();
         return redirect()->back();
     }
+    public function getproductbelow(){
+        // $products = Product::select('sp_ma', 'sp_ten', 'sp_giaGoc', 'sp_giaBan', 'sp_hinh', 'sp_thongTin', 'sp_taoMoi', 'sp_capNhat', 'sp_trangThai')->get();
+        // return view('Home/Home', ['products' => $products]);
+        $products = Product::all();
+        return view('Home/Home', ['products' => $products]);
+        
+
+    }
+    
 }

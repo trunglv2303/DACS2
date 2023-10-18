@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
-            $table->integer('active');
+            $table->string('t_name');
+            $table->string('t_decription');
+            $table->string('t_Image');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sliders');
+        //
     }
 };

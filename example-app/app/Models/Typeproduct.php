@@ -9,6 +9,6 @@ class Typeproduct extends Model
 {
     use HasFactory;
     protected $table = 'type_products';
-    protected $fillable = ['id', 'username']; // Các cột bạn muốn thêm vào SELECT
+    protected $fillable = ['id', 'name_type']; // Các cột bạn muốn thêm vào SELECT
 
 }

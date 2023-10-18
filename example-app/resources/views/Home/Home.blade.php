@@ -1,16 +1,20 @@
+
 @extends('layout.content')
 
 @section('other')
+
 <link rel="stylesheet" href="{{asset('user-asset/CSS/slider.css')}}">
 <link rel="stylesheet" href="{{asset('user-asset/CSS/slider1.css')}}">
 <link rel="stylesheet" href="{{asset('user-asset/CSS/sliderblog.css')}}">
 <link rel="stylesheet" href="{{asset('user-asset/CSS/Home.css')}}"> 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 @endsection
 
 
 
 @section('content')
+
 <div class="main">
 <div id="carouselExampleFade" class="carousel slide carousel-fade main" data-bs-ride="carousel">
   <div class="carousel-inner">
@@ -54,12 +58,15 @@
 </div>
 <div class="sanpham">SẢN PHẨM MỚI</div>
 <div class="kod">
-    <div style="background-image: url();" class="ptc">
+    @foreach ($products as $product)
+    <div style="background-image: url({{$product->sp_hinh}});" class="ptc">
         <div class="bin"><a href=""><br>
                 <p>VND</p>
             </a>
         </div>
     </div>
+    @endforeach
+   
 </div>
 
 <div class="sanpham">SẢN PHẨM BÁN CHẠY</div>

@@ -5,6 +5,7 @@
 
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{asset('user-asset/fontawesome-free-6.3.0-web/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('user-asset/CSS/header.css')}}">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -262,7 +263,7 @@
                 </a>
 
             </div>
-            <label for="nav_inputid" class="navbar"> <i class="fa-solid fa-bars"></i></label>
+            <label for="nav_inputid" class="navbar1"> <i class="fa-solid fa-bars"></i></label>
         </div>
     </div>
 
