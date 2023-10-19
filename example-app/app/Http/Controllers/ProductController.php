@@ -117,5 +117,14 @@ class ProductController extends Controller
             'productss'=>$sql2
         ]);
     }
-    
+    public function seach(Request $request)
+    {
+        $keyword = $request->input('seach');
+
+        $results = DB::table('products')->where('sp_ten', 'like', '%' . $keyword . '%')->get();
+        return view('Home.Seach', [
+            'results' => $results,
+            'key'=>$keyword
+        ]);
+    }
 }

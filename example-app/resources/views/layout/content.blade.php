@@ -218,10 +218,12 @@
                     <div class="fa fa-search"></div>
                 </a>
                 <div class="search_box">
-                    <input class="search-box_input" type="text" placeholder="Nhập sản phẩm bạn muốn tìm?">
+                <form action="/seach/" method="GET">
+                    <input class="search-box_input" type="text" name="seach" placeholder="Nhập sản phẩm bạn muốn tìm?" >
                     <button class="search-box_btn">
                         <div class="fa fa-search"></div>
                     </button>
+                </form>
                 </div>
             </div>
             <div class="rectangle"></div>
