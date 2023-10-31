@@ -12,16 +12,19 @@
         <span>/</span>
         <a href="">TẤT CẢ CÁC SẢN PHẨM</a>
         <span>/</span>
-        <span>QUẦN ỐNG ĐỨNG Q17012</span>
+        @foreach($products as $product)
+
+        <span>{{$product->sp_ten}}</span>
+        @endforeach
     </div>
     <div class="center">
         <div class="imgcenter">
             @foreach($products as $product)
             <div class="imgcenter_left">
                 <i class="fa-sharp fa-solid fa-chevron-up"></i>
-                <img src="../img/dam1_b.webp" alt="">
-                <img src="../img/dam1_c.webp" alt="">
-                <img src="../img/dam1_a.webp" alt="">
+                <img src="/user-asset/img/{{$product->sp_hinh1}}" alt="">
+                <img src="/user-asset/img/{{$product->sp_hinh2}}" alt="">
+                <img src="/user-asset/img/{{$product->sp_hinh3}}" alt="">
                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
             </div>
             <div class="imgcenter_right">
@@ -39,7 +42,8 @@
 
 
             <div class="divinfo-3">
-                <b> {{$product->sp_giaGoc}}₫</b>
+                <b>          {{ number_format($product->sp_giaBan, 0, ',', '.') }} VND
+                </b>
             </div>
 
             <div class="divinfo-4">
@@ -77,7 +81,7 @@
 
             </div>
             <div class="mota">
-                <b>{{$product->sp_thongTin}}</b>
+                {!! $product->sp_thongTin !!}
             </div>
             @endforeach
         </div>
@@ -117,7 +121,7 @@
         </div>
         <div class="chu">
             <div class="dangkibangtin"> Đăng Kí Bảng Tin </div>
-            <div class="dangkibangtinmail">
+            <div class="danmotagkibangtinmail">
                 Đăng kí bảng tin để nhận mẫu thiết kế mới nhất
             </div>
 

@@ -20,12 +20,12 @@ class ProductController extends Controller
     public function create()
     {
         $status_products = Statusproduct::select('id','name_status')->get();
-        $type_products = Typeproduct::select('id', 'name_type')->get(); // Lấy id và tên sản phẩm
+        $type_products = Typeproduct::select('id', 'name_type')->get(); 
         return view('admin.product.add', ['type_products' => $type_products], ['status_products' => $status_products]);
     }
     public function list()
     {
-        $products = Product::all(); // Lấy danh sách sản phẩm từ cơ sở dữ liệu
+        $products = Product::all(); 
         return view('admin.product.list',['products' => $products]
         );
     }
@@ -39,32 +39,39 @@ class ProductController extends Controller
             return redirect()->back();
         }
 
-        // Kiểm tra và xử lý các biến khác
-        // if ($request->has('code_product') && $request->has('name_product') && $request->has('cost') && $request->has('price') && $request->has('info_product') && $request->has('status_product') && $request->has('type_product')) {
-        $file = $request->file_upload;
-        $extion = $file->extension();
-        $file_name = time() . '-' . 'product.' . $extion;
-        $file->move(public_path('user-asset/img'), $file_name);
+     
+$uploadedFiles = [];
 
-        DB::table('products')->insert([
-            'sp_ma' => $request->code_product,
-            'sp_ten' => $request->name_product,
-            'sp_giaGoc' => $request->cost,
-            'sp_giaBan' => $request->price,
-            'sp_hinh' => $file_name,
-            'sp_thongTin' => $request->info_product,
-            'sp_trangThai' => $request->status_product,
-            'l_ma' => $request->type_product,
-        ]);
+for ($i = 0; $i <4; $i++) {
+    $fieldName = "file_upload$i";
+    $file = $request->$fieldName;
 
-        // Đăng ký thành công, thêm thông báo thành công vào session
+    if ($file) {
+        $ext = $file->extension();
+        $fileName = time() .$i. "-product.$ext";
+        $file->move(public_path('user-asset/img'), $fileName);
+        $uploadedFiles[] = $fileName;
+    }
+}
+
+DB::table('products')->insert([
+    'sp_ma' => $request->code_product,
+    'sp_ten' => $request->name_product,
+    'sp_giaGoc' => $request->cost,
+    'sp_giaBan' => $request->price,
+    'sp_hinh' => $uploadedFiles[0] ?? null,
+    'sp_hinh1' => $uploadedFiles[1] ?? null,
+    'sp_hinh2' => $uploadedFiles[2] ?? null,
+    'sp_hinh3' => $uploadedFiles[3] ?? null,
+    'sp_thongTin' => $request->info_product,
+    'sp_trangThai' => $request->status_product,
+    'l_ma' => $request->type_product,
+]);
+
+
         Session::flash('success', 'Đăng ký sản phẩm thành công.');
         return redirect()->back();
-        // } else {
-        //     // Một hoặc nhiều biến trong request không tồn tại, xử lý tương ứng
-        //     Session::flash('error', 'Vui lòng điền đầy đủ thông tin sản phẩm.');
-        //     return redirect()->back();
-        // }
+
 
 
     }
@@ -95,16 +102,15 @@ class ProductController extends Controller
         ]);
         return redirect()->back();
     }
-    public function delete($id)
+    public function delete($id) 
     {
         $delete= DB::table('products')->where('sp_ma',$id)->delete();
         return redirect()->back();
     }
     public function getproductbelow(){
-        // $products = Product::select('sp_ma', 'sp_ten', 'sp_giaGoc', 'sp_giaBan', 'sp_hinh', 'sp_thongTin', 'sp_taoMoi', 'sp_capNhat', 'sp_trangThai')->get();
+      
+        // $products = Product::all();
         // return view('Home/Home', ['products' => $products]);
-        $products = Product::all();
-        return view('Home/Home', ['products' => $products]);
         
 
     }
@@ -117,14 +123,30 @@ class ProductController extends Controller
             'productss'=>$sql2
         ]);
     }
-    public function seach(Request $request)
+    public function search(Request $request)
     {
-        $keyword = $request->input('seach');
+        $keyword = $request->input('search');
 
         $results = DB::table('products')->where('sp_ten', 'like', '%' . $keyword . '%')->get();
-        return view('Home.Seach', [
+        return view('Home.Search', [
             'results' => $results,
             'key'=>$keyword
+        ]);
+    }
+    
+    public function viewhome()
+    {
+        $slide=DB::table('sliders')->get();
+        $product=DB::table('products')->get();
+        $productaovets=DB::table('products')-> where('l_ma',4)->get();
+        $productaothuns=DB::table('products')-> where('l_ma',5)->get();
+        $blogs=DB::table('products')-> where('l_ma',6)->get();
+        return view('Home.home',[   
+            'sliders'=> $slide,
+            'products'=>$product,
+            'productaovets'=>$productaovets,
+            'productaothuns'=>$productaothuns,
+            'blogs'=>$blogs,
         ]);
     }
 }

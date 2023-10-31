@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{asset('user-asset/fontawesome-free-6.3.0-web/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('user-asset/CSS/header.css')}}">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
@@ -218,8 +220,8 @@
                     <div class="fa fa-search"></div>
                 </a>
                 <div class="search_box">
-                <form action="/seach/" method="GET">
-                    <input class="search-box_input" type="text" name="seach" placeholder="Nhập sản phẩm bạn muốn tìm?" >
+                <form action="/search/" method="GET">
+                    <input class="search-box_input" type="text" name="search" placeholder="Nhập sản phẩm bạn muốn tìm?" >
                     <button class="search-box_btn">
                         <div class="fa fa-search"></div>
                     </button>
@@ -312,10 +314,6 @@
        
     </footer>
 </body>
-
-<script src="../JS/javascrip.js" defer></script>
-<script src="../JS/jsao.js" defer></script>
-<script src="../JS/jsblog.js" defer></script>
 
 
 </html>

@@ -18,6 +18,9 @@ return new class extends Migration
             $table->unsignedInteger('sp_giaGoc')->default('0')->comment('Giá gốc # Giá gốc của sản phẩm');
             $table->unsignedInteger('sp_giaBan')->default('0')->comment('Giá bán # Giá bán hiện tại của sản phẩm');
             $table->string('sp_hinh', 200)->comment('Hình đại diện # Hình đại diện của sản phẩm');
+            $table->string('sp_hinh1', 200)->comment('Hình đại diện # Hình đại diện của sản phẩm');
+            $table->string('sp_hinh2', 200)->comment('Hình đại diện # Hình đại diện của sản phẩm');
+            $table->string('sp_hinh3', 200)->comment('Hình đại diện # Hình đại diện của sản phẩm');
             $table->text('sp_thongTin')->comment('Thông tin # Thông tin về sản phẩm');
             $table->timestamp('sp_taoMoi')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo sản phẩm');
             $table->timestamp('sp_capNhat')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật sản phẩm gần nhất');

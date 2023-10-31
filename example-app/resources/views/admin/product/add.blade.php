@@ -53,24 +53,38 @@
 
             <div class="form-group" style="color: black" name="info_product" >
                 <label style="color: white">Mô tả</label> <br>
-                <input type="text" name="info_product" id="">
-                {{-- <textarea id="editor" name="info_product">
-                    <p>This is some sample content.</p>
-                </textarea> --}}
+
+                <textarea id="editor" name="info_product">
+                    <p>Mô tả sản phẩm</p>
+                </textarea>
+                <script>
+                    ClassicEditor
+                        .create( document.querySelector( '#editor' ) )
+                        .catch( error => {
+                            console.error( error );
+                        } );
+                </script>
+           
             </div>
-            <script>
-                ClassicEditor
-                    .create(document.querySelector('#editor'))
-                    .catch(error => {
-                        console.error(error);
-                    });
-            </script>
+       
 
 
 
             <div class="form-group">
                 <label for="menu">Ảnh sản phẩm</label>
-                <input type="file" class="form-control" name="file_upload" required>
+                <input type="file" class="form-control" name="file_upload0" required>
+            </div>
+            <div class="form-group">
+                <label for="menu">Ảnh sản phẩm mô tả 1</label>
+                <input type="file" class="form-control" name="file_upload1" required>
+            </div>
+            <div class="form-group">
+                <label for="menu">Ảnh sản phẩm mô tả 2</label>
+                <input type="file" class="form-control" name="file_upload2" required>
+            </div>
+            <div class="form-group">
+                <label for="menu">Ảnh sản phẩm mô tả 3</label>
+                <input type="file" class="form-control" name="file_upload3" required>
             </div>
 
             <div class="form-group">

@@ -1,3 +1,7 @@
+*{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}   
 .trungdzblog {
     display: flex;
     padding: 0 35px;

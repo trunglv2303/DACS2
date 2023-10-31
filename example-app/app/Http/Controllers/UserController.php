@@ -76,15 +76,6 @@ class UserController extends Controller
         $this->slider = $sliders;
         $this->product= $products;
     }
-    public function viewhome()
-    {
-        $slide=DB::table('sliders')->get();
-        $product=DB::table('products')->get();
-        return view('Home.home',[
-            'sliders'=> $slide,
-            'products'=>$product
-        ]);
-    }
     public function viewproduct()
     {
         return view('Home.product');

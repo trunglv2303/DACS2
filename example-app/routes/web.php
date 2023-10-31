@@ -26,7 +26,7 @@ Route::prefix('/account')->group(function () {
 });
 
 Route::prefix('/')->group(function () {
-    Route::get('/', [UserController::class, 'viewhome'])->name('viewhome');
+    Route::get('/', [ProductController::class, 'viewhome'])->name('viewhome');
     Route::prefix('/collections')->group(function () {
         Route::get('/product', [UserController::class, 'viewproduct'])->name('viewproduct');
         Route::get('/producnew', [UserController::class, 'viewproductnew'])->name('viewproductnew');
@@ -62,4 +62,4 @@ Route::prefix('/slide')->group(function(){
     Route::get('/delete/{id}',[SlideController::class,'delete'])->name('delete');
 });
 Route::get('/product/{id}',[ProductController::class,'click']);
-Route::get('/seach',[ProductController::class,'seach']);
+Route::get('/search',[ProductController::class,'search']);
