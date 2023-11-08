@@ -11,9 +11,9 @@
                     <th>Hình Ảnh Sản Phẩm</th>
                     <th>Giá Gốc</th>
                     <th>Giá Bán</th>
-                    <th>Mô Tả Sản Phẩm</th>
-                    <th>Danh Mục Sản Phẩm</th>
-                    <th>Trạng Thái Sản Phẩm</th>
+                    <th >Mô Tả Sản Phẩm</th>
+                    <th>Danh Mục </th>
+                    <th>Trạng Thái</th>
                     <th>Thao Tác</th>
                 </tr>
             </thead>
@@ -21,13 +21,13 @@
                 
                 <tr>
                     <th>{{ $product->sp_ma }}</th>
-                    <th>{{ $product->sp_ten }}</th>
-                    <th > <img style="width:100px;height:100px;border-radius:0%"  src="/user-asset/img/{{ $product->sp_hinh}}" alt=""> </th>
+                    <th style="white-space: normal; width:150px;">{{ $product->sp_ten }}</th>
+                    <th > <img style="width:150px;height:200px;border-radius:0%"  src="/user-asset/img/{{ $product->sp_hinh}}" alt=""> </th>
                     <th>{{ $product->sp_giaGoc }}</th>
                     <th>{{ $product->sp_giaBan }}</th>
-                    <th>{{ $product->sp_thongTin }}</th>
-                    <th>{{ $product->type_Product->username}}</th>
-                    <th>{{ $product->status_product->name_status_product}}</th>
+                    <th style="white-space: normal; ">{{ $product->sp_thongTin }}</th>
+                    <th>{{ $product->type_Product->name_type}}</th>
+                    <th>{{ $product->status_product->name_status}}</th>
                     <th><a class="btn btn-primary btn-sm" href="/product/edit/{{$product->sp_ma}}">
                             <i class="fas fa-edit"></i> Sửa
                         </a>

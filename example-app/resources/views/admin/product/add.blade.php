@@ -57,8 +57,9 @@
                 </div>
             </div>
 
-            <div class="form-group" style="color: black" name="info_product" >
+            <div class="form-group" style="color: black"  >
                 <label style="color: white">Mô tả</label> <br>
+<<<<<<< Updated upstream
 
                 <textarea id="editor" name="info_product">
                     <p>Mô tả sản phẩm</p>
@@ -71,6 +72,11 @@
                         } );
                 </script>
            
+=======
+                <textarea id="editor" name="info_product">
+                    <p>This is some sample content.</p>
+                </textarea>
+>>>>>>> Stashed changes
             </div>
        
 

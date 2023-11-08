@@ -2,7 +2,7 @@
 @section('content')
     <form action="" method="POST" enctype="multipart/form-data">
         <div class="card-body">
-            <h1 style="text-align: center">Thêm sản phẩm</h1>
+            <h1 style="text-align: center">Sửa sản phẩm</h1>
             @if (Session::has('success'))
                 <div class="alert alert-success">
                     {{ Session::get('success') }}
@@ -14,78 +14,82 @@
                     {{ Session::get('error') }}
                 </div>
             @endif
-            @foreach($products as $product)
-            <div class="form-group">
-                <label for="menu">Mã Sản Phẩm</label>
-                <input type="text" name="code_product" value="{{ $product->sp_ma }}" class="form-control" style="color: aliceblue;"
-                    placeholder="Nhập mã sản phẩm" required>
-            </div>
-            <div class="form-group">
-                <label for="menu">Tên Sản Phẩm</label>
-                <input type="text" name="name_product" value="{{ $product->sp_ten }}"  style="color: aliceblue;" class="form-control"
-                    placeholder="Nhập tên sản phẩm" required>
-            </div>
-            <div class="form-group">
-                <label for="menu">Danh Mục Sản Phẩm</label>
-                <select class="form-control" style="color: aliceblue;" name="type_product" required>
+            @foreach ($products as $product)
+                <div class="form-group">
+                    <label for="menu">Mã Sản Phẩm</label>
+                    <input type="text" name="code_product" value="{{ $product->sp_ma }}" class="form-control"
+                        style="color: aliceblue;" placeholder="Nhập mã sản phẩm" required>
+                </div>
+                <div class="form-group">
+                    <label for="menu">Tên Sản Phẩm</label>
+                    <input type="text" name="name_product" value="{{ $product->sp_ten }}" style="color: aliceblue;"
+                        class="form-control" placeholder="Nhập tên sản phẩm" required>
+                </div>
+                <div class="form-group">
+                    <label for="menu">Danh Mục Sản Phẩm</label>
+                    <select class="form-control" style="color: aliceblue;" name="type_product" required>
 
-                    @foreach ($type_products as $type_product)
-                        <option value="{{ $type_product->id }}">{{ $type_product->username }}</option>
-                    @endforeach
+                        @foreach ($type_products as $type_product)
+                            <option value="{{ $type_product->id }}">{{ $type_product->name_type }}</option>
+                        @endforeach
 
-                </select>
-            </div>
+                    </select>
+                </div>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="menu">Giá Gốc</label>
-                        <input type="number" name="cost" value="{{ $product->sp_giaGoc }}"  style="color: aliceblue;" class="form-control" required>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="menu">Giá Gốc</label>
+                            <input type="number" name="cost" value="{{ $product->sp_giaGoc }}" style="color: aliceblue;"
+                                class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="menu">Giá Bán</label>
+                            <input type="number" name="price" value="{{ $product->sp_giaBan }}" style="color: aliceblue;"
+                                class="form-control" required>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="menu">Giá Bán</label>
-                        <input type="number" name="price" value="{{ $product->sp_giaBan }}"  style="color: aliceblue;" class="form-control" required>
-                    </div>
+
+                <div class="form-group" style="color: black">
+                    <label style="color: white">Mô tả</label> <br>
+                    <textarea id="editor" name="info_product">
+                    <p> {{ $product->sp_thongTin }}</p>
+                </textarea>
                 </div>
-            </div>
-
-            <div class="form-group" style="color: black" name="info_product" >
-                <label style="color: white">Mô tả</label> <br>
-                <input type="text" value="{{ $product->sp_thongTin }}"  name="info_product" id="">
-            </div>
-            <script>
-                ClassicEditor
-                    .create(document.querySelector('#editor'))
-                    .catch(error => {
-                        console.error(error);
-                    });
-            </script>
+                <script>
+                    ClassicEditor
+                        .create(document.querySelector('#editor'))
+                        .catch(error => {
+                            console.error(error);
+                        });
+                </script>
 
 
 
-<div class="form-group">
-            <label for="menu">Ảnh sản phẩm</label>
-            <input type="file" class="form-control" name="file_upload" id="uploads">
-            <div id="image-show">
-                <a href="{{ $product->sp_hinh }}" target="_blank">
-                    <img src="/user-asset/img/{{ $product->sp_hinh }}" width="100px">
-                </a>
-            </div>
-            <input type="hidden" name="file_upload" value="{{ $product->sp_hinh }}">
-        </div>
+                <div class="form-group">
+                    <label for="menu">Ảnh sản phẩm</label>
+                    <input type="file" class="form-control" name="file_upload" value="{{ $product->sp_hinh }}">
+                    <div id="image-show">
+                        <a href="{{ $product->sp_hinh }}" target="_blank">
+                            <img src="/user-asset/img/{{ $product->sp_hinh }}" width="100px">
+                        </a>
+                    </div>
+                    {{-- <input type="hidden" name="file_upload" value="{{ $product->sp_hinh }}"> --}}
+                </div>
 
-            <div class="form-group">
-                <label>Tình trạng sản phẩm</label>
-                <select class="form-control" style="color: aliceblue;" name="status_product">
+                <div class="form-group">
+                    <label>Tình trạng sản phẩm</label>
+                    <select class="form-control" style="color: aliceblue;" name="status_product">
 
-                    @foreach ($status_products as $status_product)
-                        <option value="{{ $status_product->id }}">{{ $status_product->name_status_product }}</option>
-                    @endforeach
+                        @foreach ($status_products as $status_product)
+                            <option value="{{ $status_product->id }}">{{ $status_product->name_status }}</option>
+                        @endforeach
 
-                </select>
-            </div>
+                    </select>
+                </div>
             @endforeach
         </div>
 

@@ -20,9 +20,16 @@ class ProductController extends Controller
 {
     public function create()
     {
+<<<<<<< Updated upstream
         $status_products = Statusproduct::select('id','name_status')->get();
         $type_products = Typeproduct::select('id', 'name_type')->get(); 
+=======
+        $status_products = Statusproduct::select('id', 'name_status')->get();
+
+        $type_products = Typeproduct::select('id', 'name_type')->get(); // Lấy id và tên sản phẩm
+>>>>>>> Stashed changes
         return view('admin.product.add', ['type_products' => $type_products], ['status_products' => $status_products]);
+        return view('admin.product.edit', ['type_products' => $type_products], ['status_products' => $status_products]);
     }
     public function list()
     {
@@ -79,8 +86,8 @@ DB::table('products')->insert([
     }
     public function store($id)
     {
-        $type_products = Typeproduct::select('id', 'username')->get();
-        $status_products = Statusproduct::select('id', 'name_status_product')->get();
+        $type_products = Typeproduct::select('id', 'name_type')->get();
+        $status_products = Statusproduct::select('id', 'name_status')->get();
         $product = Product::where('sp_ma', $id)->get();
         return view('admin.product.edit', [
             'type_products' => $type_products,
@@ -89,7 +96,8 @@ DB::table('products')->insert([
         ]);
     }
     public function edit(Request $request, $id)
-    {
+     { $sp_hinh=$sp_hinh = DB::table('products')->where('sp_ma', $id)->select('sp_hinh')->get();
+if ($request)
         $file = $request->file_upload;
         $extion = $file->extension();
         $file_name = time() . '-' . 'product.' . $extion;
@@ -98,8 +106,12 @@ DB::table('products')->insert([
             'sp_ten' => $request->input('name_product'),
             'sp_giaGoc' => $request->input('cost'),
             'sp_giaBan' => $request->input('price'),
+<<<<<<< Updated upstream
             'sp_sale' => $request->input('salea'),
             'sp_hinh' => $file_name,
+=======
+            'sp_hinh' =>  $request->input('price'),
+>>>>>>> Stashed changes
             'sp_thongTin' => $request->input('info_product'),
             'sp_trangThai' => $request->input('status_product'),
         ]);
