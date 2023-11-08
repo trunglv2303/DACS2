@@ -1,44 +1,32 @@
 @extends('layout.content')
 @section('other')
-<link rel="stylesheet" href="{{asset('user-asset/CSS/sanpham.css')}}">
+    <link rel="stylesheet" href="{{ asset('user-asset/CSS/sanpham.css') }}">
 @endsection
 @section('content ')
+
 
     <div class="linksmall">
 
         <a href="./index.html"> TRANG CHỦ </a>
         <span>/</span>
-        <a href="">SALE</a>
+        <a href="">TẤT CẢ CÁC SẢN PHẨM</a>
 
     </div>
 
     <div class="allanh">
-        <img src="../img/sale.webp" alt="">
+        <img src="../img/allsp.webp" alt="">
     </div>
     <div class="home">
         <div class="home-left">
             <ul>
                 <li><a href=""><b>Danh mục</b></a></li>
                 <li><a href=""><b>Tất cả sản phẩm</b></a></li>
-                <li><a href=""><b>Đầm</b></a></li>
-                <li><a href="">Đầm suông</a></li>
-                <li><a href="">Đầm dáng A</a></li>
-                <li><a href="">Đầm ôm</a></li>
-                <li><a href=""><b>Áo sơ mi</b></a></li>
-                <li><a href="">Dài tay</a></li>
-                <li><a href="">Ngắn tay</a></li>
-                <li><a href="">Tay lỡ</a></li>
-                <li><a href="">Áo kiểu</a></li>
-                <li><a href=""><b>Áo Dài</b></a></li>
-                <li><a href=""><b>Quần</b></a></li>
-                <li><a href="">Quần dài</a></li>
-                <li><a href="">Quần Jeans</a></li>
-                <li><a href="">Quần short</a></li>
-                <li><a href=""><b>Set bộ</b></a></li>
-                <li><a href=""><b>Chấn váy</b></a></li>
-                <li><a href="">Chân váy xếp li</a></li>
-                <li><a href="">Chân váy bút chì</a></li>
-                <li><a href="">Chân váy chữ A</a></li>
+                @foreach ($type_products as $type_product)
+                    <li><a href="/collections/product/{{ $type_product->id }}"><b>{{ $type_product->name_type }}</b></a>
+                    </li>
+                @endforeach
+
+
             </ul>
         </div>
         <div class="home-right">
@@ -100,248 +88,56 @@
                     </div>
                 </div>
                 <div class="fortable"> <i class="fa-sharp fa-solid fa-table-cells-large"></i></div>
-                <div class="sixtable"> <i style="color: rgb(140, 140, 140);"
-                        class="fa-sharp fa-solid fa-table-cells"></i> </div>
+                <div class="sixtable"> <i style="color: rgb(140, 140, 140);" class="fa-sharp fa-solid fa-table-cells"></i>
+                </div>
             </div>
 
             <div class="product">
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="../img/damduoica.webp" alt="">
-                        <div class="sale">-50%</div>
-                    </div>
-                    <div class="product-actions">
-                        <a href="clmm.vn">
-                            <div class="product-link"></div>
-                        </a>
-                        <a href="https://www.facebook.com/messages/t/115626408223317">
-                            <div class="button">Tư Vấn</div>
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <a href=""> <span> <b>ĐẦM ĐUÔI CÁ D00572</b></span></a>
-                        <br>
-                        <h4 style="text-decoration: line-through; color: red;">1,799,000₫</h4>
-                        <h4>599,000₫</h4>
-                    </div>
+                @foreach ($product_sales as $product_sale)
+                    <div class="product-item">
+                        <div class="product-img">
+                            <img src="/user-asset/img/{{ $product_sale->sp_hinh }}" alt="">
+                            @if ($product_sale->sp_sale != 0)
+                            <div class="sale">Sale-{{$product_sale->sp_sale}}%</div>
 
-                </div>
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="../img/aovest.webp" alt="">
-                        <div class="sale">-50%</div>
-                    </div>
-                    <div class="product-actions">
-                        <a href="#">
-                            <div class="product-link"></div>
-                        </a>
-                        <a href="https://www.facebook.com/messages/t/115626408223317">
-                            <div class="button">Tư Vấn</div>
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <a href=""> <span> <b>ÁO VEST VAI BỒNG AK02622</b></span></a>
-                        <br>
-                        <h4 style="text-decoration: line-through; color: red;">599,000₫</h4>
-                        <h4>299,500₫ </h4>
-                    </div>
+                           
+                        @else
+                        @endif
+                        </div>
+                        <div class="product-actions">
+                            <a href="clmm.vn">
+                                <div class="product-link"></div>
+                            </a>
+                            <a href="">
+                                <div class="button">Tư Vấn</div>
+                            </a>
+                        </div>
+                        <div class="product-info">
+                            <a href=""> <span> <b>{{ $product_sale->sp_ten }} </b></span></a>
+                            <br>
+                            @if ($product_sale->sp_sale != 0)
+                                <h4 style="text-decoration: line-through; color: red;">
+                                    {{ number_format($product_sale->sp_giaBan, 0, ',', '.') }}VND</h4>
 
-                </div>
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="../img/aothietketay.webp" alt="">
-                        <div class="sale">-50%</div>
-                    </div>
-                    <div class="product-actions">
-                        <a href="clmm.vn">
-                            <div class="product-link"></div>
-                        </a>
-                        <a href="https://www.facebook.com/messages/t/115626408223317">
-                            <div class="button">Tư Vấn</div>
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <a href=""> <span> <b>ÁO THIẾT KẾ TAY RỦ AK02302</b></span></a>
-                        <br>
-                        <h4 style="text-decoration: line-through; color: red;">799,000₫</h4>
-                        <h4>399,500₫</h4>
-                    </div>
+                                @php
+                                    $tienSale = $product_sale->sp_giaBan - ($product_sale->sp_giaBan * $product_sale->sp_sale) / 100;
+                                @endphp
 
-                </div>
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="../img/aoverst.webp" alt="">
-                    </div>
-                    <div class="product-actions">
-                        <a href="clmm.vn">
-                            <div class="product-link"></div>
-                        </a>
-                        <a href="https://www.facebook.com/messages/t/115626408223317">
-                            <div class="button">Tư Vấn</div>
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <a href=""> <span> <b>ÁO VEST KHÔNG TAY AK01942</b></span></a>
-                        <br>
+                              <h4> {{ number_format($tienSale, 0, ',', '.') }} VND </h4>
+                            @else
+                           <h4>{{ number_format($product_sale->sp_giaBan, 0, ',', '.') }}VND</h4>    
+                            @endif
 
-                        <h4>699,500₫ </h4>
-                    </div>
+                        </div>
 
-                </div>
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="../img/damomnhunco.webp" alt="">
                     </div>
-                    <div class="product-actions">
-                        <a href="clmm.vn">
-                            <div class="product-link"></div>
-                        </a>
-                        <a href="https://www.facebook.com/messages/t/115626408223317">
-                            <div class="button">Tư Vấn</div>
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <a href=""> <span> <b>ĐẦM ÔM NHÚN CỔ D02152</b></span></a>
-                        <br>
+                @endforeach
 
-                        <h4>399,000₫</h4>
-                    </div>
 
-                </div>
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="../img/damtayru.webp" alt="">
-                    </div>
-                    <div class="product-actions">
-                        <a href="clmm.vn">
-                            <div class="product-link"></div>
-                        </a>
-                        <a href="https://www.facebook.com/messages/t/115626408223317">
-                            <div class="button">Tư Vấn</div>
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <a href=""> <span> <b>ĐẦM ÔM TAY RỦ D02122</b></span></a>
-                        <br>
-                        <h4>499,000₫</h4>
-                    </div>
 
-                </div>
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="../img/SOMICONHON.webp" alt="">
-                    </div>
-                    <div class="product-actions">
-                        <a href="clmm.vn">
-                            <div class="product-link"></div>
-                        </a>
-                        <a href="https://www.facebook.com/messages/t/115626408223317">
-                            <div class="button">Tư Vấn</div>
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <a href=""> <span> <b>SƠ MI CỔ NHỌN SM02922 </b></span></a>
-                        <br>
-                        <h4>899,000₫</h4>
-                    </div>
 
-                </div>
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="../img/AOTREVAI.webp" alt="">
-                    </div>
-                    <div class="product-actions">
-                        <a href="clmm.vn">
-                            <div class="product-link"></div>
-                        </a>
-                        <a href="https://www.facebook.com/messages/t/115626408223317">
-                            <div class="button">Tư Vấn</div>
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <a href=""> <span> <b>ÁO HOA TRỄ VAI SM02452</b></span></a>
-                        <br>
-                        <h4>599,000₫</h4>
-                    </div>
 
-                </div>
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="../img/DamHoaNhiD17522.webp" alt="">
-                    </div>
-                    <div class="product-actions">
-                        <a href="clmm.vn">
-                            <div class="product-link"></div>
-                        </a>
-                        <a href="https://www.facebook.com/messages/t/115626408223317">
-                            <div class="button">Tư Vấn</div>
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <a href=""> <span> <b>ÁO HOA TRỄ VAI SM02452 </b></span></a>
-                        <br>
-                        <h4>699,000₫ </h4>
-                    </div>
 
-                </div>
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="../img/AOTREVAIPHOIBEO.webp" alt="">
-                    </div>
-                    <div class="product-actions">
-                        <a href="clmm.vn">
-                            <div class="product-link"></div>
-                        </a>
-                        <a href="https://www.facebook.com/messages/t/115626408223317">
-                            <div class="button">Tư Vấn</div>
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <a href="https://www.facebook.com/messages/t/115626408223317"> <span> <b>ÁO TRỄ VAI PHỐI BÈO
-                                    SM01882</b></span></a>
-                        <br>
-                        <h4>799,000₫</h4>
-                    </div>
-
-                </div>
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="../img/QUANTHIETKE.webp" alt="">
-                    </div>
-                    <div class="product-actions">
-                        <a href="clmm.vn">
-                            <div class="product-link"></div>
-                        </a>
-                        <a href="https://www.facebook.com/messages/t/115626408223317">
-                            <div class="button">Tư Vấn</div>
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <a href=""> <span> <b>QUẦN THIẾT KẾ Q03332</b></span></a>
-                        <br>
-                        <h4>799,000₫</h4>
-                    </div>
-
-                </div>
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="../img/SOTAYBONG.webp" alt="">
-                    </div>
-                    <div class="product-actions">
-                        <a href="clmm.vn">
-                            <div class="product-link"></div>
-                        </a>
-                        <a href="https://www.facebook.com/messages/t/115626408223317">
-                            <div class="button">Tư Vấn</div>
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <a href=""> <span> <b>SƠ MI TRẮNG TAY BỒNG SM00382</b></span></a>
-                        <br>
-                        <h4>799,000₫</h4>
-                    </div>
-
-                </div>
             </div>
             <div class="list">
                 <a href="">
@@ -384,8 +180,7 @@
             </div>
 
             <input type="text" placeholder="Vui lòng nhập email.... " />
-            <input
-                style="height: 40px;width: 50px ; background-color: rgb(0, 0, 0);color: aliceblue; margin-left:-2px ;"
+            <input style="height: 40px;width: 50px ; background-color: rgb(0, 0, 0);color: aliceblue; margin-left:-2px ;"
                 type="submit" value="Gửi"> <br>
             <div class="icon">
                 <a href="" class="facebook">
@@ -404,7 +199,3 @@
         </div>
     </div>
     </div>
-</body>
-<script src="{{asset('user-asset/JS/sanphammoi.js')}}"></script>
-
-</html>

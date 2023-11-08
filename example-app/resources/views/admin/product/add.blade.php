@@ -37,16 +37,22 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4 ">
                     <div class="form-group">
                         <label for="menu">Giá Gốc</label>
                         <input type="number" name="cost" style="color: aliceblue;" class="form-control" required>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="menu">Giá Bán</label>
                         <input type="number" name="price" style="color: aliceblue;" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="menu">Phần trăm giảm giá</label>
+                        <input type="number" name="sale" style="color: aliceblue;" class="form-control" min="0" max="100" step="1">
                     </div>
                 </div>
             </div>

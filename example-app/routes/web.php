@@ -28,6 +28,7 @@ Route::prefix('/account')->group(function () {
 Route::prefix('/')->group(function () {
     Route::get('/', [ProductController::class, 'viewhome'])->name('viewhome');
     Route::prefix('/collections')->group(function () {
+        Route::get('/product/{id}',[ProductController::class,'type_product']);
         Route::get('/product', [UserController::class, 'viewproduct'])->name('viewproduct');
         Route::get('/producnew', [UserController::class, 'viewproductnew'])->name('viewproductnew');
         Route::get('/product_desciption', [UserController::class, 'Product_Description'])->name('viewproduct_desciption');
@@ -61,5 +62,4 @@ Route::prefix('/slide')->group(function(){
     Route::post('/edit/{id}',[SlideController::class,'edit']);
     Route::get('/delete/{id}',[SlideController::class,'delete'])->name('delete');
 });
-Route::get('/product/{id}',[ProductController::class,'click']);
 Route::get('/search',[ProductController::class,'search']);

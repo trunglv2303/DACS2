@@ -10,50 +10,101 @@
         <a href="./index.html"> TRANG CHỦ </a>
         <span>/</span>
         <a href="">TẤT CẢ CÁC SẢN PHẨM</a>
-        <span>/</span>
-        <a href=""><b>#</b>{{$key}}</a>
 
     </div>
 
+    <div class="allanh">
+        <img src="../img/allsp.webp" alt="">
+    </div>
     <div class="home">
         <div class="home-left">
             <ul>
                 <li><a href=""><b>Danh mục</b></a></li>
                 <li><a href=""><b>Tất cả sản phẩm</b></a></li>
-                <li><a href=""><b>Đầm</b></a></li>
-                <li><a href="">Đầm suông</a></li>
-                <li><a href="">Đầm dáng A</a></li>
-                <li><a href="">Đầm ôm</a></li>
-                <li><a href=""><b>Áo sơ mi</b></a></li>
-                <li><a href="">Dài tay</a></li>
-                <li><a href="">Ngắn tay</a></li>
-                <li><a href="">Tay lỡ</a></li>
-                <li><a href="">Áo kiểu</a></li>
-                <li><a href=""><b>Áo Dài</b></a></li>
-                <li><a href=""><b>Quần</b></a></li>
-                <li><a href="">Quần dài</a></li>
-                <li><a href="">Quần Jeans</a></li>
-                <li><a href="">Quần short</a></li>
-                <li><a href=""><b>Set bộ</b></a></li>
-                <li><a href=""><b>Chấn váy</b></a></li>
-                <li><a href="">Chân váy xếp li</a></li>
-                <li><a href="">Chân váy bút chì</a></li>
-                <li><a href="">Chân váy chữ A</a></li>
+                @foreach ($type_products as $type_product)
+                <li><a href="/collections/product/{{$type_product->id}}"><b>{{$type_product->name_type}}</b></a></li>
+
+                @endforeach
+               
+               
             </ul>
         </div>
+        @if($results->isEmpty())
+        <h1>Không có sản phẩm</h1>
+@else
+    
+
+     
+        
         <div class="home-right">
             <div class="home-right-heading">
                 <h3>TẤT CẢ SẢN PHẨM</h3>
             </div>
+            <div class="home-right-tools">
+                <div class="size">
+                    <div class="kickco">Kích cỡ
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="tablesize">
+                        <div class="size2">
+                            Size 2
+                        </div>
+                        <div class="size4">
+                            Size 4
+                        </div>
+                        <div class="size6">
+                            Size 6
+                        </div>
+                        <div class="size8">
+                            Size 8
+                        </div>
+                        <div class="size10">
+                            Size 10
+                        </div>
+
+                    </div>
+                </div>
+                <div class="color">
+                    Màu Sắc
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <div class="tablecolor">
+                        <div class="mautrang"></div>
+                        <div class="mauhong"></div>
+                        <div class="mauvang"></div>
+                        <div class="maudo"></div>
+                        <div class="mautim"></div>
+                        <div class="mauden"></div>
+                    </div>
+
+                </div>
+                <div class="price">
+                    Giá
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <div class="tableprice">
+                        <ul>
+                            <li> <input type="radio" name="groupcheck" id="radio1">Tất Cả</li>
+                            <li><input type="radio" name="groupcheck" id="radio1">Nhỏ hơn 500,000₫</li>
+                            <li><input type="radio" name="groupcheck" id="radio1">Từ 500,000₫ - 1,000,000₫</li>
+                            <li><input type="radio" name="groupcheck" id="radio1"> Từ 1,000,000₫ - 1,500,000₫</li>
+                            <li><input type="radio" name="groupcheck" id="radio1"> Từ 1,500,000₫ - 2,000,000₫ </li>
+                            <li><input type="radio" name="groupcheck" id="radio1"> Từ 2,000,000₫ - 3,000,000₫ </li>
+
+                            <li><input type="radio" name="groupcheck" id="radio1"> Lớn hơn 3,000,000₫ </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="fortable"> <i class="fa-sharp fa-solid fa-table-cells-large"></i></div>
+                <div class="sixtable"> <i style="color: rgb(140, 140, 140);"
+                        class="fa-sharp fa-solid fa-table-cells"></i> </div>
+            </div>
+
             <div class="product">
-            @if($results->isEmpty())
-                    <h1>Không có sản phẩm</h1>
-            @else
-            @foreach($results as $result)
+                @foreach($results as $result)
                 <div class="product-item">
                     
                     <div class="product-img">
-                        <img src="/user-asset/img/1697564393-slide.webp" alt="">
+                        <img src="/user-asset/img/{{$result->sp_hinh}}" alt="">
                         <div class="sale">-50%</div>
                     </div>
                     <div class="product-actions">
@@ -72,10 +123,14 @@
                     </div>
 
                 </div>
-                @endforeach
-                @endif
-                </div>
-        </div>
+             @endforeach
+              
+                
+              
+               
+              
+               
+            </div>
             <div class="list">
                 <a href="">
                     <div class="list1"> 1</div>
@@ -100,6 +155,7 @@
 
             </div>
         </div>
+        @endif
 
     </div>
     <div class="dangkibangtien">

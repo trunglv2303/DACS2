@@ -12,6 +12,7 @@ use App\Models\Statusproduct;
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 
 use function Laravel\Prompts\select;
 
@@ -59,6 +60,7 @@ DB::table('products')->insert([
     'sp_ten' => $request->name_product,
     'sp_giaGoc' => $request->cost,
     'sp_giaBan' => $request->price,
+    'sp_sale' => $request->sale,
     'sp_hinh' => $uploadedFiles[0] ?? null,
     'sp_hinh1' => $uploadedFiles[1] ?? null,
     'sp_hinh2' => $uploadedFiles[2] ?? null,
@@ -96,6 +98,7 @@ DB::table('products')->insert([
             'sp_ten' => $request->input('name_product'),
             'sp_giaGoc' => $request->input('cost'),
             'sp_giaBan' => $request->input('price'),
+            'sp_sale' => $request->input('salea'),
             'sp_hinh' => $file_name,
             'sp_thongTin' => $request->input('info_product'),
             'sp_trangThai' => $request->input('status_product'),
@@ -137,16 +140,33 @@ DB::table('products')->insert([
     public function viewhome()
     {
         $slide=DB::table('sliders')->get();
-        $product=DB::table('products')->get();
+        $product=DB::table('products')->where('l_ma','!=','6')->get();
         $productaovets=DB::table('products')-> where('l_ma',4)->get();
         $productaothuns=DB::table('products')-> where('l_ma',5)->get();
         $blogs=DB::table('products')-> where('l_ma',6)->get();
+        $type_products=DB::table('type_products')->get();
+
         return view('Home.home',[   
             'sliders'=> $slide,
             'products'=>$product,
             'productaovets'=>$productaovets,
             'productaothuns'=>$productaothuns,
             'blogs'=>$blogs,
+        ],compact('type_products'));
+       
+    }
+    public function menuproduct(){
+        $type_products=DB::table('type_products')->get();
+        return view('Layout.content',[
+            'type_products'=> $type_products
         ]);
+
+    }
+    public function type_product($id_type){
+        $results = DB::table('products')->select()->where('l_ma',$id_type)->get();
+        $keys = DB::table('type_products')->select()->where('id',$id_type)->get();
+        $type_products=DB::table('type_products')->get();
+
+        return view('Home.Search',compact('results','keys','type_products'));
     }
 }

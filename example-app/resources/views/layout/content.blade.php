@@ -49,20 +49,9 @@
 
                 <li>
                     <div class="itemmb">
-                        <a href="{{route('viewproduct')}}" class="ten"><b>SẢN PHẨM</b>
-                            <div class="fa fa-chevron-down"></div>
-                        </a>
-                        <div class="layermb">
-                            <ul>
+                         
                                 <li>
-                                    <a href="">Đầm <div class="fa fa-chevron-right"></div></a>
-                                    <a href="">Áo sơ mi <div class="fa fa-chevron-right"> </div></a>
-                                    <a href="">Áo phông <div class="fa fa-chevron-right"></div></a>
-                                    <a href="">Áo dài <div class="fa fa-chevron-right"></div></a>
-                                    <a href="">Áo Khoác <div class="fa fa-chev ron-right"></div></a>
-                                    <a href="">Quần <div class="fa fa-chev ron-right"></div></a>
-                                    <a href="">Chân váy <div class="fa fa-chev ron-right"></div></a>
-                                    <a href="">Set bộ <div class="fa fa-chev ron-right"></div></a>
+                              
                                 </li>
                             </ul>
                         </div>
@@ -153,14 +142,10 @@
                         <div class="layer1">
                             <ul>
                                 <li>
-                                    <a href="">Đầm <div class="fa fa-chevron-right"></div></a>
-                                    <a href="">Áo sơ mi <div class="fa fa-chevron-right"> </div></a>
-                                    <a href="">Áo phông <div class="fa fa-chevron-right"></div></a>
-                                    <a href="">Áo dài <div class="fa fa-chevron-right"></div></a>
-                                    <a href="">Áo Khoác <div class="fa fa-chev ron-right"></div></a>
-                                    <a href="">Quần <div class="fa fa-chev ron-right"></div></a>
-                                    <a href="">Chân váy <div class="fa fa-chev ron-right"></div></a>
-                                    <a href="">Set bộ <div class="fa fa-chev ron-right"></div></a>
+                                    @foreach ($type_products as $type_product)
+                                    <a href="/collections/product/{{$type_product->id}}">{{$type_product->name_type}} <div class="fa fa-chev ron-right"></div></a>
+
+                                    @endforeach
                                 </li>
                             </ul>
                         </div>

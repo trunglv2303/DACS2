@@ -52,7 +52,13 @@ class UserController extends Controller
     }
     public function register()
     {
-        return view('Login_register.register');
+
+
+
+        $type_products=DB::table('type_products')->get();
+
+
+        return view('Login_register.register',compact('type_products'));
     }
     public function login(Request $request)
     {
@@ -77,37 +83,53 @@ class UserController extends Controller
         $this->product= $products;
     }
     public function viewproduct()
-    {
-        return view('Home.product');
+    { $type_products=DB::table('type_products')->where('id','!=','6')->get();
+        $products = DB::table('products')->select()->get();
+
+
+        return view('Home.product',compact('type_products','products'));
     }
     public function viewpay()
-    {
-        return view('Home.pay');
+    {$type_products=DB::table('type_products')->where('id','!=','6')->get();
+
+        return view('Home.pay',compact('type_products'));
+      
     }
     public function viewproductnew()
-    {
-        return view('Home.Productnew');
+    {$productnews = DB::table('products')
+        ->orderBy('sp_taoMoi', 'desc')->where('l_ma','!=','6')
+        ->get();
+        $type_products=DB::table('type_products')->where('id','!=','6')->get();
+
+        return view('Home.Productnew',compact('type_products','productnews'));
+    
     }
     public function viewproduct_desciption()
-    {
-        return view('Home.Product_Description');
+    {$type_products=DB::table('type_products')->where('id','!=','6')->get();
+
+        return view('Home.Product_Description',compact('type_products'));
     }
  
     public function viewproductsale()
-    {
-        return view('Home.Productsale');
+    {$type_products=DB::table('type_products')->where('id','!=','6')->get();
+        $product_sales=DB::table('products')-> where('sp_sale','>','1')->get();
+
+        return view('Home.Productsale',compact('type_products','product_sales'));
     }
     public function viewcart()
-    {
-        return view('Home.Cart');
+    {$type_products=DB::table('type_products')->where('id','!=','6')->get();
+
+        return view('Home.Cart',compact('type_products'));
     }
     public function viewcollection()
-    {
-        return view('Home.collection');
+    {$type_products=DB::table('type_products')->where('id','!=','6')->get();
+
+        return view('Home.collection',compact('type_products'));
     }
     public function viewprofile()
-    {
-        return view('Home.profile');
+    {$type_products=DB::table('type_products')->where('id','!=','6')->get();
+
+        return view('Home.profile',compact('type_products'));
     }
     public function logout(Request $request): RedirectResponse
 {
