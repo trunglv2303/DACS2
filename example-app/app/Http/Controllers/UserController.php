@@ -105,9 +105,7 @@ class UserController extends Controller
     
     }
     public function viewproduct_desciption()
-    {$type_products=DB::table('type_products')->where('id','!=','6')->get();
-
-        return view('Home.Product_Description',compact('type_products'));
+    {
     }
  
     public function viewproductsale()

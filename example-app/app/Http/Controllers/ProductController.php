@@ -118,13 +118,16 @@ DB::table('products')->insert([
 
     }
     public function click($id)
+    
     {
+        $type_products=DB::table('type_products')->where('id','!=','6')->get();
+
         $sql= DB::table('products')->where('sp_ma',$id)->get();
         $sql2= DB::table('products')->get();
         return view('Home.Product_Description',[
             'products'=>$sql,
             'productss'=>$sql2
-        ]);
+        ],compact('type_products'));
     }
     public function search(Request $request)
     {

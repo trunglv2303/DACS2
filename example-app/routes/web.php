@@ -63,3 +63,4 @@ Route::prefix('/slide')->group(function(){
     Route::get('/delete/{id}',[SlideController::class,'delete'])->name('delete');
 });
 Route::get('/search',[ProductController::class,'search']);
+Route::get('/product/{id}',[ProductController::class,'click']);
