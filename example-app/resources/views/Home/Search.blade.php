@@ -102,10 +102,14 @@
             <div class="product">
                 @foreach($results as $result)
                 <div class="product-item">
-                    
                     <div class="product-img">
-                        <img src="/user-asset/img/{{$result->sp_hinh}}" alt="">
-                        <div class="sale">-50%</div>
+                        <img src="/user-asset/img/{{ $result->sp_hinh }}" alt="">
+                        @if ($result->sp_sale != 0)
+                        <div class="sale">Sale-{{$result->sp_sale}}%</div>
+
+                       
+                    @else
+                    @endif
                     </div>
                     <div class="product-actions">
                         <a href="clmm.vn">
@@ -116,16 +120,27 @@
                         </a>
                     </div>
                     <div class="product-info">
-                        <a href=""> <span> <b>{{$result->sp_ma}} </b></span></a>
+                        <a href=""> <span> <b>{{ $result->sp_ten }} </b></span></a>
                         <br>
-                        <h4 style="text-decoration: line-through; color: red;">{{$result->sp_giaGoc}}₫</h4>
-                        <h4>{{$result->sp_giaBan}}₫</h4>
+                        @if ($result->sp_sale != 0)
+                            <h4 style="text-decoration: line-through; color: red;">
+                                {{ number_format($result->sp_giaBan, 0, ',', '.') }}VND</h4>
+
+                            @php
+                                $tienSale = $result->sp_giaBan - ($result->sp_giaBan * $result->sp_sale) / 100;
+                            @endphp
+
+                          <h4> {{ number_format($tienSale, 0, ',', '.') }} VND </h4>
+                        @else
+                       <h4>{{ number_format($result->sp_giaBan, 0, ',', '.') }}VND</h4>    
+                        @endif
+
                     </div>
 
                 </div>
-             @endforeach
-              
-                
+            @endforeach
+
+             
               
                
               
