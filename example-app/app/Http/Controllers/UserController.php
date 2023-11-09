@@ -90,11 +90,48 @@ class UserController extends Controller
         return view('Home.product',compact('type_products','products'));
     }
     public function viewpay()
-    {$type_products=DB::table('type_products')->where('id','!=','6')->get();
-
-        return view('Home.pay',compact('type_products'));
-      
+    {
+        $user=Auth::user();
+        $type_products=DB::table('type_products')->where('id','!=','6')->get();
+        $carts=DB::table('carts')
+        ->join('products','products.sp_ma','=','carts.product_id')
+        ->join('colors','colors.id','=','products.color_id')
+        ->select('carts.*','products.sp_ten as sp_ten','products.sp_giaBan as sp_giaBan','products.sp_hinh as sp_hinh','colors.color as color')
+        ->where('user_id',$user->id)->get();
+        $total = 0;
+        foreach ($carts as $cart) {
+            $total = $total + $cart->price * $cart->quantity;
+        }
+         return view('Home.pay',compact('type_products','carts','total'));  
     }
+    public function addPay(Request $request, $id)   
+    {
+        $user = Auth::user();
+        $size = $request->input('size');
+        $check = DB::table('carts')
+            ->where('user_id', $user->id)
+            ->where('product_id', $id)
+            ->where('size', $size)
+            ->first();
+        if ($check) {
+            $newCheck = $check->quantity + $request->input('quantity');
+            DB::table('carts')
+                ->where('user_id', $user->id)
+                ->where('product_id', $id)
+                ->update(['quantity' => $newCheck]);
+        } else {
+            DB::table('carts')->insert([
+                'user_id' => $user->id,
+                'product_id' => $id,
+                'price' => $request->input('price'),
+                'quantity' => $request->input('quantity'),
+                'size' => $size,
+            ]);
+        }
+    
+        return redirect()->back();
+    }
+    
     public function viewproductnew()
     {$productnews = DB::table('products')
         ->orderBy('sp_taoMoi', 'desc')->where('l_ma','!=','6')

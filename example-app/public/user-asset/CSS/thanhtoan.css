@@ -6,12 +6,13 @@
 
 }
 
-.menu {
+.menu2 {
     width: 100%;
     display: flex;
+    padding-top:150px ;
 }
 
-.menu .menu-left {
+.menu2 .menu2-left {
     width: 50%;
     padding-left: 60px;
     padding-right: 60px;
@@ -104,7 +105,7 @@ select {
     background-color: rgb(100, 144, 219);
 }
 
-.menu-right {
+.menu2-right {
     padding-right: 130PX;
     padding-top: 100px;
     padding-left: 100px;
@@ -155,7 +156,7 @@ select {
 }
 
 @media(max-width:600px) {
-    .menu-right {
+    .menu2-right {
         padding-right: 0;
         padding-top: 100px;
         padding-left: 0;
@@ -163,7 +164,7 @@ select {
         background-color: rgba(247, 247, 247, 0.877);
     }
 
-    .menu .menu-left {
+    .menu2 .menu2-left {
         width: 100%;
 
     }
@@ -189,7 +190,7 @@ select {
 
     }
 
-    .menu {
+    .menu2 {
         width: 100%;
         flex-direction: column;
     }

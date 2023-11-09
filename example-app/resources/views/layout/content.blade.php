@@ -130,7 +130,7 @@
 
     <div class="thanhcongcu">
         <div class="logo">
-            <a href="{{route('viewhome')}}" class="logo1"><img src="{{asset('user-asset/img/lvtshop1.png')}}" alt=""></a>
+            <a href="{{route('viewhome')}}" class="logo1"><img src="/user-asset/img/lvt.jpg" alt=""></a>
         </div>
         <div class="menu">
             <ul>
@@ -247,7 +247,7 @@
                 <a href="./giohang.html">
                     <div class="fa-solid fa-cart-shopping"></div>
                 </a>
-                <a href="./giohang.html">
+                <a href="{{Route('viewpay')}}">
                     <div class="shopping"> Giỏ Hàng </div>
                 </a>
 
@@ -298,6 +298,12 @@
         </div>
        
     </footer>
+    <script src="/user-asset/JS/setsize.js"></script>
+    <script src="/user-asset/JS/sanphammoi.js"></script>
+    <script src="/user-asset/JS/jsao.js"></script>
+    <script src="/user-asset/JS/jsblog.js"></script>
+    <script src="/user-asset/JS/jsvidu.js"></script>
+    <script src="/user-asset/JS/javascrip.js"></script>
 </body>
 
 

@@ -4,18 +4,20 @@
 <link rel="stylesheet" href="{{asset('user-asset/CSS/bosuutap.css')}}">
 @endsection
 @section('content ')
-    <div class="menu">
+    <div class="menu2">
 
-        <div class="menu-left">
-            <div class="logo"><img src="../img/lvtshop1.png" alt="">
-            </div>
+        <div class="menu2-left">
             <div class="info">
                 <a href="../HTML/giohang.html">Giỏ hàng <b>></b></a>
                 <span>Thông tin vận chuyển <b>></b></span>
                 <span>Phương thức thanh toán</span>
             </div>
             <div class="thongtinthanhtoan">Thông tin thanh toán</div>
-            <div class="dtk"> Bạn đã có tài khoản chưa? <a href="">Đăng Nhập </a> </div>
+            @if(Auth::check())
+                <p> Xin chào, {{ Auth::user()->name }} </p>
+            @else
+                <div class="dtk"> Bạn đã có tài khoản chưa? <a href="">Đăng Nhập </a> </div>
+            @endif
             <input type="text" name="" id="" placeholder="Họ và tên">
             <input type="email" name="" id="" placeholder="Email">
 
@@ -103,23 +105,25 @@
             </div>
 
         </div>
-        <div class="menu-right">
+        <div class="menu2-right">
+            @foreach($carts as $cart)
             <div class="sp">
-                <img src="../img/dam1_a.webp" alt="">
-                <div class="namedam">ĐẦM VÀNG ĐÍNH NƠ D40222 <br>
-                    <h5>Size 2 / Vàng</h5>
+                <img src="/user-asset/img/{{$cart->sp_hinh}}" alt="">
+                <div class="namedam">{{$cart->sp_ten}} <br>
+                    <h5>{{$cart->size}} / {{$cart->color}} / {{$cart->quantity}}</h5>
                 </div>
-                <div class="tien">1,118,000₫</div>
+                <div class="tien">{{$cart->sp_giaBan}}</div>
             </div>
+            @endforeach
             <hr>
             <div class="tamtinh">
                 <div class="tamtinh1">Tạm Tính </div>
-                <div class="tientinh">1,118,000₫</div>
+                <div class="tientinh">{{$total}},000 VND</div>
             </div>
             <hr>
             <div class="tongtien">
                 <div class="tongtien1">Tổng Tiền</div>
-                <div class="tientong">VND 1,118,000₫</div>
+                <div class="tientong">VND {{$total}},000₫</div>
             </div>
         </div>
     </div>
