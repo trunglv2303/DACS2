@@ -18,4 +18,7 @@ class Product extends Model
     public function status_product(){
         return $this->hasOne(Statusproduct::class, 'id', 'sp_trangThai');
     }
+    public function color_product(){
+        return $this->hasOne(Color::class, 'id', 'color_id');
+    }
 }

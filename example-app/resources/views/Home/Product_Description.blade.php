@@ -41,7 +41,7 @@
         <div class="divinfo-5">
             <b> Màu Sắc </b>
         </div>
-        <div class="color" style="background-color: {{$product->color}};  cursor: pointer;
+        <div class="color" style="background-color: {{$product->color_product->color}};  cursor: pointer;
             width: 40px;
             height: 40px;
             border-radius: 50%;

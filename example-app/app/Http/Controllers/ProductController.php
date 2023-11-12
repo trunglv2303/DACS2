@@ -121,10 +121,7 @@ DB::table('products')->insert([
     {
         $type_products=DB::table('type_products')->where('id','!=','6')->get();
 
-        $sql= DB::table('products')
-        ->join('colors','colors.id','=','products.color_id')
-        ->select('products.*','colors.color as color')
-        ->where('sp_ma',$id)->get();
+        $sql= Product::where('sp_ma',$id)->get();
         $sql2= DB::table('products')->get();
         $sql3= DB::table('sizes')->get();
         return view('Home.Product_Description',[
