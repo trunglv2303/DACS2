@@ -46,9 +46,26 @@
             height: 40px;
             border-radius: 50%;
             border: 1px solid #000;"></div>
-        <div class="selectsize">
-            <a href=""><b> Hướng Dẫn Chọn Size</b></a>
-        </div>
+        <div class="lines">
+    <span class="line line1" onclick="toggleMenu()">Hướng dẫn chọn size</span>
+</div>
+
+<div class="menu-items" id="menuItems">
+    <span class="close-btn" onclick="toggleMenu()">X</span>
+    <img src="/user-asset/CSS/371546126_987847982315080_1887440434013880747_n.png" alt="Menu Image">
+</div>
+
+
+<script>
+function toggleMenu() {
+    var menuItems = document.getElementById("menuItems");
+    var overlay = document.getElementById("overlay");
+
+    menuItems.classList.toggle("show-menu");
+}
+
+</script>
+
         <div class="number">
         <form action="/addPay/{{$product->sp_ma}}" method="POST">
             @csrf

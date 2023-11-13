@@ -82,7 +82,7 @@ class UserController extends Controller
     }
     public function viewproduct()
     { $type_products=DB::table('type_products')->where('id','!=','6')->get();
-        $products = DB::table('products')->select()->get();
+        $products = DB::table('products')->select()->paginate(10);
 
 
         return view('Home.product',compact('type_products','products'));
@@ -91,6 +91,7 @@ class UserController extends Controller
     {
         $user=Auth::user();
         $type_products=DB::table('type_products')->where('id','!=','6')->get();
+        if($user){
         $carts=DB::table('carts')
         ->join('products','products.sp_ma','=','carts.product_id')
         ->join('colors','colors.id','=','products.color_id')
@@ -100,7 +101,12 @@ class UserController extends Controller
         foreach ($carts as $cart) {
             $total = $total + $cart->price * $cart->quantity;
         }
-         return view('Home.pay',compact('type_products','carts','total'));  
+        return view('Home.pay',compact('type_products','carts','total'));
+    }else
+    {
+        return view('Home.pay',compact('type_products'));  
+    }
+
     }
     public function addPay(Request $request, $id)   
     {
@@ -131,11 +137,11 @@ class UserController extends Controller
     }
     
     public function viewproductnew()
-    {$productnews = DB::table('products')
+    {
+        $productnews = DB::table('products')
         ->orderBy('sp_taoMoi', 'desc')->where('l_ma','!=','6')
-        ->get();
+        ->paginate(9);
         $type_products=DB::table('type_products')->where('id','!=','6')->get();
-
         return view('Home.Productnew',compact('type_products','productnews'));
     
     }

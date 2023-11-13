@@ -133,41 +133,11 @@
                             @endif
 
                         </div>
-
                     </div>
                 @endforeach
-  
-                
-              
-               
-              
-               
             </div>
-            <div class="list">
-                <a href="">
-                    <div class="list1"> 1</div>
-                </a>
-                <a href="">
-                    <div class="list2">2</div>
-                </a>
-                <a href="">
-                    <div class="list3">3</div>
-                </a>
-                <a href="">
-                    <div class="list4">...</div>
-                </a>
-                <a href="">
-                    <div class="list8">195</div>
-                </a>
-                <a href="">
-                    <div class="list9"><i class="fa-solid fa-chevron-right"></i></div>
-                </a>
-
-
-
-            </div>
+            {{ $productnews->links() }}  
         </div>
-
     </div>
     <div class="dangkibangtien">
         <div class="MAP">

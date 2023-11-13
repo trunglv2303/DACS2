@@ -106,6 +106,7 @@
 
         </div>
         <div class="menu2-right">
+            @if(Auth::check())
             @foreach($carts as $cart)
             <div class="sp">
                 <img src="/user-asset/img/{{$cart->sp_hinh}}" alt="">
@@ -125,6 +126,9 @@
                 <div class="tongtien1">Tổng Tiền</div>
                 <div class="tientong">VND {{$total}},000₫</div>
             </div>
+            @else
+            <h1>Bạn chưa đăng nhập</h1>
+            @endif
         </div>
     </div>
 
