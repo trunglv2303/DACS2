@@ -63,10 +63,8 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $email['info'] = $request->email;
-        $name['name'] = $request->name;
         $password = $request->password;
-        echo     $email['info'] = $request->email;
-        echo        $password = $request->password;
+        
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             echo 'Đăng nhập thành công';
             return redirect(route("viewhome"));
