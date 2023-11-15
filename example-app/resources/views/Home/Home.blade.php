@@ -38,23 +38,18 @@
 
 
     <div class="bosuutap">
+        @foreach ($banners->take(2) as $banners)
         <div class="bstleft">
             <a href="" class="">
-                <img src="../img/home_new_banner_1.webp" alt="">
+                <img class="image" src="/user-asset/img/{{$banners->t_Image}}" alt="">
                 <div class="phiaduoi">
-                    <div class="layer1"><b>NEW COLECTION</b></div>
+                    <div class="layer1"><b>NEW COLLECTION</b></div>
                     <div class="layer2"><b>SHOP NOW</b></div>
                 </div>
             </a>
         </div>
-        <div class="bstright">
-            <a href="" class=""><img src="../img/home_new_banner_2.webp" alt="">
-                <div class="phiaduoi">
-                    <div class="layer1"><b>SHIRT</b></div>
-                    <div class="layer2"><b>SHOP NOW</b></div>
-                </div>
-            </a>
-        </div>
+        
+        @endforeach
 
 
 

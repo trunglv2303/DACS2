@@ -27,6 +27,11 @@
                     <p>This is some sample content.</p>
                 </textarea> --}}
             </div>
+            <div class="form-group">
+                <label>Nhập loại hình <small>(1 là Slider ; 2 là Banner)*</small></label><br>
+                <input type="text" name="ide" placeholder="1 là Slider ; 2 là Banner" pattern="[1-2]" required>
+            </div>
+
             <script>
                 ClassicEditor
                     .create(document.querySelector('#editor'))

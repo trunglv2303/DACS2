@@ -28,8 +28,6 @@ return new class extends Migration
             $table->unsignedBigInteger('sp_trangThai')->comment('Trạng thái # Trạng thái sản phẩm: 1-khóa, 2-khả dụng');
             $table->unsignedBigInteger('l_ma')->comment('Loại sản phẩm # l_ma # l_ten # Mã loại sản phẩm');
             $table->unsignedBigInteger('color_id');
-
-
         });
         Schema::table('products', function (Blueprint $table) {
             $table->foreign('color_id')
@@ -37,8 +35,6 @@ return new class extends Migration
                   ->on('colors')
                   ->onDelete('cascade'); // Tuỳ chọn: cascade để tự động xóa liên quan khi xóa dữ liệu từ bảng loại sản phẩm.
         });
-
-            
         Schema::table('products', function (Blueprint $table) {
             $table->foreign('l_ma')
                   ->references('id')
@@ -51,8 +47,6 @@ return new class extends Migration
                   ->on('status_products')
                   ->onDelete('cascade'); // Tuỳ chọn: cascade để tự động xóa liên quan khi xóa dữ liệu từ bảng loại sản phẩm.
         });
-     
-
     }
 
     /**

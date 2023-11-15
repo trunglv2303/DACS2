@@ -113,7 +113,12 @@
                 <div class="namedam">{{$cart->sp_ten}} <br>
                     <h5>{{$cart->size}} / {{$cart->color}} / {{$cart->quantity}}</h5>
                 </div>
-                <div class="tien">{{$cart->sp_giaBan}}</div>
+                <div class="tien">
+                    
+                    <p>{{ number_format($cart->price, 0, ',', '.') }} VND</p>
+
+                    
+             </div>
             </div>
             @endforeach
             <hr>

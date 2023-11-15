@@ -35,6 +35,16 @@
 
                 </select>
             </div>
+            <div class="form-group">
+                <label for="menu">Màu Sản Phẩm</label>
+                <select class="form-control" style="color: aliceblue;" name="color" required>
+
+                    @foreach ($colors as $color)
+                        <option value="{{ $color->id }}">{{ $color->color }}</option>
+                    @endforeach
+
+                </select>
+            </div>
 
             <div class="row">
                 <div class="col-md-4 ">
@@ -59,7 +69,7 @@
 
             <div class="form-group" style="color: black"  >
                 <label style="color: white">Mô tả</label> <br>
-<<<<<<< Updated upstream
+
 
                 <textarea id="editor" name="info_product">
                     <p>Mô tả sản phẩm</p>
@@ -72,11 +82,8 @@
                         } );
                 </script>
            
-=======
-                <textarea id="editor" name="info_product">
-                    <p>This is some sample content.</p>
-                </textarea>
->>>>>>> Stashed changes
+
+   
             </div>
        
 

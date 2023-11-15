@@ -65,3 +65,4 @@ Route::prefix('/slide')->group(function(){
 Route::get('/search',[ProductController::class,'search']);
 Route::get('/product/{id}',[ProductController::class,'click']);
 Route::POST('/addPay/{id}',[UserController::class,'addPay']);
+    

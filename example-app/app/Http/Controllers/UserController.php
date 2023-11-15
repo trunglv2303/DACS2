@@ -109,7 +109,8 @@ class UserController extends Controller
 
     }
     public function addPay(Request $request, $id)   
-    {
+    { 
+
         $user = Auth::user();
         $size = $request->input('size');
         $check = DB::table('carts')

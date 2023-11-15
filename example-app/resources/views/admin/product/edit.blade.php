@@ -35,20 +35,36 @@
 
                     </select>
                 </div>
-
+                <div class="form-group">
+                    <label for="menu">Màu Sản Phẩm</label>
+                    <select class="form-control" style="color: aliceblue;" name="color" required>
+    
+                        @foreach ($colors as $color)
+                            <option value="{{ $color->id }}">{{ $color->color }}</option>
+                        @endforeach
+    
+                    </select>
+                </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="menu">Giá Gốc</label>
                             <input type="number" name="cost" value="{{ $product->sp_giaGoc }}" style="color: aliceblue;"
                                 class="form-control" required>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="menu">Giá Bán</label>
                             <input type="number" name="price" value="{{ $product->sp_giaBan }}" style="color: aliceblue;"
                                 class="form-control" required>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="menu">Phần trăm giảm giá</label>
+                            <input type="number" name="sale" style="color: aliceblue;" class="form-control" min="0" max="100" step="1" value="{{ $product->sp_sale }}">
                         </div>
                     </div>
                 </div>
@@ -75,6 +91,35 @@
                     <div id="image-show">
                         <a href="{{ $product->sp_hinh }}" target="_blank">
                             <img src="/user-asset/img/{{ $product->sp_hinh }}" width="100px">
+                        </a>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="menu">Ảnh sản phẩm mô tả 1</label>
+                        <input type="file" class="form-control" name="file_upload1"  value="{{ $product->sp_hinh1 }}">
+                    </div>
+                    <div id="image-show">
+                        <a href="{{ $product->sp_hinh1 }}" target="_blank">
+                            <img src="/user-asset/img/{{ $product->sp_hinh1 }}" width="100px">
+                        </a>
+                    </div>
+                    <div class="form-group">
+                        <label for="menu">Ảnh sản phẩm mô tả 2</label>
+                        <input type="file" class="form-control" name="file_upload2"  value="{{ $product->sp_hinh2 }}">
+                    </div>
+                    <div id="image-show">
+                        <a href="{{ $product->sp_hinh2 }}" target="_blank">
+                            <img src="/user-asset/img/{{ $product->sp_hinh2 }}" width="100px">
+                        </a>
+                    </div>
+                    <div class="form-group">
+                        <label for="menu">Ảnh sản phẩm mô tả 3</label>
+                        <input type="file" class="form-control" name="file_upload3"  value="{{ $product->sp_hinh3 }}">
+                    </div>
+                    <div id="image-show">
+                        <a href="{{ $product->sp_hinh3 }}" target="_blank">
+                            <img src="/user-asset/img/{{ $product->sp_hinh3 }}" width="100px">
                         </a>
                     </div>
                     {{-- <input type="hidden" name="file_upload" value="{{ $product->sp_hinh }}"> --}}

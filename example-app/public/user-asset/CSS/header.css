@@ -18,7 +18,24 @@ body{
     top: 0;
     
 }
+.linksmall {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 
+    margin-top: 130px;
+    padding-top: 5px;
+    padding-left: 32px;
+    height: 30px;
+    position: relative;
+    /* z-index: 99999999000000; */
+    border-top: 1px solid #dfdfdf;
+    ;
+}
+
+.linksmall a {
+
+    color: #000;
+    text-decoration: none;
+}
 .thanhtren .bentrai {
 
     width: 50%;

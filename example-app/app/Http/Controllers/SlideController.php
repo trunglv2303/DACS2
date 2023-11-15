@@ -36,6 +36,7 @@ class SlideController extends Controller
             't_name' => $request->name_product,
             't_decription' => $request->info_product,
             't_Image' => $file_name,
+            'identify'=>$request->input('ide')
         ]);
         Session::flash('success', 'Đăng ký slide thành công.');
         return redirect()->back();
