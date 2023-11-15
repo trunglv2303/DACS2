@@ -115,19 +115,19 @@ class UserController extends Controller
         $size = $request->input('size');
         $check = DB::table('carts')
             ->where('user_id', $user->id)
-            ->where('product_id', $id)
+            ->where('product_ma', $id)
             ->where('size', $size)
             ->first();
         if ($check) {
             $newCheck = $check->quantity + $request->input('quantity');
             DB::table('carts')
                 ->where('user_id', $user->id)
-                ->where('product_id', $id)
+                ->where('product_ma', $id)
                 ->update(['quantity' => $newCheck]);
         } else {
             DB::table('carts')->insert([
                 'user_id' => $user->id,
-                'product_id' => $id,
+                'product_ma' => $id,
                 'price' => $request->input('price'),
                 'quantity' => $request->input('quantity'),
                 'size' => $size,
@@ -157,9 +157,23 @@ class UserController extends Controller
         return view('Home.Productsale',compact('type_products','product_sales'));
     }
     public function viewcart()
-    {$type_products=DB::table('type_products')->where('id','!=','6')->get();
-
-        return view('Home.Cart',compact('type_products'));
+    {$user=Auth::user();
+        $type_products=DB::table('type_products')->where('id','!=','6')->get();
+        if($user){
+        $carts=DB::table('carts')
+        ->join('products','products.sp_ma','=','carts.product_ma')
+        ->join('colors','colors.id','=','products.color_id')
+        ->select('carts.*','products.sp_ten as sp_ten','products.sp_giaBan as sp_giaBan','products.sp_hinh as sp_hinh','colors.color as color')
+        ->where('user_id',$user->id)->get();
+        $total = 0;
+        foreach ($carts as $cart) {
+            $total = $total + $cart->price * $cart->quantity;
+        }
+        return view('Home.cart',compact('type_products','carts','total'));
+    }else
+    {
+        return view('Home.cart',compact('type_products'));  
+    }
     }
     public function viewcollection()
     {$type_products=DB::table('type_products')->where('id','!=','6')->get();

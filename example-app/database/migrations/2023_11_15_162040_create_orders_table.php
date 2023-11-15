@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('diachi');
             $table->string('sodienthoai');
-            $table->index('tongtien');
+            $table->integer('tongtien');
             $table->timestamps();
         });
     }

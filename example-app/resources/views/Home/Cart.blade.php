@@ -20,17 +20,21 @@
         <div class="soluong"> Số Lượng</div>
         <div class="tongtien">Tồng Tiền</div>
     </div>
+    @foreach ($carts as $cart)
     <div class="infocat">
-        <img src="../img/damhoa.webp" alt="">
-        <div class="infosp"><a href="">ĐẦM HOA ĐÍNH NƠ</a>
-            <br><span>Phiên bản: Size 2 / Vàng <br> Thương hiệu: LVTSHOP</span>
+        <img src="/user-asset/img/{{$cart->sp_hinh}}" alt="">
+        <div class="infosp"><a href="">{{$cart->sp_ten}}</a>
+            <br><span>Phiên bản: Size {{$cart->size}} / {{$cart->color}}<br> Thương hiệu: LVTSHOP</span>
 
         </div>
-        <div class="gia1">559,000₫</div>
-        <input type="number" class="quantity-input" min="1" max="10" value="1">
-        <div class="tien">1,118,000₫</div>
+        <div class="gia1"><p>{{ number_format($cart->sp_giaBan, 0, ',', '.') }} VND</p>
+        </div>
+        <input type="number" class="quantity-input" min="1" max="10" value="{{$cart->quantity}}">
+        <div class="tien">{{ number_format($total, 0, ',', '.') }} VND</div>
 
     </div>
+    @endforeach
+    
     <div class="home-1">
         <div class="chuthich">
             Chú thích <br>
