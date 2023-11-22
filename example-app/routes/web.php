@@ -29,7 +29,7 @@ Route::prefix('/account')->group(function () {
 Route::prefix('/')->group(function () {
     Route::get('/', [ProductController::class, 'viewhome'])->name('viewhome');
     Route::prefix('/collections')->group(function () {
-        Route::get('/product/{url}',[ProductController::class,'type_product']);
+        Route::get('/product/{url}', [ProductController::class, 'type_product']);
         Route::get('/product', [UserController::class, 'viewproduct'])->name('viewproduct');
         Route::get('/producnew', [UserController::class, 'viewproductnew'])->name('viewproductnew');
         Route::get('/product_desciption', [UserController::class, 'Product_Description'])->name('viewproduct_desciption');
@@ -37,37 +37,35 @@ Route::prefix('/')->group(function () {
         Route::get('/bosutap', [UserController::class, 'viewcollection'])->name('viewcollection');
         Route::get('/productsale', [UserController::class, 'viewproductsale'])->name('viewproductsale');
         Route::get('/productsale/{url}', [UserController::class, 'productsale']);
-
     });
     Route::get('/pay', [UserController::class, 'viewpay'])->name('viewpay');
-    Route::post('/addPay',[UserController::class,'addPayCart'])->name('addpay');
+    Route::post('/addPay', [UserController::class, 'addPayCart'])->name('addpay');
     Route::get('/cart', [UserController::class, 'viewcart'])->name('viewcart');
-
-}); 
-Route::get('/admin',[AdminController::class,'index'])->name('index');
-Route::prefix('/product')->group(function(){
-    Route::get('/add',[ProductController::class,'create']);
-    Route::get('/list',[ProductController::class,'list'])->name('list');
+});
+Route::get('/admin', [AdminController::class, 'index'])->name('index');
+Route::prefix('/product')->group(function () {
+    Route::get('/add', [ProductController::class, 'create']);
+    Route::get('/list', [ProductController::class, 'list'])->name('list');
     Route::post('/set', [ProductController::class, 'setproduct'])->name('setproduct');
-    Route::get('/edit/{id}',[ProductController::class,'store']);
-    Route::post('/edit/{id}',[ProductController::class,'edit'])->name('eidt');
-    Route::get('/delete/{id}',[ProductController::class,'delete'])->name('delete');
+    Route::get('/edit/{id}', [ProductController::class, 'store']);
+    Route::post('/edit/{id}', [ProductController::class, 'edit'])->name('eidt');
+    Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('delete');
 });
-Route::prefix('/menu')->group(function(){
-    Route::get('/add',[MenuController::class,'create']);
-    Route::get('/list',[MenuController::class,'list']);
-}); 
-Route::prefix('/slide')->group(function(){
-    Route::get('/add',[SlideController::class,'create']);
-    Route::get('/list',[SlideController::class,'list']);
+Route::prefix('/menu')->group(function () {
+    Route::get('/add', [MenuController::class, 'create']);
+    Route::get('/list', [MenuController::class, 'list']);
+});
+Route::prefix('/slide')->group(function () {
+    Route::get('/add', [SlideController::class, 'create']);
+    Route::get('/list', [SlideController::class, 'list']);
     Route::post('/set', [SlideController::class, 'setproduct'])->name('setproduct2');
-    Route::get('/edit/{id}',[SlideController::class,'store']);
-    Route::post('/edit/{id}',[SlideController::class,'edit']);
-    Route::get('/delete/{id}',[SlideController::class,'delete'])->name('delete');
+    Route::get('/edit/{id}', [SlideController::class, 'store']);
+    Route::post('/edit/{id}', [SlideController::class, 'edit']);
+    Route::get('/delete/{id}', [SlideController::class, 'delete'])->name('delete');
 });
-Route::get('/search',[ProductController::class,'search']);
-Route::get('/product/{id}',[ProductController::class,'click']);
-Route::POST('/addPay/{id}',[UserController::class,'addPay']);
+Route::get('/search', [ProductController::class, 'search']);
+Route::get('/product/{id}', [ProductController::class, 'click']);
+Route::POST('/addPay/{id}', [UserController::class, 'addPay']);
 Route::get('/productSearch/{id}', [UserController::class, 'viewproductnewSearch'])->name('viewproductnewSearch');
-Route::get('cc', [ProductController::class,'type_product']);
-    
+Route::get('cc', [ProductController::class, 'type_product']);
+Route::POST('/comment', [UserController::class, 'comment']);

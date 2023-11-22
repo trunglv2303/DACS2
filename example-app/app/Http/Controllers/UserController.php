@@ -26,8 +26,8 @@ class UserController extends Controller
     public function addPayCart(Request $request)
     {
         $user = Auth::user();
-        if($user){
-            $orderId=   DB::table('orders')->insertGetId([
+        if ($user) {
+            $orderId =   DB::table('orders')->insertGetId([
                 'user_id' => $user->id,
                 'diachi' => $request->input('address'),
                 'sodienthoai' => $request->input('tel'),
@@ -40,21 +40,18 @@ class UserController extends Controller
                 ->select('carts.*', 'products.sp_ten as sp_ten', 'products.sp_sale as sp_sale', 'products.sp_giaBan as sp_giaBan', 'products.sp_hinh as sp_hinh', 'colors.color as color')
                 ->where('user_id', $user->id)->get();
 
-                foreach ($carts as $cart)   {
-                
+            foreach ($carts as $cart) {
+
                 DB::table('detail_orders')->insert([
-                        'id_donhang' =>  $orderId  ,
-                        'ma_sp' => $cart->product_ma,
-                        'soluong' => $cart->quantity,
-                        'gia' => $cart->price
-                    ]);
+                    'id_donhang' =>  $orderId,
+                    'ma_sp' => $cart->product_ma,
+                    'soluong' => $cart->quantity,
+                    'gia' => $cart->price
+                ]);
+            }
 
-                }
-
-                DB::table('carts')->delete();
-
-        }else{
-
+            DB::table('carts')->delete();
+        } else {
         }
     }
 
@@ -119,17 +116,14 @@ class UserController extends Controller
         $this->product = $products;
     }
     public function viewproduct()
-<<<<<<< Updated upstream
     {
         $type_products = DB::table('type_products')->where('id', '!=', '6')->get();
-        $products = DB::table('products')->select()->paginate(10);
-=======
-    { $type_products=DB::table('type_products')->where('id','!=','6')->get();
-        $products = DB::table('products')->select()->where('l_ma','!=','6')->get();
->>>>>>> Stashed changes
-
-
-        return view('Home.product', compact('type_products', 'products'));
+        $colors = DB::table('colors')->get();
+        $products = DB::table('products')->select()->paginate(10); {
+            $type_products = DB::table('type_products')->where('id', '!=', '6')->get();
+            $products = DB::table('products')->select()->where('l_ma', '!=', '6')->paginate(9);
+            return view('Home.product', compact('type_products', 'products', 'colors'));
+        }
     }
     public function viewpay()
     {
@@ -198,12 +192,13 @@ class UserController extends Controller
     public function viewproductsale()
     {
         $type_products = DB::table('type_products')->where('id', '!=', '6')->get();
+        $colors = DB::table('colors')->get();
         $product_sales = DB::table('products')
             ->where('sp_sale', '>', 1)
             ->where('l_ma', '!=', 6)
-            ->get();
+            ->paginate(9);
 
-        return view('Home.Productsale', compact('type_products', 'product_sales'));
+        return view('Home.Productsale', compact('type_products', 'product_sales', 'colors'));
     }
     public function productsale($url)
     {
@@ -291,5 +286,36 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->back();
+    }
+    public function comment(Request $request)
+    {
+        $user = auth::user();
+        $rating = $request->input('rating');
+        $content = $request->input('content');
+        $userName = $request->input('name');
+        $idUser = $request->input('id');
+        $idProduct = $request->input('id_product');
+        if ($user) {
+            try {
+                $comment = DB::table('comments')->insert([
+                    'user_id' => $idUser,
+                    'product_id' => $idProduct,
+                    'content' => $content,
+                    'rating' => $rating,
+                ]);
+                if ($comment) {
+                    return response()->json([
+                        'name' => $userName,
+                        'product_id' => $idProduct,
+                        'content' => $content,
+                        'rating' => $rating,
+                    ]);
+                } else {
+                    return response()->json(['error' => ['Lỗi !!']]);
+                }
+            } catch (\Exception $e) {
+                return response()->json(['error' => [$e->getMessage()]]);
+            }
+        }
     }
 }

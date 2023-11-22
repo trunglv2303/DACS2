@@ -96,14 +96,14 @@ class ProductController extends Controller
             'type_products' => $type_products,
             'status_products' => $status_products,
             'products' => $product,
-            'colors'=> $colors,
+            'colors' => $colors,
         ]);
     }
 
     public function edit(Request $request, $id)
     //Edit san pham
     {
-        
+
         DB::table('products')->where('sp_ma', $id)->update([
             'sp_ten' => $request->input('name_product'),
             'sp_giaGoc' => $request->input('cost'),
@@ -154,8 +154,8 @@ class ProductController extends Controller
 
     public function viewhome()
     {
-        $slide = DB::table('sliders')->where('identify',1)->get();
-        $banner = DB::table('sliders')->where('identify',2)->get();
+        $slide = DB::table('sliders')->where('identify', 1)->get();
+        $banner = DB::table('sliders')->where('identify', 2)->get();
         $product = DB::table('products')->where('l_ma', '!=', '6')->get();
         $productaovets = DB::table('products')->where('l_ma', 4)->get();
         $productaothuns = DB::table('products')->where('l_ma', 5)->get();
@@ -164,7 +164,7 @@ class ProductController extends Controller
 
         return view('Home.home', [
             'sliders' => $slide,
-            'banners'=> $banner,
+            'banners' => $banner,
             'products' => $product,
             'productaovets' => $productaovets,
             'productaothuns' => $productaothuns,
@@ -178,16 +178,22 @@ class ProductController extends Controller
             'type_products' => $type_products
         ]);
     }
-    public function type_product($url)
+    public function type_product($url, Request $request)
     {
-        
-            $results = Product::whereHas('type_Product', function ($query) use ($url) {
-                $query->where('url', $url);
-            })->get();
+
+        $results = Product::whereHas('type_Product', function ($query) use ($url) {
+            $query->where('url', $url);
+        })->paginate(9);
+        $productnews = DB::table('products')
+            ->where('l_ma', '!=', '6');
+        if ($request->input('price')) {
+            $productnews->orderBy('sp_giaBan', $request->input('price'));
+        }
+        $colors = DB::table('colors')->get();
         // $results = DB::table('products')->select()->where('l_ma', $id_type)->get();
         $keys = DB::table('type_products')->select()->where('url', $url)->get();
         $type_products = DB::table('type_products')->get();
 
-        return view('Home.Search', compact('results', 'keys', 'type_products'));
+        return view('Home.Search', compact('results', 'keys', 'type_products', 'colors'));
     }
 }
