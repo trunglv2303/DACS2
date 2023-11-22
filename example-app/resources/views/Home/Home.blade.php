@@ -77,7 +77,8 @@
                     <div class="imgslider">
                         <div class="item1">
 
-                            <a href="/product/{{ $productaovet->sp_ma }}"><img
+                            <a href="/product/{{ $productaovet->sp_ma }}">
+                                <img
                                     src="/user-asset/img/{{ $productaovet->sp_hinh }}" alt="img"></a>
                             <div class="mangche">
                                 <a href="">

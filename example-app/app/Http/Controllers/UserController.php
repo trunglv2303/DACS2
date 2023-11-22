@@ -119,9 +119,14 @@ class UserController extends Controller
         $this->product = $products;
     }
     public function viewproduct()
+<<<<<<< Updated upstream
     {
         $type_products = DB::table('type_products')->where('id', '!=', '6')->get();
         $products = DB::table('products')->select()->paginate(10);
+=======
+    { $type_products=DB::table('type_products')->where('id','!=','6')->get();
+        $products = DB::table('products')->select()->where('l_ma','!=','6')->get();
+>>>>>>> Stashed changes
 
 
         return view('Home.product', compact('type_products', 'products'));

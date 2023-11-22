@@ -113,7 +113,8 @@
                             </a>
                         </div>
                         <div class="product-info">
-                            <a href=""> <span> <b>{{ $product->sp_ten }} </b></span></a>
+
+                            <a href="/product/{{ $product->sp_ma }}"> <span> <b>{{ $product->sp_ten }} </b></span></a>
                             <br>
                             @if ($product->sp_sale != 0)
                                 <h4 style="text-decoration: line-through; color: red;">
