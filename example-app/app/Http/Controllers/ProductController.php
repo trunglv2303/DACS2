@@ -135,10 +135,15 @@ class ProductController extends Controller
         $sql = Product::where('sp_ma', $id)->get();
         $sql2 = DB::table('products')->get();
         $sql3 = DB::table('sizes')->get();
+        $comment = DB::table('comments')->where('product_id', $id)
+            ->join('users', 'users.id', '=', 'comments.user_id')
+            ->select('comments.*', 'users.name as name')
+            ->paginate(6);
         return view('Home.Product_Description', [
             'products' => $sql,
             'productss' => $sql2,
             'sizes' => $sql3,
+            'comment' => $comment,
         ], compact('type_products'));
     }
     public function search(Request $request)

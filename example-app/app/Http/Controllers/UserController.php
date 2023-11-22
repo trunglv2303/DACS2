@@ -292,30 +292,28 @@ class UserController extends Controller
         $user = auth::user();
         $rating = $request->input('rating');
         $content = $request->input('content');
-        $userName = $request->input('name');
-        $idUser = $request->input('id');
+        $userName = $user->name;
+        $idUser = $user->id;
         $idProduct = $request->input('id_product');
-        if ($user) {
-            try {
-                $comment = DB::table('comments')->insert([
-                    'user_id' => $idUser,
+        try {
+            $comment = DB::table('comments')->insert([
+                'user_id' => $idUser,
+                'product_id' => $idProduct,
+                'content' => $content,
+                'rating' => $rating,
+            ]);
+            if ($comment) {
+                return response()->json([
+                    'name' => $userName,
                     'product_id' => $idProduct,
                     'content' => $content,
                     'rating' => $rating,
                 ]);
-                if ($comment) {
-                    return response()->json([
-                        'name' => $userName,
-                        'product_id' => $idProduct,
-                        'content' => $content,
-                        'rating' => $rating,
-                    ]);
-                } else {
-                    return response()->json(['error' => ['Lỗi !!']]);
-                }
-            } catch (\Exception $e) {
-                return response()->json(['error' => [$e->getMessage()]]);
+            } else {
+                return response()->json(['error' => ['Lỗi !!']]);
             }
+        } catch (\Exception $e) {
+            return response()->json(['error' => [$e->getMessage()]]);
         }
     }
 }
