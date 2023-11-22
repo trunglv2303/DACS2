@@ -15,13 +15,10 @@ return new class extends Migration
             $table->id();
    
             $table->unsignedBigInteger('id_donhang');
-            $table->foreign('id_donhang')->references('id_donhang')->on('orders');
             $table->string('ma_sp');
             $table->foreign('ma_sp')->references('sp_ma')->on('products');
             $table->string('soluong');
             $table->integer('gia');
-
-
             $table->timestamps();
         });
     }

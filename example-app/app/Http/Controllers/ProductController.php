@@ -178,10 +178,14 @@ class ProductController extends Controller
             'type_products' => $type_products
         ]);
     }
-    public function type_product($id_type)
+    public function type_product($url)
     {
-        $results = DB::table('products')->select()->where('l_ma', $id_type)->get();
-        $keys = DB::table('type_products')->select()->where('id', $id_type)->get();
+        
+            $results = Product::whereHas('type_Product', function ($query) use ($url) {
+                $query->where('url', $url);
+            })->get();
+        // $results = DB::table('products')->select()->where('l_ma', $id_type)->get();
+        $keys = DB::table('type_products')->select()->where('url', $url)->get();
         $type_products = DB::table('type_products')->get();
 
         return view('Home.Search', compact('results', 'keys', 'type_products'));

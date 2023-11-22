@@ -143,7 +143,7 @@
                             <ul>
                                 <li>
                                     @foreach ($type_products as $type_product)
-                                    <a href="/collections/product/{{$type_product->id}}">{{$type_product->name_type}} <div class="fa fa-chev ron-right"></div></a>
+                                    <a href="/collections/product/{{$type_product->url}}">{{$type_product->name_type}} <div class="fa fa-chev ron-right"></div></a>
 
                                     @endforeach
                                 </li>
@@ -187,11 +187,10 @@
                         <div class="layer1">
                             <ul>
                                 <li>
-                                    <a href="">Áo</a>
-                                    <a href="">Quần</a>
-                                    <a href="">Phụ Kiện</a>
-                                    <a href="">Đầm</a>
-                                    <a href="">Áo</a>
+                                    @foreach ($type_products as $type_product)
+                                    <a href="/collections/productsale/{{$type_product->url}}">{{$type_product->name_type}} <div class="fa fa-chev ron-right"></div></a>
+
+                                    @endforeach
                                 </li>
                             </ul>
                         </div>
@@ -225,14 +224,14 @@
                 <div class="boxlgin">
                     <div class="dangnhap">
                         @if (auth()->check())
-                            <a href="">Profile</a>
+                            <a href="{{route('viewprofile')}}">Profile</a>
                         @else 
                             <a href="{{route('register')}}">Đăng Nhập</a>
                         @endif
                         </div>
                     <div class="dangki">
                         @if (auth()->check())
-                        <a href="{{route('register')}}"> Logout</a>
+                        <a href="{{route('logout')}}"> Logout</a>
                     @else 
                         <a href="{{route('register')}}">Đăng kí</a>
                     @endif
@@ -247,7 +246,7 @@
                 <a href="./giohang.html">
                     <div class="fa-solid fa-cart-shopping"></div>
                 </a>
-                <a href="{{Route('viewpay')}}">
+                <a href="{{Route('viewcart')}}">
                     <div class="shopping"> Giỏ Hàng </div>
                 </a>
 

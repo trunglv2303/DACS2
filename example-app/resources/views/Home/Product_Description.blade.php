@@ -110,8 +110,8 @@
 
                         <div class="dathang">
                             @if (Auth::check())
-                                <button class="datmua" type="submit" name="submit">Thêm Vào giỏ hàng</button>
-                                <button class="datmua" type="submit" name="submit">Đặt Mua Hàng</button>
+                            <button class="themvaogiohang" type="submit" name="submit">Thêm Vào giỏ hàng</button>
+                            <button style="background-color: black;color: white;" class="datmua" type="submit" name="submit">Đặt Mua Hàng</button>
                             @else
                                 <div class="dtk"> Bạn đã có tài khoản chưa? <a href="">Đăng Nhập </a> </div>
                             @endif

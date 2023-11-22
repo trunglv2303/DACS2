@@ -15,10 +15,19 @@
         <a href=""> ĐĂNG NHẬP- ĐĂNG KÍ</a>
 
     </div>
+
     <div class="home">
+        
         <form action="{{ route('loginnow') }}" method="POST">
             @csrf
             <div class="login">
+                @if (Session::has('errorlogin'))
+                <div style="background: red " class="alert alert-danger">
+                    {{ Session::get('errorlogin') }}
+
+
+                </div>
+            @endif
 
                 <div class="dangnhap0"> <b>ĐĂNG NHẬP</b></div>
                 <div class="dangnhap-1">Nếu bạn đã có tài khoản, hãy đăng nhập để tích lũy điểm thành viên và nhận được

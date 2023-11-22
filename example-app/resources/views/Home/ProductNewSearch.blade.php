@@ -10,6 +10,10 @@
     <a href="./index.html"> TRANG CHỦ </a>
     <span>/</span>
     <a href="">TẤT CẢ CÁC SẢN PHẨM</a>
+    <span>/</span>
+    @foreach($productnews->take(1) as $color)
+    <a>#{{$color->nameColor}}</a>
+    @endforeach
 
 </div>
 
@@ -21,6 +25,7 @@
         <ul>
             <li><a href=""><b>Danh mục</b></a></li>
             <li><a href=""><b>Tất cả sản phẩm</b></a></li>
+
             @foreach ($type_products as $type_product)
             <li><a href="/collections/product/{{$type_product->url}}"><b>{{$type_product->name_type}}</b></a></li>
 
@@ -30,8 +35,12 @@
         </ul>
     </div>
     <div class="home-right">
-        <div class="home-right-heading">
+        <div style="display: flex;" class="home-right-heading">
             <h3>TẤT CẢ SẢN PHẨM</h3>
+            <h3> / </h3>
+            @foreach($productnews->take(1) as $color)
+            <h4> #{{$color->nameColor}}</h4>
+            @endforeach
         </div>
         <div class="home-right-tools">
             <div class="color">
@@ -139,9 +148,6 @@
                 <div class="fa-brands fa-youtube"></div>
             </a>
         </div>
-
-
-
     </div>
 </div>
 </div>

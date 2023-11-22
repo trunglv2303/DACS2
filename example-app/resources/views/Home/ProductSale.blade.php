@@ -21,8 +21,9 @@
             <ul>
                 <li><a href=""><b>Danh mục</b></a></li>
                 <li><a href=""><b>Tất cả sản phẩm</b></a></li>
+                
                 @foreach ($type_products as $type_product)
-                    <li><a href="/collections/product/{{ $type_product->id }}"><b>{{ $type_product->name_type }}</b></a>
+                    <li><a href="/collections/product/{{ $type_product->url }}"><b>{{ $type_product->name_type }}</b></a>
                     </li>
                 @endforeach
 
@@ -33,6 +34,7 @@
             <div class="home-right-heading">
                 <h3>TẤT CẢ SẢN PHẨM</h3>
             </div>
+            @if(isset($product_sales) && count($product_sales) > 0)
             <div class="home-right-tools">
                 <div class="size">
                     <div class="kickco">Kích cỡ
@@ -162,6 +164,10 @@
 
 
             </div>
+            @else
+                <h1>Không có sản phẩm</h1>
+            @endif
+       
         </div>
 
     </div>

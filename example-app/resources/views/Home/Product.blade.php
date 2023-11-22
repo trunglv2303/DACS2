@@ -22,7 +22,7 @@
                 <li><a href=""><b>Danh mục</b></a></li>
                 <li><a href=""><b>Tất cả sản phẩm</b></a></li>
                 @foreach ($type_products as $type_product)
-                    <li><a href="/collections/product/{{ $type_product->id }}"><b>{{ $type_product->name_type }}</b></a>
+                    <li><a href="/collections/product/{{ $type_product->url }}"><b>{{ $type_product->name_type }}</b></a>
                     </li>
                 @endforeach
 
