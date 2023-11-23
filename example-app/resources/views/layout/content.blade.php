@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     @yield('other')
@@ -204,17 +206,51 @@
         </div>
         <div class="homeicontimkiem">
             <div class="icontimkiem">
-                <a href="">
+                <a href="" class="a">
                     <div class="fa fa-search"></div>
                 </a>
                 <div class="search_box">
                     <form action="/search/" method="GET">
-                        <input class="search-box_input" type="text" name="search" placeholder="Nhập sản phẩm bạn muốn tìm?">
+                        <input class="search-box_input" id="timkiem" type="text" name="search" placeholder="Bạn cần gì?">
                         <button class="search-box_btn">
                             <div class="fa fa-search"></div>
                         </button>
                     </form>
+                    <ul class="list-group" id="result">
+                        <li>Danh sách sản phẩm muốn tìm</li>
+                    </ul>
                 </div>
+
+                <script>
+                    $(document).ready(function() {
+                        $('#timkiem').keyup(function() {
+                            $('#result').html('');
+                            var search = $('#timkiem').val();
+                            if (search !== '') {
+                                var expression = new RegExp(search, "i");
+                                $.getJSON('/productJS/product.json', function(data) {
+                                    if (data && data.data.length > 0) {
+                                        $.each(data.data, function(key, value) {
+                                            if (value.sp_ten.search(expression) !== -1 || value.sp_thongTin.search(expression) !== -1) {
+
+                                                $('#result').css('display', 'block');
+                                                $('#result').append('<a style="text-decoration: none;" href="/product/' + value.sp_ma + '"><li style="cursor:pointer;" class="list-group-item link-class"><img style="width:40px" src="/user-asset/img/' + value.sp_hinh + '">' + value.sp_ten + '<br>' + value.sp_thongTin + '</li></a>');
+                                            }
+
+                                        });
+                                    } else {
+                                        console.log('Không có sản phẩm');
+                                        $('#result').append('<li style="cursor:pointer" class="list-group-item link-class">Không có sản phẩm</li>');
+                                        $('#result').css('display', 'none');
+                                    }
+                                })
+                            } else {
+                                $('#result').css('display', 'none');
+                            }
+                        });
+                    });
+                </script>
+
             </div>
             <div class="rectangle"></div>
 

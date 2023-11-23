@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="/templateNew/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <link rel="stylesheet" type="text/css" href="/templateNew/css/util.css">
 <link rel="stylesheet" type="text/css" href="/templateNew/css/main.css">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
 @section('content')
@@ -71,8 +72,6 @@
         <div class="number">
 
             <form action="/addPay/{{ $product->sp_ma }}" method="POST">
-
-                @csrf
                 @php
                 $tienSale = $product->sp_giaBan - ($product->sp_giaBan * $product->sp_sale) / 100;
                 @endphp
@@ -214,6 +213,7 @@
             <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
                 <div class="p-b-30 m-lr-15-sm">
                     <!-- Review -->
+                    @foreach($comment as $cmt)
                     <div id="containerComment" class="flex-w flex-t p-b-68">
                         <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
                             <img src="https://thespiritofsaigon.net/wp-content/uploads/2022/10/avatar-vo-danh-11.jpg" alt="AVATAR">
@@ -222,26 +222,51 @@
                         <div class="size-207">
                             <div class="flex-w flex-sb-m p-b-17">
                                 <span class="mtext-107 cl2 p-r-20">
-                                    Minh Hoàng
+                                    {{$cmt->name}}
                                 </span>
 
                                 <span class="fs-18 cl11">
-                                    <i class="zmdi zmdi-star"></i>
-                                    <i class="zmdi zmdi-star"></i>
-                                    <i class="zmdi zmdi-star"></i>
-                                    <i class="zmdi zmdi-star"></i>
-                                    <i class="zmdi zmdi-star-half"></i>
+                                    @if($cmt->rating == 1)
+                                    @for($i = 0; $i < 5; $i++) @if($i < 1) <i class="zmdi zmdi-star"></i>
+                                        @else
+                                        <i class="zmdi zmdi-star-outline"></i>
+                                        @endif
+                                        @endfor
+                                        @elseif($cmt->rating == 2)
+                                        @for($i = 0; $i < 5; $i++) @if($i < 2) <i class="zmdi zmdi-star"></i>
+                                            @else
+                                            <i class="zmdi zmdi-star-outline"></i>
+                                            @endif
+                                            @endfor
+                                            @elseif($cmt->rating == 3)
+                                            @for($i = 0; $i < 5; $i++) @if($i < 3) <i class="zmdi zmdi-star"></i>
+                                                @else
+                                                <i class="zmdi zmdi-star-outline"></i>
+                                                @endif
+                                                @endfor
+                                                @elseif($cmt->rating == 4)
+                                                @for($i = 0; $i < 5; $i++) @if($i < 4) <i class="zmdi zmdi-star"></i>
+                                                    @else
+                                                    <i class="zmdi zmdi-star-outline"></i>
+                                                    @endif
+                                                    @endfor
+                                                    @else
+                                                    @for($i = 0; $i < 5; $i++) <i class="zmdi zmdi-star-outline"></i>
+                                                        @endfor
+                                                        @endif
                                 </span>
+
                             </div>
 
                             <p class="stext-102 cl6">
-                                Quod autem in homine praestantissimum atque optimum est, id deseruit. Apud ceteros autem philosophos
+                                {{$cmt->content}}
                             </p>
                         </div>
                     </div>
+                    @endforeach
                     <div id="comment-error"></div>
-                    <form class="w-full">
-
+                    <div class="w-full">
+                        <input type="hidden" value="{{$product->sp_ma}}" name="id_product">
                         <div class="flex-w flex-m p-t-50 p-b-23">
                             <span class="stext-102 cl3 m-r-16">
                                 Your Rating
@@ -266,23 +291,40 @@
                         <button type="submit" id="send" class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
                             Submit
                         </button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
+    function generateStarIcons(rating) {
+        var stars = '';
+        for (var i = 1; i <= 5; i++) {
+            if (i <= rating) {
+                stars += '<i class="zmdi zmdi-star" style="margin-right: 5px;"></i>';
+            } else {
+                stars += '<i class="zmdi zmdi-star-outline" style="margin-right: 3px;"></i>';
+            }
+        }
+        return stars;
+    }
     $(document).ready(function() {
         $('#send').click(function() {
+            event.preventDefault();
             let content = $('#review').val();
             let rating = $('#rating').val();
             $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 url: "/comment",
                 type: "POST",
                 data: {
                     content: content,
                     rating: rating,
+                    id_product: $('input[name="id_product"]').val()
                 },
                 success: function(res) {
                     if (res.error) {
@@ -290,20 +332,18 @@
                     } else {
                         $('#rating').val('');
                         $('#review').val('');
-                        $('#containerComment').append(' < div class = "wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6" >' + '<' +
-                            'img src = "https://thespiritofsaigon.net/wp-content/uploads/2022/10/avatar-vo-danh-11.jpg" alt = "AVATAR" >' +
-                            '</div><div class = "size-207" > <div class = "flex-w flex-sb-m p-b-17" ><span class = "mtext-107 cl2 p-r-20" >' +
-                            +res.name + '</span>' +
-                            '<span class = "fs-18 cl11" >' +
-                            '<i class = "zmdi zmdi-star" > < /i>' +
-                            '<i class = "zmdi zmdi-star" > < /i> ' +
-                            '<i class = "zmdi zmdi-star" > < /i>' +
-                            '<i class = "zmdi zmdi-star" > < /i> ' +
-                            '<i class = "zmdi zmdi-star-half" > < /i>' +
-                            '</span > </div >' +
-                            '<p class = "stext-102 cl6" >' +
-                            res.content +
-                            '</p> < /div > </div>')
+                        $('#containerComment').html('<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">' +
+                            '<img src="https://thespiritofsaigon.net/wp-content/uploads/2022/10/avatar-vo-danh-11.jpg" alt="AVATAR">' +
+                            '</div>' +
+                            '<div class="size-207">' +
+                            '<div class="flex-w flex-sb-m p-b-17">' +
+                            '<span class="mtext-107 cl2 p-r-20">' + res.name + '</span>' +
+                            '<span class="fs-18 cl11">' +
+                            generateStarIcons(res.rating) +
+                            '</span>' +
+                            '</div>' +
+                            '<p class="stext-102 cl6">' + res.content + '</p>' +
+                            '</div>')
                     }
                 },
                 error: function(err) {
