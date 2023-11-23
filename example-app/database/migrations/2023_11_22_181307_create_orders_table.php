@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id('id_donhang');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger("id_tinhtrangdonhang"); // Add a column name here
+            $table->unsignedBigInteger('id_status_orders');
+            $table->foreign('id_status_orders')->references('id')->on('status_orders');
+
             $table->string('diachi');
             $table->string('sodienthoai');
             $table->integer('tongtien');
