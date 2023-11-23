@@ -2,12 +2,13 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-
+    /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
 }
 
-body{
+body {
     bottom: 0;
 }
+
 .thanhtren {
     width: 100%;
     display: flex;
@@ -15,13 +16,27 @@ body{
     position: fixed;
     z-index: 229092;
     top: 0;
-    
+}
+
+.linksmall {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top: 130px;
+    padding-top: 5px;
+    padding-left: 32px;
+    height: 30px;
+    position: relative;
+    /* z-index: 99999999000000; */
+    border-top: 1px solid #dfdfdf;
+    ;
+}
+
+.linksmall a {
+    color: #000;
+    text-decoration: none;
 }
 
 .thanhtren .bentrai {
-
     width: 50%;
-
 }
 
 .thanhtren .bentrai a {
@@ -30,8 +45,6 @@ body{
     color: rgb(255, 255, 255);
     font-size: 15px;
 }
-
-
 
 .thanhtren .benphai {
     width: 50%;
@@ -49,17 +62,14 @@ body{
 .menu>ul {
     display: flex;
     list-style: none;
-
 }
 
 .menu {
     display: flex;
-
     width: 40%;
     margin-top: 21px;
     padding-left: 100px;
     text-align: center;
-
     z-index: 9999999999999999999;
 }
 
@@ -87,7 +97,6 @@ body{
     line-height: 3;
 }
 
-
 .item .layer1 {
     background-color: rgb(255, 255, 255);
     transform: translatex(60%);
@@ -95,30 +104,23 @@ body{
     position: absolute;
     visibility: hidden;
     opacity: 0;
-
     width: 170px;
     transition: 0.6s;
-
     z-index: 1;
 }
-
-
 
 .item:hover .layer1 {
     visibility: visible;
     opacity: 1;
     transform: translateX(0%);
-
 }
 
 .item .layer1 ul li {
     list-style: none;
-
 }
 
 .item:hover .ten {
     color: rgb(107, 119, 110);
-
 }
 
 .item .layer1 ul li a {
@@ -129,13 +131,10 @@ body{
     padding-left: 10px;
     text-align: left;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
-
 }
 
 .item .layer1 ul li a:hover {
     color: brown;
-
 }
 
 .thanhcongcu {
@@ -143,12 +142,9 @@ body{
     width: 100%;
     height: 80px;
     /* background-color: rgb(0, 136, 255); */
-
-
 }
 
 .logo {
-
     width: 15%;
     text-align: left;
     padding-top: 30px;
@@ -162,7 +158,6 @@ body{
 
 .thanhcongcu {
     position: fixed;
-
     justify-content: space-between;
     top: 0;
     display: flex;
@@ -188,15 +183,9 @@ body{
     display: inline-block;
     padding-right: 10px;
     align-items: center;
-
     width: 10%;
     text-align: right;
-
-
-
     font-size: 35px;
-
-
 }
 
 .rectangle {
@@ -208,10 +197,9 @@ body{
     border-right: 2px solid rgb(150, 150, 150);
 }
 
-.icontimkiem a {
+.icontimkiem .a {
     font-size: 33px;
     color: #000000;
-
 }
 
 .icontimkiem:hover .search_box {
@@ -228,13 +216,24 @@ body{
     background: rgb(255, 255, 255);
     width: 250px;
     position: relative;
-    height: 50px;
+    height: 300px;
     overflow: hidden;
+    overflow-y: scroll;
+}
 
+.search_box ul li {
+    font-size: 15px;
+    text-align: center;
+}
+
+.search_box ul a {
+    color: #000;
+    font-size: 15px;
+    text-align: center;
 }
 
 .search-box_input {
-    width: 80%;
+    width: 100%;
     height: 100%;
     background: transparent;
     border: none;
@@ -242,7 +241,6 @@ body{
     padding-left: 5px;
     padding-bottom: 40x;
     color: rgb(0, 0, 0);
-
 }
 
 .search-box_btn {
@@ -251,12 +249,10 @@ body{
     width: 40px;
     position: absolute;
     right: 0;
-    top: 0;
+    top: 5.5px;
     height: 40px;
     font-size: 20px;
-
 }
-
 
 .taikhoan {
     width: 140px;
@@ -265,27 +261,20 @@ body{
     display: block;
     padding-right: 10px;
     /* background-color: aquamarine; */
-
     text-align: left;
-
-
 }
 
 .taikhoan a {
-
     text-decoration: none;
     color: #000000;
     font-size: 30px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     position: relative;
-
 }
 
 .khachhang {
-
     top: -36px;
     right: -35px;
-
     font-size: 17px;
     position: relative;
 }
@@ -299,12 +288,11 @@ body{
     position: relative;
     background-color: rgb(255, 255, 255);
     width: 180px;
-    margin-top:3;
+    margin-top: 3;
     transition: 0, 4;
     border-radius: 2px;
-    line-height:3;
+    line-height: 3;
     opacity: 0;
-
 }
 
 .dangnhap a {
@@ -316,12 +304,15 @@ body{
     padding-bottom: 5px;
     font-size: 18px;
 }
-.dangnhap a:hover{
+
+.dangnhap a:hover {
     color: #2d4246cf;
 }
-.dangki a:hover{
+
+.dangki a:hover {
     color: #2d4246cf;
 }
+
 .dangki a {
     color: #000000;
     font-size: 18px;
@@ -335,16 +326,10 @@ body{
 }
 
 .giohang {
-
-
     /* background: #01c2bf; */
     margin-left: 5px;
     display: flex;
-
     margin-top: 9px;
-
-
-
 }
 
 .giohang a {
@@ -353,23 +338,19 @@ body{
     text-decoration: none;
 }
 
-
-
 .shopping {
     display: flex;
     border-left: #a89714;
     padding-left: 3px;
     padding-top: 12px;
     font-size: 17px;
-    text-decoration: none;   
-     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
+    text-decoration: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .navbar1 {
     display: none;
 }
-
 
 .nav_input {
     background-color: #0015ff;
@@ -379,13 +360,10 @@ body{
 .nav_input:checked~.nav-bar-mb {
     transform: translateX(0px);
     display: block;
-
 }
 
 .nav_input:checked~.exit-user {
-
     display: none;
-
 }
 
 .nav-bar-mb {
@@ -394,7 +372,6 @@ body{
     top: 0;
     right: 0;
     height: 100%;
-
     width: 270px;
     background-color: rgb(0, 0, 0);
     justify-content: flex-end;
@@ -430,8 +407,6 @@ body{
     color: #ffffff;
     padding-top: 10px;
     padding-right: 10px;
-
-
 }
 
 .navcenter {
@@ -444,7 +419,6 @@ body{
 }
 
 .layermb>ul>li {
-
     text-decoration: none;
     list-style: none;
     display: none;
@@ -453,7 +427,6 @@ body{
 .layermb>ul>li a {
     padding: 40px 0px 0px 0px;
     text-decoration: none;
-
 }
 
 .layermb>ul>li {
@@ -465,6 +438,79 @@ body{
 .itemmb:hover .layermb>ul>li {
     display: flex;
     flex-direction: column;
+}
+
+@media (max-width:1290px) {
+    .menu ul li {
+        margin-left: -20px;
+        width: 130px;
+    }
+    .homeicontimkiem {
+        font-size: 10px;
+        padding-left: 12.4rem;
+        padding-top: 16px;
+        justify-content: flex-start;
+    }
+    .homeicontimkiem a {
+        font-size: 24px;
+    }
+    .giohang {
+        display: flex;
+        margin-top: 13px;
+    }
+    .shopping {
+        display: flex;
+        border-left: #a89714;
+        padding-left: 3px;
+        padding-top: 5px;
+        font-size: 17px;
+        text-decoration: none;
+    }
+    .taikhoan {
+        width: 140px;
+        margin-top: 15px;
+        padding-left: 10px;
+        display: block;
+        padding-right: 10px;
+        /* background-color: aquamarine; */
+        text-align: left;
+    }
+}
+
+@media (max-width:953px) {
+    .thanhcongcu {
+        margin-top: 0px;
+    }
+    .thanhtren {
+        display: none;
+    }
+    .homeicontimkiem {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+    .taikhoan {
+        display: none;
+    }
+    .navbar1 {
+        font-size: 29px;
+        margin-top: 15px;
+        display: flex;
+    }
+    .rectangle {
+        display: none;
+    }
+    .giohang {
+        padding-right: 10px;
+    }
+    .giohang .shopping {
+        display: none;
+    }
+    .icontimkiem {
+        display: none;
+    }
+    .thanhcongcu .menu {
+        display: none;
+    }
 }
 
 .share {
@@ -482,7 +528,8 @@ body{
     align-items: center;
     background-color: #a89714;
 }
-.main img{
+
+.main img {
     height: 600px;
 }
 
@@ -511,7 +558,6 @@ body{
 }
 
 .btn button {
-
     background: none;
     outline: none;
     border: none;
@@ -537,9 +583,10 @@ body{
 .bstleft {
     border-top: 1px solid #fcfcfc;
     width: 50%;
-    border-left:4px solid #fff ;
+    border-left: 4px solid #fff;
 }
-.image{
+
+.image {
     width: 100%;
     height: 500px;
 }
@@ -552,7 +599,6 @@ body{
     align-items: center;
     margin-top: -4px;
     justify-content: space-between;
-
 }
 
 .layer1 {
@@ -561,14 +607,12 @@ body{
     ;
     font-size: 14px;
     padding-left: 15px;
-
     text-align: left;
     width: 50%;
 }
 
 .layer2 {
     font-size: 14px;
-
     color: hsl(0, 0%, 64%);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     ;
@@ -596,8 +640,6 @@ body{
     align-items: center;
     font-size: 40px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
-
 }
 
 .conten {
@@ -610,12 +652,10 @@ body{
     padding-top: 20px;
     width: 100%;
     justify-content: space-between;
-
     padding-left: 130px;
 }
 
 .bo {
-
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 13px;
     color: rgb(88, 169, 169);
@@ -644,7 +684,6 @@ body{
     text-align: center;
     font-size: 17px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
 }
 
 .ptc:hover .bin {
@@ -652,7 +691,6 @@ body{
     font-size: 20px;
     opacity: 1;
     color: #8e8e4e;
-
 }
 
 .bin1 {
@@ -671,7 +709,6 @@ body{
     text-align: center;
     font-size: 17px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
 }
 
 .ptc1:hover .bin1 {
@@ -679,7 +716,6 @@ body{
     font-size: 25px;
     opacity: 1;
     color: #8e8e4e;
-
 }
 
 .bin2 {
@@ -698,7 +734,6 @@ body{
     text-align: center;
     font-size: 17px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
 }
 
 .ptc2:hover .bin2 {
@@ -706,7 +741,6 @@ body{
     font-size: 25px;
     opacity: 1;
     color: #8e8e4e;
-
 }
 
 .bin3 {
@@ -725,7 +759,6 @@ body{
     text-align: center;
     font-size: 17px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
 }
 
 .ptc3:hover .bin3 {
@@ -733,7 +766,6 @@ body{
     font-size: 25px;
     opacity: 1;
     color: #8e8e4e;
-
 }
 
 .bin4 {
@@ -752,7 +784,6 @@ body{
     text-align: center;
     font-size: 17px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
 }
 
 .ptc4:hover .bin4 {
@@ -760,7 +791,6 @@ body{
     font-size: 25px;
     opacity: 1;
     color: #8e8e4e;
-
 }
 
 .bin5 {
@@ -779,7 +809,6 @@ body{
     text-align: center;
     font-size: 17px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
 }
 
 .ptc5:hover .bin5 {
@@ -787,7 +816,6 @@ body{
     font-size: 25px;
     opacity: 1;
     color: #8e8e4e;
-
 }
 
 .k199 {
@@ -810,7 +838,6 @@ body{
 .blog h1 {
     font-size: 27px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
 }
 
 .dangkibangtien {
@@ -853,7 +880,6 @@ input[type="text"] {
 .dangkibangtinmail {
     font-size: 20px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
 }
 
 .icon {
@@ -876,7 +902,6 @@ input[type="text"] {
 }
 
 footer {
-
     bottom: 0;
 }
 
@@ -931,18 +956,15 @@ footer {
 }
 
 .ft .ft-center {
-
     width: 20%;
     padding-top: 36px;
 }
 
 .ft .ft-center a {
-
     text-decoration: none;
     display: inline-block;
     color: rgb(171, 170, 169);
     margin: 0;
-
     font-size: 14px;
     justify-content: center;
 }
@@ -955,18 +977,15 @@ footer {
     padding-left: 50px;
     width: 31%;
     padding-top: 35px;
-
 }
 
 .ft .ft-right {
     padding-left: 50px;
     width: 31%;
     padding-top: 35px;
-
 }
 
 .ft .ft-right a {
-
     text-decoration: none;
     display: inline-block;
     color: rgb(171, 170, 169);
@@ -992,10 +1011,8 @@ iframe {
     margin: 0;
     display: block;
     font-size: 14px;
-
     justify-content: center;
 }
-
 
 .ft_bank .imgbank {
     margin-top: 15px;
@@ -1031,27 +1048,20 @@ iframe {
     .menu ul li {
         margin-left: -20px;
         width: 130px;
-
     }
-
     .homeicontimkiem {
         font-size: 10px;
         padding-left: 12.4rem;
         padding-top: 16px;
         justify-content: flex-start;
     }
-
     .homeicontimkiem a {
         font-size: 24px;
-
     }
-
     .giohang {
-
         display: flex;
         margin-top: 13px;
     }
-
     .shopping {
         display: flex;
         border-left: #a89714;
@@ -1060,7 +1070,6 @@ iframe {
         font-size: 17px;
         text-decoration: none;
     }
-
     .taikhoan {
         width: 140px;
         margin-top: 15px;
@@ -1070,44 +1079,32 @@ iframe {
         /* background-color: aquamarine; */
         text-align: left;
     }
-
 }
 
 @media (max-width:953px) {
-
     .home {
         flex-direction: column-reverse;
     }
-
     .bosuutap {
         flex-direction: column;
     }
-
     .bstleft,
     .bstright {
         width: 100%;
     }
-    .bstright{
-        
-        
-    }
+    .bstright {}
     .bstleft img {
         width: 100%;
     }
     .bstright img {
         width: 100%;
     }
-
     .thanhcongcu {
         margin-top: 0px;
     }
-
     .thanhtren {
         display: none;
     }
-
-
-
     input[type="text"] {
         height: 40px;
         border: 1px solid rgb(93, 93, 93);
@@ -1115,61 +1112,49 @@ iframe {
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         font-size: 14px;
     }
-
     .homeicontimkiem {
         flex-direction: row;
         justify-content: flex-end;
     }
-
     .taikhoan {
         display: none;
     }
-
     .navbar1 {
         font-size: 29px;
         margin-top: 15px;
         display: flex;
     }
-
     .rectangle {
         display: none;
     }
-
     .giohang {
         padding-right: 10px;
     }
-
     .giohang .shopping {
         display: none;
     }
-
     .icontimkiem {
         display: none;
     }
-
     .thanhcongcu .menu {
         display: none;
     }
-
     .slider {
         background-color: aquamarine;
         width: 100%;
         height: 190px;
         position: relative;
     }
-
     .phiaduoi .layer1,
     .phiaduoi .layer2 {
         font-size: 12px;
     }
-
     .kod {
         font-size: 3px;
         gap: 0.7rem;
         overflow: hidden;
         height: 13rem;
     }
-
     .bin a,
     .bin1 a,
     .bin2 a,
@@ -1178,7 +1163,6 @@ iframe {
     .bin5 a {
         font-size: 14px
     }
-
     .bin p,
     .bin1 p,
     .bin2 p,
@@ -1187,63 +1171,46 @@ iframe {
     .bin5 p {
         font-size: 14px
     }
-
     .ptc {
         margin-left: 10px;
     }
-
     .sanpham {
-
         font-size: 31px;
-
     }
-
     .ft .ft-center {
         padding-left: 0;
         width: 31%;
         padding-top: 30px;
-
     }
-
     .ft .ft-right {
         padding-left: 0;
         width: 31%;
         padding-top: 35px;
-
     }
-
     .ft {
-
         width: 100%;
         display: flex;
         flex-wrap: wrap;
         padding: 16px 20px 37px 16px;
     }
-
     .ft .ft-left {
         width: 50%;
     }
-
     .ft .ft-right {
-
         width: 50%;
     }
-
     .ft .ft-.center {
         width: 50%;
     }
-
     .ft .ft-center {
         width: 50%;
         padding-top: 44px;
         padding-left: 30px;
     }
-
     .ft .ft_bank {
         /* margin-left: 110px; */
         width: 50%;
     }
-
     input[type="text"] {
         height: 40px;
         border: 1px solid rgb(93, 93, 93);
@@ -1251,5 +1218,4 @@ iframe {
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         font-size: 14px;
     }
-
 }
