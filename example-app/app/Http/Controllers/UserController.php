@@ -33,7 +33,7 @@ class UserController extends Controller
                 'diachi' => $request->input('address'),
                 'sodienthoai' => $request->input('tel'),
                 'tongtien' => $request->input('tongtien'),
-                'id_tinhtrangdonhang' => 1
+                'id_status_orders' => 2
             ]);
             $carts = DB::table('carts')
                 ->join('products', 'products.sp_ma', '=', 'carts.product_ma')
