@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Slider;
 use App\Http\Service\SliderService;
 use App\Models\Product;
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
@@ -119,11 +120,14 @@ class UserController extends Controller
     {
         $type_products = DB::table('type_products')->where('id', '!=', '6')->get();
         $colors = DB::table('colors')->get();
-        $products = DB::table('products')->select()->paginate(10); {
-            $type_products = DB::table('type_products')->where('id', '!=', '6')->get();
-            $products = DB::table('products')->select()->where('l_ma', '!=', '6')->paginate(9);
-            return view('Home.product', compact('type_products', 'products', 'colors'));
+        $type_products = DB::table('type_products')->where('id', '!=', '6')->get();
+        $products = DB::table('products')->select()->where('l_ma', '!=', '6')->paginate(9);
+        $path = public_path() . "/productJS/";
+        if (!is_dir($path)) {
+            mkdir($path, 0777, true);
         }
+        File::put($path . 'product.json', json_encode($products));
+        return view('Home.product', compact('type_products', 'products', 'colors'));
     }
     public function viewpay()
     {
@@ -212,8 +216,7 @@ class UserController extends Controller
 
         return view('Home.Productsale', compact('type_products', 'product_sales'));
     }
-    public function
-    viewcart()
+    public function viewcart()
 
     {
         $user = Auth::user();

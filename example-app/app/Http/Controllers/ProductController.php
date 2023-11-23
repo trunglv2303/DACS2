@@ -150,10 +150,12 @@ class ProductController extends Controller
     {
         $keyword = $request->input('search');
         $type_products = DB::table('type_products')->where('id', '!=', '6')->get();
-        $results = DB::table('products')->where('sp_ten', 'like', '%' . $keyword . '%')->get();
+        $results = DB::table('products')->where('sp_ten', 'like', '%' . $keyword . '%')->paginate(9);
+        $colors = Color::select('id', 'color')->get();
         return view('Home.Search', [
             'results' => $results,
-            'key' => $keyword
+            'key' => $keyword,
+            'colors' => $colors
         ], compact('type_products'));
     }
 
