@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SlideController;
+use App\Http\Controllers\StatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +56,27 @@ Route::prefix('/product')->group(function () {
 });
 Route::prefix('/menu')->group(function () {
     Route::get('/add', [MenuController::class, 'create']);
+    Route::post('/add', [MenuController::class, 'add'])->name('addMenu');
     Route::get('/list', [MenuController::class, 'list']);
+    Route::get('/edit/{id}', [MenuController::class, 'store']);
+    Route::post('/edit/{id}', [MenuController::class, 'edit'])->name('editMenu');
+    Route::get('/delete/{id}', [MenuController::class, 'delete']);
+});
+Route::prefix('/color')->group(function () {
+    Route::get('/add', [ColorController::class, 'create']);
+    Route::post('/add', [ColorController::class, 'add'])->name('addColor');
+    Route::get('/list', [ColorController::class, 'list']);
+    Route::get('/edit/{id}', [ColorController::class, 'store']);
+    Route::post('/edit/{id}', [ColorController::class, 'edit'])->name('editColor');
+    Route::get('/delete/{id}', [ColorController::class, 'delete']);
+});
+Route::prefix('/status')->group(function () {
+    Route::get('/add', [StatusController::class, 'create']);
+    Route::post('/add', [StatusController::class, 'add'])->name('addStatus');
+    Route::get('/list', [StatusController::class, 'list']);
+    Route::get('/edit/{id}', [StatusController::class, 'store']);
+    Route::post('/edit/{id}', [StatusController::class, 'edit']);
+    Route::get('/delete/{id}', [StatusController::class, 'delete']);
 });
 Route::prefix('/slide')->group(function () {
     Route::get('/add', [SlideController::class, 'create']);
@@ -62,6 +85,12 @@ Route::prefix('/slide')->group(function () {
     Route::get('/edit/{id}', [SlideController::class, 'store']);
     Route::post('/edit/{id}', [SlideController::class, 'edit']);
     Route::get('/delete/{id}', [SlideController::class, 'delete'])->name('delete');
+});
+Route::prefix('/order')->group(function () {
+    Route::get('/list', [OrderController::class, 'list']);
+    Route::get('/edit/{id}', [OrderController::class, 'store']);
+    Route::post('/edit/{id}', [OrderController::class, 'edit']);
+    Route::get('/detail/{id}', [OrderController::class, 'detail'])->name('detail');
 });
 Route::get('/search', [ProductController::class, 'search']);
 Route::get('/product/{id}', [ProductController::class, 'click']);

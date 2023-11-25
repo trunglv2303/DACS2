@@ -18,9 +18,9 @@ class SlideController extends Controller
     }
     public function list()
     {
-        $slide=DB::table('sliders')->get();
-        return view('admin.slider.list',[
-            'slide'=>$slide
+        $slide = DB::table('sliders')->get();
+        return view('admin.slider.list', [
+            'slide' => $slide
         ]);
     }
     public function setproduct(Request $request)
@@ -36,18 +36,16 @@ class SlideController extends Controller
             't_name' => $request->name_product,
             't_decription' => $request->info_product,
             't_Image' => $file_name,
-            'identify'=>$request->input('ide')
+            'identify' => $request->input('ide')
         ]);
         Session::flash('success', 'Đăng ký slide thành công.');
         return redirect()->back();
-
-
     }
-    public function store()
+    public function store($id)
     {
-        $slide=DB::table('sliders')->get();
-        return view('admin.slider.edit',[
-            'slide'=>$slide
+        $slide = DB::table('sliders')->where('id', $id)->get();
+        return view('admin.slider.edit', [
+            'slide' => $slide
         ]);
     }
     public function edit(Request $request, $id)
@@ -66,8 +64,7 @@ class SlideController extends Controller
     }
     public function delete($id)
     {
-        $delete= DB::table('sliders')->where('id',$id)->delete();
+        $delete = DB::table('sliders')->where('id', $id)->delete();
         return redirect()->back();
     }
 }
-
