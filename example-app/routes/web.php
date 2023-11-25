@@ -7,6 +7,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\sizeController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\StatusController;
 
@@ -77,6 +78,14 @@ Route::prefix('/status')->group(function () {
     Route::get('/edit/{id}', [StatusController::class, 'store']);
     Route::post('/edit/{id}', [StatusController::class, 'edit']);
     Route::get('/delete/{id}', [StatusController::class, 'delete']);
+});
+Route::prefix('/size')->group(function () {
+    Route::get('/add', [sizeController::class, 'create']);
+    Route::post('/add', [sizeController::class, 'add'])->name('addSize');
+    Route::get('/list', [sizeController::class, 'list']);
+    Route::get('/edit/{id}', [sizeController::class, 'store']);
+    Route::post('/edit/{id}', [sizeController::class, 'edit']);
+    Route::get('/delete/{id}', [sizeController::class, 'delete']);
 });
 Route::prefix('/slide')->group(function () {
     Route::get('/add', [SlideController::class, 'create']);

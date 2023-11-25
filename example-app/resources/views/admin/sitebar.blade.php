@@ -101,7 +101,36 @@
           </ul>
         </div>
       </li>
+      <li class="nav-item menu-items">
+        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+          <span class="menu-icon">
+            <i style="color: chartreuse;" class="mdi mdi-speedometer"></i>
+          </span>
+          <span class="menu-title">size</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="ui-basic">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/size/add">Thêm Size</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/size/list">Danh Sách size</a></li>
+          </ul>
+        </div>
+      </li>
     </ul>
+    <li class="nav-item menu-items">
+      <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <span class="menu-icon">
+          <i class="mdi mdi-speedometer" style="color: coral;"></i>
+        </span>
+        <span class="menu-title">Đơn Hàng</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="ui-basic">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/order/list">Danh Sách Đơn Hàng</a></li>
+        </ul>
+      </div>
+    </li>
     <li class="nav-item menu-items">
       <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
         <span class="menu-icon">
@@ -114,20 +143,6 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="/slide/add">Thêm Silder</a></li>
           <li class="nav-item"> <a class="nav-link" href="/slide/list">Danh Sách Slider</a></li>
-        </ul>
-      </div>
-    </li>
-    <li class="nav-item menu-items">
-      <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-        <span class="menu-icon">
-          <i class="mdi mdi-speedometer" style="color: coral;"></i>
-        </span>
-        <span class="menu-title">Đơn Hàng</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="ui-basic">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="/order/list">Danh Sách Đơn Hàng</a></li>
         </ul>
       </div>
     </li>
