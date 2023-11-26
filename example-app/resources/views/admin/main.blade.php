@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    @include('admin.head')
+  @include('admin.head')
 </head>
+
 <body>
-<body>
+
+  <body>
     <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
       @include('admin.sitebar')
@@ -61,6 +64,7 @@
         <div class="col" style="padding-top: 12%;">
           @yield('content')
         </div>
-  @include('admin.footer')
-</body>
+        @include('admin.footer')
+  </body>
+
 </html>

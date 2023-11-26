@@ -95,6 +95,10 @@ Route::prefix('/slide')->group(function () {
     Route::post('/edit/{id}', [SlideController::class, 'edit']);
     Route::get('/delete/{id}', [SlideController::class, 'delete'])->name('delete');
 });
+Route::prefix('/statistical')->group(function () {
+    Route::get('/main', [AdminController::class, 'main']);
+    Route::get('/list/{id}', [AdminController::class, 'listStatisUser']);
+});
 Route::prefix('/order')->group(function () {
     Route::get('/list', [OrderController::class, 'list']);
     Route::get('/edit/{id}', [OrderController::class, 'store']);
