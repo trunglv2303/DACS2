@@ -72,6 +72,7 @@
         <div class="number">
 
             <form action="/addPay/{{ $product->sp_ma }}" method="POST">
+                @csrf
                 @php
                 $tienSale = $product->sp_giaBan - ($product->sp_giaBan * $product->sp_sale) / 100;
                 @endphp
@@ -116,7 +117,7 @@
                     <a href="#"> <b><span class="line line1" onclick="toggleMenu()">Hướng dẫn chọn size</span></b></a>
                 </div>
 
-                <div class="soluong"> <b>Số Lượng <input type="number" name="quantity" class="quantity-input" min="1" max="10"> </b></div>
+                <div class="soluong"> <b>Số Lượng <input type="number" name="quantity" class="quantity-input" min="1" max="10" value="1"> </b></div>
 
                 <div class="dathang">
                     @if (Auth::check())
@@ -138,7 +139,7 @@
 
 </div>
 <hr style="margin-top: 10px;">
-<div class="tab-content p-t-43">
+<div class="tab-content p-t-43"  style="     margin-right: 20px;">
     <!-- - -->
     <div class="tab-pane fade" id="description" role="tabpanel" aria-expanded="false">
         <div class="how-pos2 p-lr-15-md">

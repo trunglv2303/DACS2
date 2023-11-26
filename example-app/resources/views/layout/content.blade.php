@@ -131,7 +131,7 @@
 
 
     <div class="thanhcongcu">
-        <div class="logo">
+        <div class="logo1">
             <a href="{{route('viewhome')}}" class="logo1"><img src="/user-asset/img/lvt.jpg" alt=""></a>
         </div>
         <div class="menu">
@@ -283,9 +283,22 @@
             </div>
             <div class="rectangle"></div>
             <div class="giohang">
-                <a href="./giohang.html">
+                <a href="{{Route('viewcart')}}">
                     <div class="fa-solid fa-cart-shopping"></div>
                 </a>
+
+                <span> 
+                    
+                @if (auth()->check())
+                 <b> {{ $productCount = DB::table('carts')->count()         }} </b>
+       
+
+                @else
+                    
+                @endif
+                
+
+                </span>
                 <a href="{{Route('viewcart')}}">
                     <div class="shopping"> Giỏ Hàng </div>
                 </a>

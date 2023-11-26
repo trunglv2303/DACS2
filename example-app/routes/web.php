@@ -23,7 +23,7 @@ Route::prefix('/account')->group(function () {
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
     Route::post('/getinfo', [UserController::class, 'getinfo'])->name('getinfo');
     Route::post('/loginnow', [UserController::class, 'login'])->name('loginnow');
-    Route::post('/profile', [UserController::class, 'viewprofile'])->name('viewprofile');
+    Route::get  ('/profile', [UserController::class, 'viewprofile'])->name('viewprofile');
 });
 
 Route::prefix('/')->group(function () {
@@ -63,9 +63,12 @@ Route::prefix('/slide')->group(function () {
     Route::post('/edit/{id}', [SlideController::class, 'edit']);
     Route::get('/delete/{id}', [SlideController::class, 'delete'])->name('delete');
 });
-Route::get('/search', [ProductController::class, 'search']);
+Route::get('/sorderearch', [ProductController::class, 'search']);
 Route::get('/product/{id}', [ProductController::class, 'click']);
 Route::POST('/addPay/{id}', [UserController::class, 'addPay']);
 Route::get('/productSearch/{id}', [UserController::class, 'viewproductnewSearch'])->name('viewproductnewSearch');
-Route::get('cc', [ProductController::class, 'type_product']);
 Route::POST('/comment', [UserController::class, 'comment']);
+ Route::prefix('/order')->group(function () {
+    Route::get('/', [UserController::class, 'showorder'])->name('orders');
+    Route::get('/detail/{id}', [UserController::class, 'detail'])->name('detail');
+});

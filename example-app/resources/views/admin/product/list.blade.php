@@ -25,7 +25,11 @@
                     <th > <img style="width:150px;height:200px;border-radius:0%"  src="/user-asset/img/{{ $product->sp_hinh}}" alt=""> </th>
                     <th>{{ $product->sp_giaGoc }}</th>
                     <th>{{ $product->sp_giaBan }}</th>
-                    <th style="white-space: normal; ">{{ $product->sp_thongTin }}</th>
+                    <th style="white-space: normal; ">    <span class="shortened-content">
+                        {{ $product->sp_thongTin }}
+                    </span>
+                    <!-- Thêm một nút hoặc phương tiện khác để mở rộng nội dung khi cần thiết -->
+                    <button onclick="expandContent()">Xem thêm</button></th>
                     <th>{{ $product->type_Product->name_type}}</th>
                     <th>{{ $product->status_product->name_status}}</th>
                     <th><a class="btn btn-primary btn-sm" href="/product/edit/{{$product->sp_ma}}">
@@ -52,4 +56,23 @@
         </tbody> --}}
         </table>
     </div>
+    <style>
+        .shortened-content {
+            white-space: nowrap; /* Ngăn chặn xuống dòng */
+            overflow: hidden;    /* Ẩn phần nội dung vượt quá chiều rộng của thẻ span */
+            text-overflow: ellipsis; /* Hiển thị dấu ba chấm (...) khi nội dung bị cắt bớt */
+            max-width: 300px; /* Đặt độ rộng tối đa của nội dung */
+            display: inline-block; /* Cho phép thẻ span co giãn dựa trên độ dài của nội dung */
+        }
+    </style>
+    
+    <!-- Đoạn mã JavaScript để mở rộng nội dung khi nút được nhấp -->
+    <script>
+        function expandContent() {
+            var contentContainer = document.querySelector('.shortened-content');
+            contentContainer.style.whiteSpace = 'normal'; /* Cho phép xuống dòng */
+            contentContainer.style.overflow = 'visible';  /* Hiển thị toàn bộ nội dung */
+            document.querySelector('button').style.display = 'none'; /* Ẩn nút khi nội dung đã được mở rộng */
+        }
+    </script>
 @endsection
