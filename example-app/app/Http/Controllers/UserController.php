@@ -13,16 +13,48 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Session;
 use App\Models\Slider;
 use App\Http\Service\SliderService;
+use App\Models\Order;
 use App\Models\Product;
+use App\Models\StatusOrders;
 use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
+    //chi tiet don hang
+public function detail($id){
+    $orders = DB::table('detail_orders')
+    ->join('products', 'products.sp_ma', '=', 'detail_orders.ma_sp')
+    ->join('orders', 'orders.id_donhang', '=', 'detail_orders.id_donhang')
+    ->join('colors', 'colors.id', '=', 'products.color_id')
 
+    ->select('detail_orders.*','products.sp_ten as sp_ten', 'products.sp_sale as sp_sale', 'products.sp_giaBan as sp_giaBan', 'products.sp_hinh as sp_hinh','colors.color as color','orders.name as name')
+    ->where('detail_orders.id_donhang', $id)
+    ->get();
+    
+
+
+
+
+    $type_products = DB::table('type_products')->where('id', '!=', '6')->get();
+
+    // $orders=DB::table('detail_orders')->select()->where('id_donhang',$id)->get();
+    return view('Home.detail_order',compact('orders','type_products','id'));
+
+
+}
     public function show($id)
     {
         return User::findOrFail($id);
     }
+
+
+    // chi tiết đơn hàng
+    public function showorder(){
+        $type_products = DB::table('type_products')->where('id', '!=', '6')->get();
+        $orders=Order::all();
+        return view('Home.order',compact('orders','type_products'));
+    }
+
 
     public function addPayCart(Request $request)
     {
@@ -31,6 +63,7 @@ class UserController extends Controller
             $orderId =   DB::table('orders')->insertGetId([
                 'user_id' => $user->id,
                 'diachi' => $request->input('address'),
+                'name' => $request->input('username'),
                 'sodienthoai' => $request->input('tel'),
                 'tongtien' => $request->input('tongtien'),
                 'id_status_orders' => 2
@@ -45,6 +78,8 @@ class UserController extends Controller
 
                 DB::table('detail_orders')->insert([
                     'id_donhang' =>  $orderId,
+                    'size'=> $cart->size,
+
                     'ma_sp' => $cart->product_ma,
                     'soluong' => $cart->quantity,
                     'gia' => $cart->price

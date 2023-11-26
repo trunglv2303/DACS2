@@ -18,7 +18,7 @@
         <div class="name">{{(auth()->check()) ? auth()->user()->name : "Chưa đăng nhập"}}</div>
         <div class="info">
             <a href="">Thông tin tài khoản</a>
-            <a href="">Quản lý đơn</a>  
+            <a href="{{route('orders')}}">Quản lý đơn</a>  
             <a href="">Thông tin giao Hàng</a> 
         </div>
     </div>

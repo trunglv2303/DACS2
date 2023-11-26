@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('ma_sp');
             $table->foreign('ma_sp')->references('sp_ma')->on('products');
             $table->string('soluong');
+            $table->string('size');
             $table->integer('gia');
             $table->timestamps();
         });

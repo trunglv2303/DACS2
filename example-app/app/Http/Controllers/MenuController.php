@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Typeproduct;
 use Illuminate\Support\Str;
 
-class MenuController extends Controller
+class UserControllerMenuController extends Controller
 {
     public function create()
     {

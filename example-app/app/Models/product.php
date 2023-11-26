@@ -23,18 +23,22 @@ class Product extends Model
         'sp_sale'
     ]; // Specifies the columns that can be mass-assigned
 
-    public function status_product()
-    {
-        return $this->hasOne(Statusproduct::class, 'id', 'sp_trangThai');
-    }
+   // Relationship with Statusproduct model
+public function status_product()
+{
+    return $this->belongsTo(Statusproduct::class, 'sp_trangThai', 'id');
+}
 
-    public function color_product()
-    {
-        return $this->hasOne(Color::class, 'id', 'color_id');
-    }
+// Relationship with Color model
+public function color_product()
+{
+    return $this->belongsTo(Color::class, 'color_id', 'id');
+}
 
-    public function type_Product()
-    {
-        return $this->hasOne(Typeproduct::class, 'id', 'l_ma');
-    }
+// Relationship with Typeproduct model
+public function type_Product()
+{
+    return $this->belongsTo(Typeproduct::class, 'l_ma', 'id');
+}
+
 }
