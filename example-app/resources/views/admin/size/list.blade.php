@@ -6,18 +6,18 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Mã Danh Mục</th>
-                <th>Tên Danh Mục </th>
+                <th>Mã Size</th>
+                <th>Tên Size </th>
                 <th>Thao Tác</th>
         </thead>
         <tr>
-            @foreach($type_products as $type_products)
-            <th>{{ $type_products->id }}</th>
-            <th>{{ $type_products->name_type }}</th>
-            <th><a class="btn btn-primary btn-sm" href="/menu/edit/{{$type_products->id}}">
+            @foreach($sizes as $sizes)
+            <th>{{ $sizes->id }}</th>
+            <th>{{ $sizes->size }}</th>
+            <th><a class="btn btn-primary btn-sm" href="/size/edit/{{$sizes->id}}">
                     <i class="fas fa-edit"></i> Sửa
                 </a>
-                <a class="btn btn-danger btn-sm" href="/menu/delete/{{ $type_products->id }}">
+                <a class="btn btn-danger btn-sm" href="/size/delete/{{ $sizes->id }}">
                     <i class="fas fa-trash"></i> Xóa
                 </a>
             </th>

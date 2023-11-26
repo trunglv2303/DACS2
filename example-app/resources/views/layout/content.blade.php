@@ -275,9 +275,6 @@
                         @else
                         <a href="{{route('register')}}">Đăng kí</a>
                         @endif
-
-
-
                     </div>
                 </div>
             </div>
@@ -302,7 +299,6 @@
                 <a href="{{Route('viewcart')}}">
                     <div class="shopping"> Giỏ Hàng </div>
                 </a>
-
             </div>
             <label for="nav_inputid" class="navbar1"> <i class="fa-solid fa-bars"></i></label>
         </div>

@@ -5,37 +5,33 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Typeproduct;
-use Illuminate\Support\Str;
 
-class UserControllerMenuController extends Controller
+class sizeController extends Controller
 {
     public function create()
     {
-        return view('admin.menu.add');
+        return view('admin.size.add');
     }
     public function list()
     {
-        $type_products = DB::table('type_products')->get();
-        return view('admin.menu.list', compact('type_products'));
+        $sizes = DB::table('sizes')->get();
+        return view('admin.size.list', compact('sizes'));
     }
     public function store($id)
 
     {
-        $type_products = Typeproduct::select('id', 'name_type')->where('id', $id)->get();
-        return view('admin.menu.edit', [
-            'type_products' => $type_products,
+        $sizes = DB::table('sizes')->where('id', $id)->get();
+        return view('admin.size.edit', [
+            'sizes' => $sizes,
         ]);
     }
 
     public function edit(Request $request, $id)
     {
         $name = $request->input('name');
-        $slug = Str::slug($name);
-        $update = DB::table('type_products')->where('id', $id)->update([
-            'id' => $request->input('sp_product'),
-            'name_type' => $name,
-            'url' => $slug,
+        $update = DB::table('sizes')->where('id', $id)->update([
+            'id' => $request->input('id'),
+            'size' => $name,
         ]);
         if ($update) {
             return redirect()->back()->with('success', 'đã cập nhật thành công');
@@ -46,11 +42,9 @@ class UserControllerMenuController extends Controller
     public function add(Request $request)
     {
         $name = $request->input('name');
-        $slug = Str::slug($name);
-        $add = DB::table('type_products')->insert([
-            'id' => $request->input('sp_product'),
-            'name_type' => $name,
-            'url' => $slug,
+        $add = DB::table('sizes')->insert([
+            'id' => $request->input('id'),
+            'size' => $name,
         ]);
         if ($add) {
             return redirect()->back()->with('success', 'đã thêm thành công');
@@ -60,7 +54,7 @@ class UserControllerMenuController extends Controller
     }
     public function delete($id)
     {
-        $delete = DB::table('type_products')->where('id', $id)->delete();
+        $delete = DB::table('sizes')->where('id', $id)->delete();
         if ($delete) {
             return redirect()->back()->with('success', 'đã Xóa thành công');
         } else {
