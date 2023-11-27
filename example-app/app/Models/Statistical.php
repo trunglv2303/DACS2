@@ -14,7 +14,7 @@ class Statistical extends Model
         $totals = DB::table('orders')->get();
         $money = 0;
         foreach ($totals as $total) {
-            if ($total->id_tinhtrangdonhang == "1") {
+            if ($total->id_status_orders == "1") {
                 $money += $total->tongtien;
             }
         }
@@ -29,7 +29,7 @@ class Statistical extends Model
             ->get();
         $money = 0;
         foreach ($totals as $total) {
-            if ($total->id_tinhtrangdonhang == "1") {
+            if ($total->id_status_orders == "1") {
                 $profit = $total->giaGoc - $total->tongtien;
                 $money += $profit;
             }
@@ -41,7 +41,7 @@ class Statistical extends Model
         $totals = DB::table('orders')->get();
         $order = 0;
         foreach ($totals as $total) {
-            if ($total->id_tinhtrangdonhang == "1") {
+            if ($total->id_status_orders == "1") {
                 $order++;
             }
         }

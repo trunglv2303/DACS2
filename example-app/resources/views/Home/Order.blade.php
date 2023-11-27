@@ -60,7 +60,7 @@
                          
                          
                          <td> <span style="border: 1px solid black; background: black; color: #ffffff;">{{ $order->status_order->name}}</span></td>
-                         <td><a href="/order/detail/{{ $order->id_donhang}}">Chi Tiết</a></td>
+                         <td><a href="/donhang/detail/{{ $order->id_donhang}}">Chi Tiết</a></td>
 
                         </tr>
                         

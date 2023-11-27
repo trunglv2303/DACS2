@@ -27,7 +27,7 @@ Route::prefix('/account')->group(function () {
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
     Route::post('/getinfo', [UserController::class, 'getinfo'])->name('getinfo');
     Route::post('/loginnow', [UserController::class, 'login'])->name('loginnow');
-    Route::post('/profile', [UserController::class, 'viewprofile'])->name('viewprofile');
+    Route::get('/profile', [UserController::class, 'viewprofile'])->name('viewprofile');
 });
 
 Route::prefix('/')->group(function () {
@@ -111,3 +111,7 @@ Route::POST('/addPay/{id}', [UserController::class, 'addPay']);
 Route::get('/productSearch/{id}', [UserController::class, 'viewproductnewSearch'])->name('viewproductnewSearch');
 Route::get('cc', [ProductController::class, 'type_product']);
 Route::POST('/comment', [UserController::class, 'comment']);
+Route::prefix('/donhang')->group(function () {
+    Route::get('/', [UserController::class, 'showorder'])->name('orders');
+    Route::get('/detail/{id}', [UserController::class, 'detail'])->name('detail');
+});
