@@ -12,7 +12,7 @@
             <br>
             <select name="tinhtrang">
                 @foreach($statusOrders as $statusOrder)
-                <option name="tinhtrang" value="{{$statusOrder->id}}" {{ $order->id_tinhtrangdonhang == $statusOrder->id ? 'selected' : ''}}>{{$statusOrder->name}}</option>
+                <option name="tinhtrang" value="{{$statusOrder->id}}" {{ $order->id_status_orders == $statusOrder->id ? 'selected' : ''}}>{{$statusOrder->name}}</option>
                 @endforeach
             </select>
         </div>
