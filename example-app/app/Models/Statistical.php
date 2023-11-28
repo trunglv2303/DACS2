@@ -29,10 +29,7 @@ class Statistical extends Model
             ->get();
         $money = 0;
         foreach ($totals as $total) {
-            if ($total->id_tinhtrangdonhang == "1") {
-                $profit = $total->giaGoc - $total->tongtien;
-                $money += $profit;
-            }
+            $money = $total->tongtien;
         }
         return $money;
     }

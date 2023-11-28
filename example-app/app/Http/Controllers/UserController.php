@@ -21,27 +21,26 @@ use Illuminate\Support\Facades\File;
 class UserController extends Controller
 {
     //chi tiet don hang
-public function detail($id){
-    $orders = DB::table('detail_orders')
-    ->join('products', 'products.sp_ma', '=', 'detail_orders.ma_sp')
-    ->join('orders', 'orders.id_donhang', '=', 'detail_orders.id_donhang')
-    ->join('colors', 'colors.id', '=', 'products.color_id')
+    public function detail($id)
+    {
+        $orders = DB::table('detail_orders')
+            ->join('products', 'products.sp_ma', '=', 'detail_orders.ma_sp')
+            ->join('orders', 'orders.id_donhang', '=', 'detail_orders.id_donhang')
+            ->join('colors', 'colors.id', '=', 'products.color_id')
 
-    ->select('detail_orders.*','products.sp_ten as sp_ten', 'products.sp_sale as sp_sale', 'products.sp_giaBan as sp_giaBan', 'products.sp_hinh as sp_hinh','colors.color as color','orders.name as name')
-    ->where('detail_orders.id_donhang', $id)
-    ->get();
-    
-
-
+            ->select('detail_orders.*', 'products.sp_ten as sp_ten', 'products.sp_sale as sp_sale', 'products.sp_giaBan as sp_giaBan', 'products.sp_hinh as sp_hinh', 'colors.color as color', 'orders.name as name')
+            ->where('detail_orders.id_donhang', $id)
+            ->get();
 
 
-    $type_products = DB::table('type_products')->where('id', '!=', '6')->get();
-
-    // $orders=DB::table('detail_orders')->select()->where('id_donhang',$id)->get();
-    return view('Home.detail_order',compact('orders','type_products','id'));
 
 
-}
+
+        $type_products = DB::table('type_products')->where('id', '!=', '6')->get();
+
+        // $orders=DB::table('detail_orders')->select()->where('id_donhang',$id)->get();
+        return view('Home.detail_order', compact('orders', 'type_products', 'id'));
+    }
     public function show($id)
     {
         return User::findOrFail($id);
@@ -49,10 +48,11 @@ public function detail($id){
 
 
     // chi tiết đơn hàng
-    public function showorder(){
+    public function showorder()
+    {
         $type_products = DB::table('type_products')->where('id', '!=', '6')->get();
-        $orders=Order::all();
-        return view('Home.order',compact('orders','type_products'));
+        $orders = Order::all();
+        return view('Home.order', compact('orders', 'type_products'));
     }
 
 
@@ -78,7 +78,7 @@ public function detail($id){
 
                 DB::table('detail_orders')->insert([
                     'id_donhang' =>  $orderId,
-                    'size'=> $cart->size,
+                    'size' => $cart->size,
 
                     'ma_sp' => $cart->product_ma,
                     'soluong' => $cart->quantity,
@@ -113,18 +113,14 @@ public function detail($id){
             'name' => $request->name,
             'number_phone' => $request->number_phone,
             'password' => bcrypt($request->password),
+            'Role' => '0'
         ]);
         return redirect(route("register"));
         // Sau khi thêm thành công, bạn có thể thực hiện các hành động khác, ví dụ: đăng nhập người dùng, chuyển hướng, vv.
     }
     public function register()
     {
-
-
-
         $type_products = DB::table('type_products')->get();
-
-
         return view('Login_register.register', compact('type_products'));
     }
     public function login(Request $request)
@@ -133,7 +129,11 @@ public function detail($id){
         $password = $request->password;
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            return redirect(route("viewhome"));
+            if (Auth::user()->Role == 0) {
+                return redirect(route("viewhome"));
+            } else {
+                return redirect(route("index"));
+            }
         } else {
             Session::flash('errorlogin', 'Tài khoản không đúng!');
 

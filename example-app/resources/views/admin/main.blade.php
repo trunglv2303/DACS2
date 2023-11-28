@@ -8,6 +8,7 @@
 <body>
 
   <body>
+    @if(auth()->check() && auth()->user()->Role == 1)
     <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
       @include('admin.sitebar')
@@ -65,6 +66,11 @@
           @yield('content')
         </div>
         @include('admin.footer')
+        @else
+        <div>
+          <h1 style="min-height: 100vh;display: flex;justify-content: center;align-items: center;">Đây là trang của ADMIN. Bạn không có quyền vào!!<br>404</h1>
+        </div>
+        @endif
   </body>
 
 </html>
