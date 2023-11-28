@@ -7,16 +7,14 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Session;
-use App\Models\Slider;
-use App\Http\Service\SliderService;
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\StatusOrders;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -353,5 +351,59 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => [$e->getMessage()]]);
         }
+    }
+
+
+    public function forgetPass()
+    {
+        $type_products = DB::table('type_products')->get();
+        return view('Home.ForgetPass', compact('type_products'));
+    }
+    public function actived(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|exists:users'
+        ], [
+            'email.required' => 'Vui lòng nhập email',
+            'email.exists' => 'Email này không tồn tại'
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if ($user) {
+            $token = strtoupper(Str::random(10));
+            $user->token = $token;
+            $user->save();
+
+            Mail::send('home.CheckForgetPass', compact('user'), function ($email) use ($user) {
+                $email->subject('LVT SHOP - Lấy lại mật khẩu của bạn !');
+                $email->to($user->email, $user->name);
+            });
+
+            return redirect()->back()->with('success', 'Vui lòng kiểm tra email để nhận mã OTP');
+        }
+
+        return redirect()->back()->with('error', 'Có lỗi xảy ra, vui lòng thử lại');
+    }
+    public function getPass(User $user, $token)
+    {
+        $type_products = DB::table('type_products')->get();
+        if ($user->Token !== $token) {
+            return view('home.password', compact('type_products'));
+        }
+        return abort(404);
+    }
+    public function postGetPass($token, Request $request)
+    {
+        $request->validate([
+            'password' => 'required'
+        ], [
+            'password' => 'Chưa nhập password',
+        ]);
+        DB::table('users')->update([
+            'password' => bcrypt($request->password),
+            'token' => null,
+        ]);
+        return redirect()->route('register')->with('success', 'Vui lòng đăng nhập lại');
     }
 }
