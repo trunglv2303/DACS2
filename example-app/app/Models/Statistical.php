@@ -44,6 +44,7 @@ class Statistical extends Model
         $sale = 0;
 
         foreach ($totals as $total) {
+
             $productMoney += $total->giaGoc * $total->soluong;
 
 
