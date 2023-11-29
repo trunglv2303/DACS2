@@ -20,7 +20,7 @@ class AdminController extends Controller
     }
     public function main()
     {
-        return view('admin.Statistical.main', [
+         return view('admin.Statistical.main', [
             'total' => $this->statis->totalMoney(),
             'profit' => $this->statis->profitMoney(),
             'order' => $this->statis->totalOrder(),

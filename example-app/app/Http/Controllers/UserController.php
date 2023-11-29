@@ -66,7 +66,7 @@ public function detail($id){
                 'name' => $request->input('username'),
                 'sodienthoai' => $request->input('tel'),
                 'tongtien' => $request->input('tongtien'),
-                'id_status_orders' => 2
+                'id_status_orders' => 1
             ]);
             $carts = DB::table('carts')
                 ->join('products', 'products.sp_ma', '=', 'carts.product_ma')
@@ -77,7 +77,7 @@ public function detail($id){
             foreach ($carts as $cart) {
 
                 DB::table('detail_orders')->insert([
-                    'id_donhang' =>  $orderId,
+                    'id_order' =>  $orderId,
                     'size'=> $cart->size,
 
                     'ma_sp' => $cart->product_ma,

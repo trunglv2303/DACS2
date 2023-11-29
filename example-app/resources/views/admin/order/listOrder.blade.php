@@ -15,7 +15,7 @@
         <tr>
             @foreach($details as $detail)
             <th>{{ $detail->id }}</th>
-            <th>{{ $detail->id_donhang }}</th>
+            <th>{{ $detail->id_order}}</th>
             <th>{{ $detail->ma_sp }}</th>
             <th>{{ $detail->soluong }}</th>
             <th>{{ $detail->gia }}</th>

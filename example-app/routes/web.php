@@ -102,7 +102,7 @@ Route::prefix('/statistical')->group(function () {
 Route::prefix('/order')->group(function () {
     Route::get('/list', [OrderController::class, 'list']);
     Route::get('/edit/{id}', [OrderController::class, 'store']);
-    Route::post('/edit/{id}', [OrderController::class, 'edit']);
+    Route::post('edit/{id}', [OrderController::class, 'edit']);
     Route::get('/detail/{id}', [OrderController::class, 'detail'])->name('detail');
 });
 Route::get('/search', [ProductController::class, 'search']);
