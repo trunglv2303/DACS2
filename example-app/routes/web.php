@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\sizeController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\StatusController;
+use App\Models\Statistical;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,7 @@ Route::prefix('/')->group(function () {
     Route::get('/pay', [UserController::class, 'viewpay'])->name('viewpay');
     Route::post('/addPay', [UserController::class, 'addPayCart'])->name('addpay');
     Route::get('/cart', [UserController::class, 'viewcart'])->name('viewcart');
+    Route::get('/deleteCart/{id}', [UserController::class, 'deleteCart']);
 });
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('index');
@@ -104,6 +106,9 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/statistical')->group(function () {
         Route::get('/main', [AdminController::class, 'main']);
         Route::get('/list/{id}', [AdminController::class, 'listStatisUser']);
+        Route::get('/user-role/{id}', [AdminController::class, 'role']);
+        Route::post('/user-role/{id}', [Statistical::class, 'postRole'])->name('postRole');
+        Route::get('/delete-role/{id}', [Statistical::class, 'deleteRole']);
     });
     Route::prefix('/order')->group(function () {
         Route::get('/list', [OrderController::class, 'list']);

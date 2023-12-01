@@ -36,4 +36,10 @@ class AdminController extends Controller
             'listProductUsers' => $this->statis->detailListUser($id),
         ]);
     }
+    public function role()
+    {
+        return view('admin.Statistical.role', [
+            'sqls' => $this->statis->listUser(),
+        ]);
+    }
 }

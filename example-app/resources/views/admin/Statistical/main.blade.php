@@ -1,7 +1,8 @@
 @extends('admin.main')
 @section('content')
-<div style="margin-top: -200px;" class="main-panel">
+<div style="margin-top: -100px;" class="main-panel">
     <div class="content-wrapper">
+        @include('alert')
         <div class="row">
             <div class="col-sm-4 grid-margin">
                 <div style="color: aliceblue;" class="card">
@@ -84,6 +85,54 @@
                                         <td> {{ $sql->order_count }} </td>
                                         <td>
                                             <a href="/statistical/list/{{$sql->id}}" class="badge badge-outline-success">Chi tiết</a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    {{$sqls->links()}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-12 grid-margin">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">User</h4>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th> Tên Khách Hàng </th>
+                                        <th> Mã Khách Hàng </th>
+                                        <th> Email </th>
+                                        <th> Số điện thoại </th>
+                                        <th> Quyền của người dùng </th>
+                                        <th> Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($sqls as $sql)
+                                    <tr>
+                                        <td>
+                                            <img src="https://media.istockphoto.com/id/1273355370/vi/vec-to/h%C3%ACnh-%E1%BA%A3nh-%C4%91%E1%BA%A1i-di%E1%BB%87n-avatar-nam-minh-h%E1%BB%8Da-vector-eps10.jpg?s=612x612&w=0&k=20&c=k4RfS7qZxAN2MdrKMaE5JNnvYWs9fxASnPzCH-8sT-k=" alt="image" />
+                                            <span class="pl-2">{{$sql->name}}</span>
+                                        </td>
+                                        <td> {{$sql->id}} </td>
+
+                                        <td>{{$sql->email}} </td>
+                                        <td> {{ $sql->number_phone }} </td>
+                                        <td>@if($sql->Role==1)
+                                            Admin
+                                            @else($sql->Role==0)
+                                            User
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="/statistical/user-role/{{$sql->id}}" class="badge badge-outline-success">Phân Quyền</a>
+                                            <a href="/statistical/delete-role/{{$sql->id}}" class="badge badge-outline-danger">Xóa</a>
                                         </td>
                                     </tr>
                                     @endforeach

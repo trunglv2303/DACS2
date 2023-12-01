@@ -103,7 +103,7 @@
                 <div class="divinfo-5">
                     <b> Màu Sắc </b>
                 </div>
-                <div class="color" style="background-color: {{ $product->color_product->color }};  cursor: pointer;     pointer-events: none;
+                <div class="color" style="background-color: {{ $product->color }};  cursor: pointer;     pointer-events: none;
                             user-select: none;
                             cursor: pointer;
                     width: 40px;
@@ -139,7 +139,7 @@
 
 </div>
 <hr style="margin-top: 10px;">
-<div class="tab-content p-t-43"  style="     margin-right: 20px;">
+<div class="tab-content p-t-43" style="     margin-right: 20px;">
     <!-- - -->
     <div class="tab-pane fade" id="description" role="tabpanel" aria-expanded="false">
         <div class="how-pos2 p-lr-15-md">

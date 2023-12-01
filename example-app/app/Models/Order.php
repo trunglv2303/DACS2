@@ -16,10 +16,13 @@ class Order extends Model
     protected $fillable = ['id_donhang', 'user_id', 'id_status_orders', 'name', 'diachi', 'sodienthoai', 'tongtien'];
 
     // Define a relationship with the StatusOrders model
-  
-    public function status_order()
-{
-    return $this->belongsTo(StatusOrders::class, 'id_status_orders', 'id');
-}
 
+    public function status_order()
+    {
+        return $this->belongsTo(StatusOrders::class, 'id_status_orders', 'id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

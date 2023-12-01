@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -71,5 +72,31 @@ class Statistical extends Model
             ->where('user_id', $id)
             ->paginate(10);
         return $sql;
+    }
+    public function postRole($id, Request $request)
+    {
+        $update = DB::table('users')->where('id', $id)->update([
+            'Role' => $request->input('tinhtrang'),
+        ]);
+        if ($update) {
+            return redirect()->back()->with('success', 'đã cập nhật thành công');
+        } else {
+            return redirect()->back()->with('error', 'Thất Bại');
+        }
+    }
+    public function deleteRole($id)
+    {
+        $user = User::find($id);
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found');
+        }
+        $user->orders()->delete();
+        $user->comments()->delete();
+        $deleted = $user->delete();
+        if ($deleted) {
+            return redirect()->back()->with('success', 'User deleted successfully');
+        } else {
+            return redirect()->back()->with('error', 'Failed to delete user');
+        }
     }
 }
