@@ -53,6 +53,7 @@ Route::prefix('/')->group(function () {
     Route::get('/cart', [UserController::class, 'viewcart'])->name('viewcart');
     Route::get('/deleteCart/{id}', [UserController::class, 'deleteCart']);
 });
+
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('index');
     Route::prefix('/product')->group(function () {
@@ -116,6 +117,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/edit/{id}', [OrderController::class, 'edit']);
         Route::get('/detail/{id}', [OrderController::class, 'detail'])->name('detail');
     });
+
 });
 Route::get('/search', [ProductController::class, 'search']);
 Route::get('/product/{id}', [ProductController::class, 'click']);

@@ -27,24 +27,27 @@ class OrderController extends Controller
             'statusOrders' => $statusOrder
         ]);
     }
-
     public function edit(Request $request, $id)
     {
+   
         $name = $request->input('tinhtrang');
-        $update = DB::table('orders')->where('id_donhang ', $id)->update([
-            'id_status_orders' => $name,
-        ]);
-        echo $update;
+$update = DB::table('orders')->where('id_donhang', $id)->update([
+    'id_status_orders' => $name,
+]);
 
-        // if ($update) {
-        //     return redirect()->back()->with('success', 'đã cập nhật thành công');
-        // } else {
-        //     return redirect()->back()->with('error', 'Thất Bại');
-        // }
+        // $update = DB::table('orders')->where('id_donhang', $id)->update([
+        //     'id_status_orders' => $name,
+        // ]);
+
+        if ($update) {
+            return redirect()->back()->with('success', 'Đã cập nhật thành công');
+        } else {
+            return redirect()->back()->with('error', 'Thất Bại');
+        }
     }
     public function detail($id)
     {
-        $details = DB::table('detail_orders')->where('id_donhang', $id)->get();
+        $details = DB::table('detail_orders')->where('id_order', $id)->get();
         return view('admin.order.listOrder', compact('details'));
     }
 }

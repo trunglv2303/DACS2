@@ -1,7 +1,7 @@
 @extends('admin.main')
 @section('content')
-@foreach($statusOrders as $order)
-<form action="/order/edit/{{$order->id}}" method="POST">
+@foreach($orders as $order)
+<form action="/order/edit/{{$order->id_donhang}}" method="POST">
     @endforeach
     @include('alert')
     @foreach($orders as $order)

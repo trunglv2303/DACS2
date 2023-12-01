@@ -12,10 +12,11 @@ class Statistical extends Model
     use HasFactory;
     public function totalMoney()
     {
-        $totals = DB::table('orders')->get();
+        $totals = DB::table('orders')
+            ->get();
         $money = 0;
         foreach ($totals as $total) {
-            if ($total->id_status_orders == "1") {
+            if ($total->id_status_orders == "2") {
                 $money += $total->tongtien;
             }
         }
@@ -23,28 +24,50 @@ class Statistical extends Model
     }
     public function profitMoney()
     {
-        $totals = DB::table('orders')
-            ->join('detail_orders', 'orders.id_donhang', '=', 'detail_orders.id_donhang')
+        
+        $totals = DB::table('detail_orders')
+            ->join('orders', 'orders.id_donhang', '=', 'detail_orders.id_order')
             ->join('products', 'detail_orders.ma_sp', '=', 'products.sp_ma')
-            ->select('products.sp_giaBan as giaban', 'products.sp_giaGoc as giaGoc', 'orders.*')
+            ->select(
+                'detail_orders.*',
+                'products.sp_giaBan as giaBan',
+                'products.sp_giaGoc as giaGoc',
+                'products.sp_sale as sale',
+                'orders.tongtien as tongTien',
+                'orders.id_status_orders as id_status_orders'
+            )
+            ->distinct()
             ->get();
-        $money = 0;
-        foreach ($totals as $total) {
-            $money = $total->tongtien;
 
-            if ($total->id_status_orders == "1") {
-                $profit = $total->giaGoc - $total->tongtien;
-                $money += $profit;
+        $productMoney = 0;
+        $OrderMoney = 0;
+        $sum = 0;
+        $sale = 0;
+
+        foreach ($totals as $total) {
+
+            $productMoney += $total->giaGoc * $total->soluong;
+
+
+            if ($total->id_status_orders == "2") {
+                $tienSale = ($total->giaBan - ($total->giaBan * $total->sale) / 100) * $total->soluong;
+
+                $OrderMoney = $OrderMoney + $tienSale;
+                $tienSale = 0;
             }
         }
-        return $money;
+
+        // It seems like you want to return the total profit, so you might want to calculate it here.
+        $sum = $OrderMoney - $productMoney; // Change this line based on your calculation logic.
+        return $sum;
     }
+
     public function totalOrder()
     {
         $totals = DB::table('orders')->get();
         $order = 0;
         foreach ($totals as $total) {
-            if ($total->id_status_orders == "1") {
+            if ($total->id_status_orders == "2") {
                 $order++;
             }
         }
@@ -66,7 +89,7 @@ class Statistical extends Model
     public function detailListUser($id)
     {
         $sql = DB::table('orders')
-            ->join('detail_orders', 'orders.id_donhang', '=', 'detail_orders.id_donhang')
+            ->join('detail_orders', 'orders.id_donhang', '=', 'detail_orders.id_order')
             ->join('products', 'detail_orders.ma_sp', '=', 'products.sp_ma')
             ->select('products.*', 'detail_orders.soluong as soluong', 'detail_orders.gia as gia', 'detail_orders.created_at as create')
             ->where('user_id', $id)
