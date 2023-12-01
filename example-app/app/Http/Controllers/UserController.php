@@ -409,4 +409,13 @@ class UserController extends Controller
         ]);
         return redirect()->route('register')->with('success', 'Vui lòng đăng nhập lại');
     }
+    public function deleteCart($id)
+    {
+        $delete = DB::table('carts')->where('id', $id)->delete();
+        if ($delete) {
+            return redirect()->back()->with('success', 'Đã Xóa ra Khỏi Giỏ Hàng');
+        } else {
+            return redirect()->back()->with('error', 'Chưa Xóa ra Khỏi Giỏ Hàng');
+        }
+    }
 }
