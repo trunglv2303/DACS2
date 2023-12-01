@@ -27,7 +27,7 @@ Route::prefix('/account')->group(function () {
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
     Route::post('/getinfo', [UserController::class, 'getinfo'])->name('getinfo');
     Route::post('/loginnow', [UserController::class, 'login'])->name('loginnow');
-    Route::post('/profile', [UserController::class, 'viewprofile'])->name('viewprofile');
+    Route::get('/profile', [UserController::class, 'viewprofile'])->name('viewprofile');
 
     Route::get('/forget-password', [UserController::class, 'forgetPass'])->name('fogetPass');
     Route::post('/forget-password', [UserController::class, 'actived']);

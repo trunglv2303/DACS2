@@ -23,11 +23,11 @@ class UserController extends Controller
     {
         $orders = DB::table('detail_orders')
             ->join('products', 'products.sp_ma', '=', 'detail_orders.ma_sp')
-            ->join('orders', 'orders.id_donhang', '=', 'detail_orders.id_donhang')
+            ->join('orders', 'orders.id_donhang', '=', 'detail_orders.id_order')
             ->join('colors', 'colors.id', '=', 'products.color_id')
 
             ->select('detail_orders.*', 'products.sp_ten as sp_ten', 'products.sp_sale as sp_sale', 'products.sp_giaBan as sp_giaBan', 'products.sp_hinh as sp_hinh', 'colors.color as color', 'orders.name as name')
-            ->where('detail_orders.id_donhang', $id)
+            ->where('detail_orders.id_order', $id)
             ->get();
 
 
