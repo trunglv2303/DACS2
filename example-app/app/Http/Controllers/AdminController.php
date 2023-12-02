@@ -23,11 +23,15 @@ class AdminController extends Controller
     }
     public function main()
     {
+    //     dd(            $this->statis->getOrderData()
+    // );
          return view('admin.Statistical.main', [
             'total' => $this->statis->totalMoney(),
             'profit' => $this->statis->profitMoney(),
             'order' => $this->statis->totalOrder(),
             'sqls' => $this->statis->listUser(),
+            'orderData' => $this->statis->getOrderData(),
+            
         ]);
     }
     public function listStatisUser($id)
