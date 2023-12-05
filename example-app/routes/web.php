@@ -117,15 +117,26 @@ Route::middleware('auth')->group(function () {
         Route::post('/edit/{id}', [OrderController::class, 'edit']);
         Route::get('/detail/{id}', [OrderController::class, 'detail'])->name('detail');
     });
-
 });
 Route::get('/search', [ProductController::class, 'search']);
 Route::get('/product/{id}', [ProductController::class, 'click']);
 Route::POST('/addPay/{id}', [UserController::class, 'addPay']);
 Route::get('/productSearch/{id}', [UserController::class, 'viewproductnewSearch'])->name('viewproductnewSearch');
 Route::get('cc', [ProductController::class, 'type_product']);
+Route::get('auth/google', [UserController::class, 'redirectToGoogle'])->name('login-by-google');
+Route::get('auth/google/callback', [UserController::class, 'handleGoogleCallback']);
 Route::POST('/comment', [UserController::class, 'comment']);
 Route::prefix('/donhang')->group(function () {
     Route::get('/', [UserController::class, 'showorder'])->name('orders');
     Route::get('/detail/{id}', [UserController::class, 'detail'])->name('detail');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });

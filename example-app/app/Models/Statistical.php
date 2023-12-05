@@ -24,7 +24,7 @@ class Statistical extends Model
     }
     public function profitMoney()
     {
-        
+
         $totals = DB::table('detail_orders')
             ->join('orders', 'orders.id_donhang', '=', 'detail_orders.id_order')
             ->join('products', 'detail_orders.ma_sp', '=', 'products.sp_ma')
@@ -123,26 +123,24 @@ class Statistical extends Model
         }
     }
     public function getOrderData()
-{
-    // Get the data from the database
-    $orderData = Order::selectRaw('MONTH(created_at) as month, SUM(tongtien) as total_amount')
-        ->groupBy('month')
-        ->get();
+    {
+        // Get the data from the database
+        $orderData = Order::selectRaw('MONTH(created_at) as month, SUM(tongtien) as total_amount')
+            ->groupBy('month')
+            ->get();
 
-    // Create an array to store the result for each month
-    $result = [];
+        // Create an array to store the result for each month
+        $result = [];
 
-    // Initialize the result array with zero values for each month
-    for ($i = 1; $i <= 12; $i++) {
-        $result[$i] = 0;
+        // Initialize the result array with zero values for each month
+        for ($i = 1; $i <= 12; $i++) {
+            $result[$i] = 0;
+        }
+
+        // Fill in the actual values for months with data
+        foreach ($orderData as $data) {
+            $result[$data->month] = $data->total_amount;
+        }
+        return response()->json($result);
     }
-
-    // Fill in the actual values for months with data
-    foreach ($orderData as $data) {
-        $result[$data->month] = $data->total_amount;
-    }
-
-    return response()->json($result);
-
-}
 };

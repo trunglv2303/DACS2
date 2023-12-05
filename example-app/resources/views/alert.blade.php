@@ -15,8 +15,13 @@
 @endif
 
 
-@if (Session::has('success'))
-<div class="alert alert-success" style="background-color: green; font-size: 16px; color: white">
-    {{ Session::get('success') }}
+@php
+$successMessage = session('success');
+$successTimeout = session('success_timeout');
+@endphp
+
+@if($successMessage && $successTimeout && \Carbon\Carbon::now()->diffInSeconds($successTimeout, false) > 0)
+<div class="alert alert-success">
+    {{ $successMessage }}
 </div>
 @endif

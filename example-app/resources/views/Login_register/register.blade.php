@@ -17,34 +17,35 @@
 </div>
 
 <div class="home">
-
-    <form action="{{ route('loginnow') }}" method="POST">
-        @csrf
-        <div class="login">
-            @if (Session::has('errorlogin'))
-            <div style="background: red " class="alert alert-danger">
-                {{ Session::get('errorlogin') }}
-
-
+    <div class="home_login">
+        <form action="{{ route('loginnow') }}" method="POST">
+            @csrf
+            <div class="login">
+                @if (Session::has('errorlogin'))
+                <div style="background: red " class="alert alert-danger">
+                    {{ Session::get('errorlogin') }}
+                </div>
+                @endif
+                <div class="dangnhap0"> <b>ĐĂNG NHẬP</b></div>
+                <div class="dangnhap-1">Nếu bạn đã có tài khoản, hãy đăng nhập để tích lũy điểm thành viên và nhận được
+                    những ưu đãi tốt hơn!</div>
+                <div class="dangnhap2">
+                    <label for="hi">Email</label> <br>
+                    <input type="email" name="email" placeholder="Email"> <br>
+                    <label for="pass">Mật Khẩu</label> <br>
+                    <input type="password" name="password" id="pass"> <br>
+                </div>
+                <div class="resertpass">
+                    <a href="/account/forget-password">Quên mật khẩu</a>
+                </div>
+                <input type="submit" value="Đăng Nhập">
             </div>
-            @endif
-
-            <div class="dangnhap0"> <b>ĐĂNG NHẬP</b></div>
-            <div class="dangnhap-1">Nếu bạn đã có tài khoản, hãy đăng nhập để tích lũy điểm thành viên và nhận được
-                những ưu đãi tốt hơn!</div>
-            <div class="dangnhap2">
-                <label for="hi">Email</label> <br>
-                <input type="email" name="email" placeholder="Email"> <br>
-                <label for="pass">Mật Khẩu</label> <br>
-                <input type="password" name="password" id="pass"> <br>
-
-            </div>
-            <div class="resertpass">
-                <a href="/account/forget-password">Quên mật khẩu</a>
-            </div>
-            <input type="submit" value="Đăng Nhập">
+        </form>
+        <span class="or">OR</span>
+        <div class="google">
+            <a class="btn__google" href="{{ route('login-by-google')}}"><i class="fa fa-google"></i> Đăng nhập bằng google</a>
         </div>
-    </form>
+    </div>
 
     <div class="gach"></div>
     <div class="singin">

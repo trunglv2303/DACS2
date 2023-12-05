@@ -100,6 +100,9 @@
                     </label>
                     @endforeach
                 </div>
+                <div>
+                    @include('alert')
+                </div>
                 <div class="divinfo-5">
                     <b> Màu Sắc </b>
                 </div>

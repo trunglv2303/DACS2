@@ -15,6 +15,8 @@ use App\Models\Product;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
+use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
 {
@@ -25,26 +27,16 @@ class UserController extends Controller
             ->join('products', 'products.sp_ma', '=', 'detail_orders.ma_sp')
             ->join('orders', 'orders.id_donhang', '=', 'detail_orders.id_order')
             ->join('colors', 'colors.id', '=', 'products.color_id')
-
             ->select('detail_orders.*', 'products.sp_ten as sp_ten', 'products.sp_sale as sp_sale', 'products.sp_giaBan as sp_giaBan', 'products.sp_hinh as sp_hinh', 'colors.color as color', 'orders.name as name')
             ->where('detail_orders.id_order', $id)
             ->get();
-
-
-
-
-
         $type_products = DB::table('type_products')->where('id', '!=', '6')->get();
-
-        // $orders=DB::table('detail_orders')->select()->where('id_donhang',$id)->get();
         return view('Home.detail_order', compact('orders', 'type_products', 'id'));
     }
     public function show($id)
     {
         return User::findOrFail($id);
     }
-
-
     // chi tiết đơn hàng
     public function showorder()
     {
@@ -52,14 +44,12 @@ class UserController extends Controller
         $orders = Order::all();
         return view('Home.order', compact('orders', 'type_products'));
     }
-
-
     public function addPayCart(Request $request)
     {
         $user = Auth::user();
         if ($user) {
-            $orderId =   DB::table('orders')->insertGetId([
-                'user_id' => $user->id,
+            $orderId = DB::table('orders')->insertGetId([
+                'userid' => $user->id,
                 'diachi' => $request->input('address'),
                 'name' => $request->input('username'),
                 'sodienthoai' => $request->input('tel'),
@@ -71,22 +61,15 @@ class UserController extends Controller
                 ->join('colors', 'colors.id', '=', 'products.color_id')
                 ->select('carts.*', 'products.sp_ten as sp_ten', 'products.sp_sale as sp_sale', 'products.sp_giaBan as sp_giaBan', 'products.sp_hinh as sp_hinh', 'colors.color as color')
                 ->where('user_id', $user->id)->get();
-
             foreach ($carts as $cart) {
-
                 DB::table('detail_orders')->insert([
-
                     'id_order' =>  $orderId,
-                    'size'=> $cart->size,
-
-
-
+                    'size' => $cart->size,
                     'ma_sp' => $cart->product_ma,
                     'soluong' => $cart->quantity,
                     'gia' => $cart->price
                 ]);
             }
-
             DB::table('carts')->delete();
         } else {
         }
@@ -221,8 +204,10 @@ class UserController extends Controller
                 'size' => $size,
             ]);
         }
-
-        return redirect()->back();
+        return redirect()->back()->with([
+            'success' => 'Đã thêm vào giỏ hàng',
+            'success_timeout' => Carbon::now()->addSeconds(5)
+        ]);
     }
 
     public function viewproduct_desciption()
@@ -416,6 +401,34 @@ class UserController extends Controller
             return redirect()->back()->with('success', 'Đã Xóa ra Khỏi Giỏ Hàng');
         } else {
             return redirect()->back()->with('error', 'Chưa Xóa ra Khỏi Giỏ Hàng');
+        }
+    }
+
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+    public function handleGoogleCallback()
+    {
+        try {
+
+            $user = Socialite::driver('google')->user();
+            $finduser = User::where('google_id', $user->id)->first();
+            if ($finduser) {
+                Auth::login($finduser);
+                return redirect()->intended('/');
+            } else {
+                $newUser = DB::table('users')->insert([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'google_id' => $user->id,
+                    'Role' => 1,
+                    'password' => encrypt('123456789')
+                ]);
+                return redirect()->intended('/');
+            }
+        } catch (\Exception $e) {
+            dd($e->getMessage());
         }
     }
 }
