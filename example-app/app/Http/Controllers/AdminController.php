@@ -23,7 +23,7 @@ class AdminController extends Controller
     }
     public function main()
     {
-    //     dd(            $this->statis->getOrderData()
+    //     dd(           $this->statis->getOderDay()
     // );
          return view('admin.Statistical.main', [
             'total' => $this->statis->totalMoney(),
@@ -31,6 +31,7 @@ class AdminController extends Controller
             'order' => $this->statis->totalOrder(),
             'sqls' => $this->statis->listUser(),
             'orderData' => $this->statis->getOrderData(),
+            'orderDay' => $this->statis->getOderDay(),
             
         ]);
     }

@@ -12,8 +12,7 @@ class Statistical extends Model
     use HasFactory;
     public function totalMoney()
     {
-        $totals = DB::table('orders')
-            ->get();
+        $totals = DB::table('orders')->distinct()          ->get();
         $money = 0;
         foreach ($totals as $total) {
             if ($total->id_status_orders == "2") {
@@ -122,6 +121,31 @@ class Statistical extends Model
             return redirect()->back()->with('error', 'Failed to delete user');
         }
     }
+
+public function getOderDay(){
+    $totals = DB::table('orders')
+    ->select(DB::raw('DAYOFWEEK(created_at) as day'), DB::raw('SUM(tongtien) as total_amount'))
+    ->whereRaw('DAYOFWEEK(created_at) >= 2 AND DAYOFWEEK(created_at) <= 7')
+    ->groupBy(DB::raw('DAYOFWEEK(created_at)'))
+    ->get();
+
+// Khởi tạo mảng để lưu kết quả
+foreach ($totals as $total) {
+    // DAYOFWEEK trả về giá trị từ 1 đến 7, chuyển đổi để bắt đầu từ 0 nếu cần
+    $dayOfWeek = $total->day - 1;
+    $resultArray[$dayOfWeek] = $total->total_amount;
+}
+
+// Sắp xếp mảng theo khóa (key), tức là theo thứ tự từ thứ 2 đến chủ nhật
+ksort($resultArray);
+
+// Kết quả là một mảng chứa tổng số tiền bán được từ thứ 2 đến chủ nhật và đã được sắp xếp theo thứ tự
+print_r($resultArray);
+
+// Resert mảng để chuẩn bị cho tuần tiếp theo
+$resultArray = [];
+}
+    // Dữ liệu tháng
     public function getOrderData()
 {
     // Get the data from the database

@@ -113,10 +113,11 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-12 grid-margin">
-                    
-                    <div class="card-body" >
+
+                    <div class="card-body">
                         <div class="chartjs-size-monitor">
                             <div class="chartjs-size-monitor-expand">
                                 <div class=""></div>
@@ -125,16 +126,89 @@
                                 <div class=""></div>
                             </div>
                         </div>
-                        <h4 class="card-title">Doanh Thu Từng Thang</h4>
-                        <canvas style="background-color: #191c24" id="myChart"style="height: 407px; display: block; width: 814px;" width="1017"
-                        height="508"></canvas>
-                        
-                        <?php
+                        <h4 class="card-title">Doanh Thu Tuần</h4>
+                        <canvas style="background-color: #191c24"
+                            id="myChart1"style="height: 407px; display: block; width: 814px;" width="1017"
+                            height="508"></canvas>
 
+                        <?php
+                        
                         // Chuỗi JSON đầu vào
                         $jsonResponse = $orderData->getContent();
                         $dataArray = json_decode($jsonResponse, true);
+                        
+                        ?>
+                        <script>
+                            var ctx = document.getElementById('myChart1').getContext('2d');
+                            
+                            var myData = <?php echo json_encode(array_values($dataArray), true); ?>;
+                            console.log(myData);
+                            var chart = new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", ],
+                                    datasets: [{
+                                        label: 'My First Dataset',
+                                        data: [65, 59, 80, 81, 56, 55, 40],
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)',
+                                            'rgba(255, 205, 86, 0.2)',
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(201, 203, 207, 0.2)'
+                                        ],
+                                        borderColor: [
+                                            'rgb(255, 99, 132)',
+                                            'rgb(255, 159, 64)',
+                                            'rgb(255, 205, 86)',
+                                            'rgb(75, 192, 192)',
+                                            'rgb(54, 162, 235)',
+                                            'rgb(153, 102, 255)',
+                                            'rgb(201, 203, 207)'
+                                        ],
+                                        borderWidth: 1
 
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                },
+                            });
+                        </script>
+                    </div>
+                </div>
+
+            </div>
+            {{-- ----------------------------- --}}
+            <div class="row">
+                <div class="col-12 grid-margin">
+
+                    <div class="card-body">
+                        <div class="chartjs-size-monitor">
+                            <div class="chartjs-size-monitor-expand">
+                                <div class=""></div>
+                            </div>
+                            <div class="chartjs-size-monitor-shrink">
+                                <div class=""></div>
+                            </div>
+                        </div>
+                        <h4 class="card-title">Doanh Thu Từng Th</h4>
+                        <canvas style="background-color: #191c24"
+                            id="myChart"style="height: 407px; display: block; width: 814px;" width="1017"
+                            height="508"></canvas>
+
+                        <?php
+                        
+                        // Chuỗi JSON đầu vào
+                        $jsonResponse = $orderData->getContent();
+                        $dataArray = json_decode($jsonResponse, true);
+                        
                         ?>
                         <script>
                             var ctx = document.getElementById('myChart').getContext('2d');
@@ -158,7 +232,7 @@
                                 }
                             };
                             var myData = <?php echo json_encode(array_values($dataArray), true); ?>;
-                      console.log(myData);
+                            console.log(myData);
                             var chart = new Chart(ctx, {
                                 type: 'line',
                                 data: {
@@ -181,9 +255,7 @@
                         </script>
                     </div>
                 </div>
-<script>
-    
-</script>
+
             </div>
         </div>
     </div>
