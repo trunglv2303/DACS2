@@ -49,14 +49,10 @@
     color: rgb(255, 255, 255);
     font-size: 15px;
 }
-
-
-
 .thanhtren .benphai {
     width: 50%;
     text-align: right;
 }
-
 .thanhtren .benphai a {
     padding-right: 10px;
     color: rgb(255, 255, 255);
@@ -64,21 +60,17 @@
     text-decoration: none;
     font-size: 15px;
 }
-
 .menu>ul {
     display: flex;
     list-style: none;
 
 }
-
 .menu {
     display: flex;
-
     width: 40%;
     margin-top: 21px;
     padding-left: 100px;
     text-align: center;
-
     z-index: 9999999999999999999;
 }
 
@@ -213,10 +205,7 @@
 
 
     font-size: 35px;
-
-
 }
-
 .rectangle {
     display: flex;
     margin-top: 15px;
@@ -1176,4 +1165,33 @@ iframe {
         width: 50%;
     }
     
+}
+
+.home_login{
+    display: flex;
+    flex-direction: column;
+}
+.google{
+    margin-top: 30px;
+    width: 400px;
+    background-color: black;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.home_login .btn__google i{
+    color: #faf8f8;
+    font-size: 18px;
+}
+.home_login .or{
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+}
+.home_login .btn__google{
+    text-decoration: none;
+    font-size:  18px;
+    color: #faf8f8;
 }
