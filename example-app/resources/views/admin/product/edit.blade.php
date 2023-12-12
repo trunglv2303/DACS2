@@ -30,7 +30,7 @@
                     <select class="form-control" style="color: aliceblue;" name="type_product" required>
 
                         @foreach ($type_products as $type_product)
-                            <option value="{{ $type_product->id }}">{{ $type_product->name_type }}</option>
+                            <option value="{{ $type_product->id }}" {{ $product->l_ma == $type_product->id ? 'selected' : ''}}>{{ $type_product->name_type }}</option>
                         @endforeach
 
                     </select>
@@ -40,7 +40,7 @@
                     <select class="form-control" style="color: aliceblue;" name="color" required>
     
                         @foreach ($colors as $color)
-                            <option value="{{ $color->id }}">{{ $color->color }}</option>
+                            <option value="{{ $color->id }}" {{ $product->color_id == $color->id ? 'selected' : ''}}>{{ $color->color }}</option>
                         @endforeach
     
                     </select>
@@ -130,7 +130,7 @@
                     <select class="form-control" style="color: aliceblue;" name="status_product">
 
                         @foreach ($status_products as $status_product)
-                            <option value="{{ $status_product->id }}">{{ $status_product->name_status }}</option>
+                            <option value="{{ $status_product->id }}" {{ $product->sp_trangThai == $status_product->id ? 'selected' : ''}}>{{ $status_product->name_status }}</option>
                         @endforeach
 
                     </select>

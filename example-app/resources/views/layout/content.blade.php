@@ -287,7 +287,7 @@
                 <span> 
                     
                 @if (auth()->check())
-                 <b> {{ $productCount = DB::table('carts')->count()         }} </b>
+                 <b> {{ $productCount = DB::table('carts')->count()}} </b>
        
 
                 @else
