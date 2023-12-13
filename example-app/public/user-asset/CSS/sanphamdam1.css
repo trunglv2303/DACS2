@@ -2,12 +2,25 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    color: #000;
 
 }
 
+.giohang {
+    /* background: #01c2bf; */
+    margin-left: 5px;
+    display: flex;
+    margin-top: 9px;
+}
 
+.giohang a {
+    color: #000000;
+    font-size: 30px;
+    text-decoration: none;
+}
+.giohang span {
+    margin-top: 4.5px; margin-left: 15px;position: absolute; color: #ffffff;
 
+}
 
 .khachhang {
 

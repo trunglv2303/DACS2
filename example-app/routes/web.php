@@ -106,6 +106,8 @@ Route::middleware('auth')->group(function () {
     });
     Route::prefix('/statistical')->group(function () {
         Route::get('/main', [AdminController::class, 'main']);
+        Route::Post('/main', [AdminController::class, 'getDataWithDay']);
+
         Route::get('/list/{id}', [AdminController::class, 'listStatisUser']);
         Route::get('/user-role/{id}', [AdminController::class, 'role']);
         Route::post('/user-role/{id}', [Statistical::class, 'postRole'])->name('postRole');
@@ -126,6 +128,9 @@ Route::get('cc', [ProductController::class, 'type_product']);
 Route::get('auth/google', [UserController::class, 'redirectToGoogle'])->name('login-by-google');
 Route::get('auth/google/callback', [UserController::class, 'handleGoogleCallback']);
 Route::POST('/comment', [UserController::class, 'comment']);
+Route::POST('/chartday', [AdminController::class, 'chartday']);
+Route::POST('/chart30day', [AdminController::class, 'chart30day']);
+Route::POST('/chartdayhai', [AdminController::class, 'chartdayhai']);
 Route::prefix('/donhang')->group(function () {
     Route::get('/', [UserController::class, 'showorder'])->name('orders');
     Route::get('/detail/{id}', [UserController::class, 'detail'])->name('detail');
@@ -140,3 +145,4 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+// Route::get('cc', [UserController::class, 'datepicker']);

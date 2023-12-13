@@ -67,4 +67,5 @@ class SlideController extends Controller
         $delete = DB::table('sliders')->where('id', $id)->delete();
         return redirect()->back();
     }
+  
 }

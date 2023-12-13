@@ -32,7 +32,8 @@ class UserController extends Controller
             ->get();
         $type_products = DB::table('type_products')->where('id', '!=', '6')->get();
         return view('Home.detail_order', compact('orders', 'type_products', 'id'));
-    }
+   }
+   
     public function show($id)
     {
         return User::findOrFail($id);
@@ -44,17 +45,21 @@ class UserController extends Controller
         $orders = Order::all();
         return view('Home.order', compact('orders', 'type_products'));
     }
+
+
+    //Trang xác nhận thanh toán
+
     public function addPayCart(Request $request)
     {
         $user = Auth::user();
         if ($user) {
             $orderId = DB::table('orders')->insertGetId([
-                'userid' => $user->id,
+                'user_id' => $user->id,
                 'diachi' => $request->input('address'),
                 'name' => $request->input('username'),
                 'sodienthoai' => $request->input('tel'),
                 'tongtien' => $request->input('tongtien'),
-                'id_status_orders' => 1
+                'id_status_orders' => 4
             ]);
             $carts = DB::table('carts')
                 ->join('products', 'products.sp_ma', '=', 'carts.product_ma')
@@ -73,6 +78,7 @@ class UserController extends Controller
             DB::table('carts')->delete();
         } else {
         }
+        return redirect()->route('orders');
     }
 
     public function getinfo(Request $request)
@@ -407,6 +413,9 @@ class UserController extends Controller
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
+    }
+    public function datepicker(){
+        return view('Home.datepicker');
     }
     public function handleGoogleCallback()
     {

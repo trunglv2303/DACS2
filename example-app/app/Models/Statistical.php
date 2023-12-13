@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\DB;
 class Statistical extends Model
 {
     use HasFactory;
+    // Danh Thu Tổng
     public function totalMoney()
     {
-        $totals = DB::table('orders')
-            ->get();
+        $totals = DB::table('orders')->distinct()          ->get();
         $money = 0;
         foreach ($totals as $total) {
             if ($total->id_status_orders == "2") {
@@ -22,6 +22,7 @@ class Statistical extends Model
         }
         return $money;
     }
+    // Tính lợi nhuận của sản phẩm
     public function profitMoney()
     {
 
@@ -42,23 +43,27 @@ class Statistical extends Model
         $productMoney = 0;
         $OrderMoney = 0;
         $sum = 0;
-        $sale = 0;
 
         foreach ($totals as $total) {
+//Giá gốc của sản phẩm
+if ($total->id_status_orders == "2") {
+
 
             $productMoney += $total->giaGoc * $total->soluong;
-
+}
 
             if ($total->id_status_orders == "2") {
+
+                //tiền sản phẩm bán
                 $tienSale = ($total->giaBan - ($total->giaBan * $total->sale) / 100) * $total->soluong;
 
                 $OrderMoney = $OrderMoney + $tienSale;
+                // tiền sản phẩm quay về không
                 $tienSale = 0;
             }
         }
-
-        // It seems like you want to return the total profit, so you might want to calculate it here.
-        $sum = $OrderMoney - $productMoney; // Change this line based on your calculation logic.
+//tổng tiền lợi nhuận = tổng doanh thuc- tổng tiền sản phẩm bán được với giá gốc
+        $sum = $OrderMoney - $productMoney; 
         return $sum;
     }
 
@@ -77,12 +82,14 @@ class Statistical extends Model
     {
         $sqls = DB::table('users')
             ->select('users.*', 'order_totals.total_amount', 'order_counts.order_count')
-            ->leftJoin(DB::raw('(SELECT user_id, SUM(tongtien) as total_amount FROM orders GROUP BY user_id) as order_totals'), function ($join) {
+            ->leftJoin(DB::raw('(SELECT user_id, SUM(CASE WHEN id_status_orders = 2 THEN tongtien ELSE 0 END) as total_amount FROM orders GROUP BY user_id) as order_totals'), function ($join) {
                 $join->on('users.id', '=', 'order_totals.user_id');
             })
-            ->leftJoin(DB::raw('(SELECT user_id, COUNT(*) as order_count FROM orders GROUP BY user_id) as order_counts'), function ($join) {
+            
+            ->leftJoin(DB::raw('(SELECT user_id, COUNT(CASE WHEN id_status_orders = 2 THEN 1 END) as order_count FROM orders GROUP BY user_id) as order_counts'), function ($join) {
                 $join->on('users.id', '=', 'order_counts.user_id');
             })
+            
             ->paginate(5);
         return $sqls;
     }
@@ -122,12 +129,19 @@ class Statistical extends Model
             return redirect()->back()->with('error', 'Failed to delete user');
         }
     }
+
+public function getOderDay(){
+
+}
+    // Dữ liệu tháng
     public function getOrderData()
     {
         // Get the data from the database
         $orderData = Order::selectRaw('MONTH(created_at) as month, SUM(tongtien) as total_amount')
-            ->groupBy('month')
-            ->get();
+        ->where('id_status_orders', 2)
+        ->groupBy('month')
+        ->get();
+    
 
         // Create an array to store the result for each month
         $result = [];
