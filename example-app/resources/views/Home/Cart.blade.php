@@ -25,7 +25,8 @@
             vertical-align: middle;
         }
     </style>
-    <form action="">
+    <form action="{{ route('updateQuantityCart') }}" method="POST">
+        @csrf
         <table class="table" style="margin-top: 40px">
             <thead>
                 <tr>
@@ -65,7 +66,8 @@
                         <p>{{ number_format($cart->price, 0, ',', '.') }} VND</p>
                     </td>
                     <td>
-                        <input type="number" class="quantity-input" min="1" max="10" value="{{ $cart->quantity }}">
+                        <input type="number" name="quantity[{{ $cart->id }}]" class="quantity-input" min="1" max="10" value="{{ $cart->quantity }}">
+                        <input type="hidden" name="idCartQuantity[]" value="{{ $cart->id }}">
                     </td>
                     <td>
                         <a href="/deleteCart/{{$cart->id}}">X</a>
@@ -82,30 +84,24 @@
                 @endphp
             </tbody>
         </table>
+        <div class="home-1">
+            <div class="chuthich">
+                Chú thích <br>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+            </div>
+            <div class="chithich-1">
+                <div class="tongtien">
+                    Tổng tiền <h1>{{ number_format($total, 0, ',', '.') }} VND</h1>
 
+                </div>
+                <br>
+                <div class="check1">
+                    <div class="capnhat"> <button type="submit" style="background-color: black;color: aliceblue;border: none;">Cập Nhật</button></div>
+                    <div class="thanhtoan"> <a href="{{ route('viewpay') }}" style=" text-decoration: none;color: rgb(255, 255, 255);">Thanh Toán</a> </div>
+                </div>
+            </div>
+        </div>
     </form>
-
-
-
-    <div class="home-1">
-        <div class="chuthich">
-            Chú thích <br>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-        </div>
-        <div class="chithich-1">
-            <div class="tongtien">
-                Tổng tiền <h1>{{ number_format($total, 0, ',', '.') }} VND</h1>
-
-            </div>
-            <br>
-            <div class="check1">
-                <div class="capnhat"> Cập Nhật </div>
-                <div class="thanhtoan"> <a href="{{ route('viewpay') }}" style=" text-decoration: none;color: rgb(255, 255, 255);">Thanh Toán</a> </div>
-            </div>
-
-        </div>
-
-    </div>
     <div class="dangkibangtien">
         <div class="MAP">
 

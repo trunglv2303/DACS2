@@ -264,7 +264,10 @@
                 <div class="boxlgin">
                     <div class="dangnhap">
                         @if (auth()->check())
-                        <a href="{{route('viewprofile')}}">Profile</a>
+                        <a href="{{route('viewprofile')}}">Tài khoản</a>
+                        @if(auth()->user()->Role==1)
+                        <a href="{{route('index')}}">Trang Quản Lí</a>
+                        @endif
                         @else
                         <a href="{{route('register')}}">Đăng Nhập</a>
                         @endif
@@ -284,16 +287,16 @@
                     <div class="fa-solid fa-cart-shopping"></div>
                 </a>
 
-                <span> 
-                    
-                @if (auth()->check())
-                 <b> {{ $productCount = DB::table('carts')->count()}} </b>
-       
+                <span>
 
-                @else
-                    
-                @endif
-                
+                    @if ($user=auth()->user())
+                    <b> {{ $productCount = DB::table('carts')->where('user_id',$user)->count()}} </b>
+
+
+                    @else
+
+                    @endif
+
 
                 </span>
                 <a href="{{Route('viewcart')}}">

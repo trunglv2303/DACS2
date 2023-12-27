@@ -22,7 +22,6 @@ class AdminController extends Controller
     }
     public function index()
     {
-        $thongbao = $this->thongbao();
         return view('admin.main', [
             'thongbaos' => $this->statis->thongbao(),
         ]);
@@ -37,7 +36,7 @@ class AdminController extends Controller
             'sqls' => $this->statis->listUser(),
             'orderData' => $this->statis->getOrderData(),
             'orderDay' => $this->statis->getOderDay(),
-            'thongbaos' => $this->thongbao(),
+            'thongbaos' => $this->statis->thongbao(),
         ]);
     }
     public function listStatisUser($id)
@@ -95,9 +94,7 @@ class AdminController extends Controller
             } else {
                 $get = Order::whereBetween('created_at', [$sub365days, $now])->orderBy('created_at', 'ASC')->get();
             }
-
             $chart_dataa = [];
-
             foreach ($get as $order) {
                 $date = $order->created_at->format('Y-m-d');
 
@@ -108,7 +105,6 @@ class AdminController extends Controller
                         'tongtien' => 0,
                     ];
                 }
-
                 // Accumulate the 'tongtien' for the date
                 $chart_dataa[$date]['tongtien'] += $order->tongtien;
             }
@@ -145,5 +141,22 @@ class AdminController extends Controller
         $chart_date = array_values($chart_dataa);
 
         return response()->json($chart_date);
+    }
+    public function updateQuantityCart(Request $request)
+    {
+        //id của giở hàng
+        $idCartQuantity = $request->input('idCartQuantity');
+        //số lượng
+        $quantities = $request->input('quantity');
+        try {
+            // Duyệt qua từng cặp ID sản phẩm và số lượng để cập nhật vào CSDL
+            foreach ($idCartQuantity as $cartId) {
+                $quantity = $quantities[$cartId];
+                DB::table('carts')->where('id', $cartId)->update(['quantity' => $quantity]);
+            }
+            return redirect()->back()->with('success', 'Đã cập nhật thành công');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Có lỗi xảy ra. Vui lòng thử lại sau.');
+        }
     }
 }

@@ -121,6 +121,7 @@ Route::middleware('auth')->group(function () {
     });
 });
 Route::get('/search', [ProductController::class, 'search']);
+Route::post('/updateQuantityCart', [AdminController::class, 'updateQuantityCart'])->name('updateQuantityCart');
 Route::get('/product/{id}', [ProductController::class, 'click']);
 Route::POST('/addPay/{id}', [UserController::class, 'addPay']);
 Route::get('/productSearch/{id}', [UserController::class, 'viewproductnewSearch'])->name('viewproductnewSearch');
