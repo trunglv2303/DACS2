@@ -9,18 +9,27 @@ use App\Models\Product;
 use App\Models\Statusproduct;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use App\Models\Statistical;
 
 class SlideController extends Controller
 {
+    protected $statis;
+    public function __construct(Statistical $statistical)
+    {
+        $this->statis = $statistical;
+    }
     public function create()
     {
-        return view('admin.slider.add');
+        return view('admin.slider.add', [
+            'thongbaos' => $this->statis->thongbao()
+        ]);
     }
     public function list()
     {
         $slide = DB::table('sliders')->get();
         return view('admin.slider.list', [
-            'slide' => $slide
+            'slide' => $slide,
+            'thongbaos' => $this->statis->thongbao()
         ]);
     }
     public function setproduct(Request $request)
@@ -45,7 +54,8 @@ class SlideController extends Controller
     {
         $slide = DB::table('sliders')->where('id', $id)->get();
         return view('admin.slider.edit', [
-            'slide' => $slide
+            'slide' => $slide,
+            'thongbaos' => $this->statis->thongbao()
         ]);
     }
     public function edit(Request $request, $id)
@@ -67,5 +77,4 @@ class SlideController extends Controller
         $delete = DB::table('sliders')->where('id', $id)->delete();
         return redirect()->back();
     }
-  
 }

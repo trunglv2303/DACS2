@@ -36,7 +36,7 @@
                   <i class="mdi mdi-bell"></i>
                   <span class="count bg-danger"></span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                <div style="overflow-y: scroll;" class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
                   <h6 class="p-3 mb-0">Thông báo</h6>
                   <div class="dropdown-divider"></div>
                   @foreach($thongbaos as $tb)

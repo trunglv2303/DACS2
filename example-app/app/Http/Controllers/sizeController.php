@@ -5,17 +5,27 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Statistical;
 
 class sizeController extends Controller
 {
+    protected $statis;
+    public function __construct(Statistical $statistical)
+    {
+        $this->statis = $statistical;
+    }
     public function create()
     {
-        return view('admin.size.add');
+        return view('admin.size.add', [
+            'thongbaos' => $this->statis->thongbao()
+        ]);
     }
     public function list()
     {
         $sizes = DB::table('sizes')->get();
-        return view('admin.size.list', compact('sizes'));
+        return view('admin.size.list', compact('sizes'), [
+            'thongbaos' => $this->statis->thongbao()
+        ]);
     }
     public function store($id)
 
@@ -23,6 +33,7 @@ class sizeController extends Controller
         $sizes = DB::table('sizes')->where('id', $id)->get();
         return view('admin.size.edit', [
             'sizes' => $sizes,
+            'thongbaos' => $this->statis->thongbao()
         ]);
     }
 

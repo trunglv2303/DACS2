@@ -6,25 +6,38 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Color;
+use App\Models\Statistical;
 use Illuminate\Support\Str;
 
 class ColorController extends Controller
 {
+    protected $statis;
+    public function __construct(Statistical $statistical)
+    {
+        $this->statis = $statistical;
+    }
     public function create()
     {
-        return view('admin.color.add');
+        return view('admin.color.add', [
+            'thongbaos' => $this->statis->thongbao()
+        ]);
     }
     public function list()
     {
         $colors = DB::table('colors')->get();
-        return view('admin.color.list', compact('colors'));
+        return view('admin.color.list', [
+            'colors' => $colors,
+            'thongbaos' => $this->statis->thongbao()
+        ]);
     }
+
     public function store($id)
 
     {
         $colors = Color::select('id', 'color')->where('id', $id)->get();
         return view('admin.color.edit', [
             'colors' => $colors,
+            'thongbaos' => $this->statis->thongbao()
         ]);
     }
 

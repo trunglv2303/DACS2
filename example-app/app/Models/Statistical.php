@@ -13,7 +13,7 @@ class Statistical extends Model
     // Danh Thu Tổng
     public function totalMoney()
     {
-        $totals = DB::table('orders')->distinct()          ->get();
+        $totals = DB::table('orders')->distinct()->get();
         $money = 0;
         foreach ($totals as $total) {
             if ($total->id_status_orders == "2") {
@@ -45,12 +45,12 @@ class Statistical extends Model
         $sum = 0;
 
         foreach ($totals as $total) {
-//Giá gốc của sản phẩm
-if ($total->id_status_orders == "2") {
+            //Giá gốc của sản phẩm
+            if ($total->id_status_orders == "2") {
 
 
-            $productMoney += $total->giaGoc * $total->soluong;
-}
+                $productMoney += $total->giaGoc * $total->soluong;
+            }
 
             if ($total->id_status_orders == "2") {
 
@@ -62,8 +62,8 @@ if ($total->id_status_orders == "2") {
                 $tienSale = 0;
             }
         }
-//tổng tiền lợi nhuận = tổng doanh thuc- tổng tiền sản phẩm bán được với giá gốc
-        $sum = $OrderMoney - $productMoney; 
+        //tổng tiền lợi nhuận = tổng doanh thuc- tổng tiền sản phẩm bán được với giá gốc
+        $sum = $OrderMoney - $productMoney;
         return $sum;
     }
 
@@ -85,11 +85,11 @@ if ($total->id_status_orders == "2") {
             ->leftJoin(DB::raw('(SELECT user_id, SUM(CASE WHEN id_status_orders = 2 THEN tongtien ELSE 0 END) as total_amount FROM orders GROUP BY user_id) as order_totals'), function ($join) {
                 $join->on('users.id', '=', 'order_totals.user_id');
             })
-            
+
             ->leftJoin(DB::raw('(SELECT user_id, COUNT(CASE WHEN id_status_orders = 2 THEN 1 END) as order_count FROM orders GROUP BY user_id) as order_counts'), function ($join) {
                 $join->on('users.id', '=', 'order_counts.user_id');
             })
-            
+
             ->paginate(5);
         return $sqls;
     }
@@ -130,18 +130,18 @@ if ($total->id_status_orders == "2") {
         }
     }
 
-public function getOderDay(){
-
-}
+    public function getOderDay()
+    {
+    }
     // Dữ liệu tháng
     public function getOrderData()
     {
         // Get the data from the database
         $orderData = Order::selectRaw('MONTH(created_at) as month, SUM(tongtien) as total_amount')
-        ->where('id_status_orders', 2)
-        ->groupBy('month')
-        ->get();
-    
+            ->where('id_status_orders', 2)
+            ->groupBy('month')
+            ->get();
+
 
         // Create an array to store the result for each month
         $result = [];
@@ -156,5 +156,12 @@ public function getOderDay(){
             $result[$data->month] = $data->total_amount;
         }
         return response()->json($result);
+    }
+    public function thongbao()
+    {
+        return DB::table("orders")
+            ->join('detail_orders', 'detail_orders.id_order', '=', 'orders.id_donhang')
+            ->select('detail_orders.*', 'orders.name as nameUser', 'orders.created_at as create')
+            ->orderBy('created_at', 'desc')->get();
     }
 };

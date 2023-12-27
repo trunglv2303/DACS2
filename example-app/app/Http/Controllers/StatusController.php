@@ -6,17 +6,27 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Models\Statistical;
 
 class StatusController extends Controller
 {
+    protected $statis;
+    public function __construct(Statistical $statistical)
+    {
+        $this->statis = $statistical;
+    }
     public function create()
     {
-        return view('admin.status.add');
+        return view('admin.status.add', [
+            'thongbaos' => $this->statis->thongbao()
+        ]);
     }
     public function list()
     {
         $status_orders = DB::table('status_orders')->get();
-        return view('admin.status.list', compact('status_orders'));
+        return view('admin.status.list', compact('status_orders'), [
+            'thongbaos' => $this->statis->thongbao()
+        ]);
     }
     public function store($id)
 
@@ -24,6 +34,7 @@ class StatusController extends Controller
         $status_orders = DB::table('status_orders')->where('id', $id)->get();
         return view('admin.status.edit', [
             'status_orders' => $status_orders,
+            'thongbaos' => $this->statis->thongbao()
         ]);
     }
 

@@ -32,8 +32,8 @@ class UserController extends Controller
             ->get();
         $type_products = DB::table('type_products')->where('id', '!=', '6')->get();
         return view('Home.detail_order', compact('orders', 'type_products', 'id'));
-   }
-   
+    }
+
     public function show($id)
     {
         return User::findOrFail($id);
@@ -346,8 +346,6 @@ class UserController extends Controller
             return response()->json(['error' => [$e->getMessage()]]);
         }
     }
-
-
     public function forgetPass()
     {
         $type_products = DB::table('type_products')->get();
@@ -368,7 +366,6 @@ class UserController extends Controller
             $token = strtoupper(Str::random(10));
             $user->token = $token;
             $user->save();
-
             Mail::send('home.CheckForgetPass', compact('user'), function ($email) use ($user) {
                 $email->subject('LVT SHOP - Lấy lại mật khẩu của bạn !');
                 $email->to($user->email, $user->name);
@@ -414,7 +411,8 @@ class UserController extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
-    public function datepicker(){
+    public function datepicker()
+    {
         return view('Home.datepicker');
     }
     public function handleGoogleCallback()

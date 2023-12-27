@@ -13,12 +13,15 @@ use App\Models\Statusproduct;
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\View;
-
-use function Laravel\Prompts\select;
+use App\Models\Statistical;
 
 class ProductController extends Controller
 {
+    protected $statis;
+    public function __construct(Statistical $statistical)
+    {
+        $this->statis = $statistical;
+    }
     public function create()
     {
         $status_products = Statusproduct::select('id', 'name_status')->get();
@@ -27,7 +30,8 @@ class ProductController extends Controller
         return view('admin.product.add', [
             'type_products' => $type_products,
             'colors' => $colors,
-            'status_products' => $status_products
+            'status_products' => $status_products,
+            'thongbaos' => $this->statis->thongbao()
         ]);
     }
     public function list()
@@ -35,7 +39,10 @@ class ProductController extends Controller
         $products = Product::all();
         return view(
             'admin.product.list',
-            ['products' => $products]
+            [
+                'products' => $products,
+                'thongbaos' => $this->statis->thongbao()
+            ]
         );
     }
 
@@ -48,10 +55,7 @@ class ProductController extends Controller
             Session::flash('error', 'Mã sản phẩm đã tồn tại');
             return redirect()->back();
         }
-
-
         $uploadedFiles = [];
-
         for ($i = 0; $i < 4; $i++) {
             $fieldName = "file_upload$i";
             $file = $request->$fieldName;
@@ -63,8 +67,6 @@ class ProductController extends Controller
                 $uploadedFiles[] = $fileName;
             }
         }
-
-
         DB::table('products')->insert([
             'sp_ma' => $request->code_product,
             'sp_ten' => $request->name_product,
@@ -97,6 +99,7 @@ class ProductController extends Controller
             'status_products' => $status_products,
             'products' => $product,
             'colors' => $colors,
+            'thongbaos' => $this->statis->thongbao()
         ]);
     }
 

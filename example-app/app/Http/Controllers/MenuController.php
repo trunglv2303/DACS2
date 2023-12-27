@@ -7,17 +7,27 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Typeproduct;
 use Illuminate\Support\Str;
+use App\Models\Statistical;
 
-class UserControllerMenuController extends Controller
+class MenuController extends Controller
 {
+    protected $statis;
+    public function __construct(Statistical $statistical)
+    {
+        $this->statis = $statistical;
+    }
     public function create()
     {
-        return view('admin.menu.add');
+        return view('admin.menu.add', [
+            'thongbaos' => $this->statis->thongbao()
+        ]);
     }
     public function list()
     {
         $type_products = DB::table('type_products')->get();
-        return view('admin.menu.list', compact('type_products'));
+        return view('admin.menu.list', compact('type_products'), [
+            'thongbaos' => $this->statis->thongbao()
+        ]);
     }
     public function store($id)
 
@@ -25,6 +35,7 @@ class UserControllerMenuController extends Controller
         $type_products = Typeproduct::select('id', 'name_type')->where('id', $id)->get();
         return view('admin.menu.edit', [
             'type_products' => $type_products,
+            'thongbaos' => $this->statis->thongbao()
         ]);
     }
 

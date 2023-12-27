@@ -24,13 +24,12 @@ class AdminController extends Controller
     {
         $thongbao = $this->thongbao();
         return view('admin.main', [
-            'thongbaos' => $thongbao,
+            'thongbaos' => $this->statis->thongbao(),
         ]);
     }
     public function main()
 
     {
-        $thongbao = $this->thongbao();
         return view('admin.Statistical.main', [
             'total' => $this->statis->totalMoney(),
             'profit' => $this->statis->profitMoney(),
@@ -38,23 +37,21 @@ class AdminController extends Controller
             'sqls' => $this->statis->listUser(),
             'orderData' => $this->statis->getOrderData(),
             'orderDay' => $this->statis->getOderDay(),
-            'thongbaos' => $thongbao,
+            'thongbaos' => $this->thongbao(),
         ]);
     }
     public function listStatisUser($id)
     {
-        $thongbao = $this->thongbao();
         return view('admin.Statistical.listUser', [
             'listProductUsers' => $this->statis->detailListUser($id),
-            'thongbaos' => $thongbao,
+            'thongbaos' => $this->statis->thongbao(),
         ]);
     }
     public function role()
     {
-        $thongbao = $this->thongbao();
         return view('admin.Statistical.role', [
             'sqls' => $this->statis->listUser(),
-            'thongbaos' => $thongbao,
+            'thongbaos' => $this->statis->thongbao(),
         ]);
     }
     public function chartday(Request $request)
@@ -148,12 +145,5 @@ class AdminController extends Controller
         $chart_date = array_values($chart_dataa);
 
         return response()->json($chart_date);
-    }
-    public function thongbao()
-    {
-        return DB::table("orders")
-            ->join('detail_orders', 'detail_orders.id_order', '=', 'orders.id_donhang')
-            ->select('detail_orders.*', 'orders.name as nameUser', 'orders.created_at as create')
-            ->orderBy('created_at', 'desc')->get();
     }
 }
