@@ -1,4 +1,4 @@
-![image](https://github.com/trunglv2303/DACS2/assets/142105875/6721a30b-f455-4c52-a97a-9f58342edd2c)![image](https://github.com/trunglv2303/DACS2/assets/142105875/1cfddac7-9b8b-41f8-bd99-2fa4b2f72497)2.Tên đồ án: Xây dựng website bán quần áo
+2.Tên đồ án: Xây dựng website bán quần áo
 3.Mô tả:
 - Mục tiêu của đề tài này là xây dựng một nền tảng trực tuyến hoàn chỉnh cho việc mua sắm
 - quần áo, mang lại trải nghiệm mua sắm tốt cho người dùng và quản lý hiệu quả cho nhà kinh doanh.
